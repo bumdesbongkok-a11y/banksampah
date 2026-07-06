@@ -508,6 +508,10 @@ type="text"
 id="total"
 readonly>
 
+<button class="btnSecondary" onclick="bukaMasterHarga()">
+💰 Master Harga
+</button>
+
 <button
 class="btnPrimary"
 id="btnSimpan">
@@ -639,6 +643,8 @@ getFirestore,
 collection,
 addDoc,
 getDocs,
+getDoc,
+setDoc,
 doc,
 updateDoc,
 deleteDoc,
@@ -686,6 +692,7 @@ const colSetoran=collection(db,"setoran");
 
 const colAnggota=collection(db,"anggota");
 
+const docHarga = doc(db, "harga", "daftar");
 
 /* ===========================
    VARIABEL GLOBAL
@@ -697,43 +704,12 @@ let dataSetoran=[];
 
 let editId=null;
 
+let daftarHarga = {};
+
 
 /* ===========================
    DAFTAR HARGA
 =========================== */
-
-const daftarHarga={
-
-"Besi Tebal":3500,
-
-"Besi Biasa":3000,
-
-"Duplek":600,
-
-"Arnium":20000,
-
-"Atum":1500,
-
-"Pet":2500,
-
-"Kaleng":2000,
-
-"Blowing":2500,
-
-"Gelasan":3000,
-
-"Dus":1700,
-
-"Tembaga":110000,
-
-"Kuningan":70000,
-
-"Plastik":1000,
-
-"Lainnya":0
-
-};
-
 
 /* ===========================
    HARI DAN TANGGAL
@@ -928,6 +904,52 @@ alert("Anggota berhasil ditambahkan.");
 
 });
 
+async function loadHarga(){
+
+try{
+
+const snap = await getDoc(docHarga);
+
+if(snap.exists()){
+
+daftarHarga = snap.data();
+
+let html = "";
+
+Object.keys(daftarHarga).forEach(nama=>{
+
+html += `
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+
+<div style="flex:1;">
+${nama}
+</div>
+
+<input
+type="number"
+id="harga_${nama}"
+value="${daftarHarga[nama]}"
+style="width:120px;">
+
+</div>
+`;
+
+});
+
+document.getElementById("listHarga").innerHTML = html;
+
+}
+
+}catch(err){
+
+console.log(err);
+
+alert(err.message);
+
+}
+
+}
+
 /* =====================================================
    SIMPAN DATA SETORAN
 ===================================================== */
@@ -950,7 +972,7 @@ const barang=document.getElementById("jenisBarang").value;
 
 const berat=parseFloat(document.getElementById("berat").value)||0;
 
-const harga=daftarHarga[barang]||0;
+const harga = Number(daftarHarga[barang] || 0);
 
 const total=berat*harga;
 
@@ -1502,14 +1524,67 @@ let nomorWA = "628xxxxxxxxxx"; // ganti nomor WA bisnis kamu
 
 let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
 
-window.open(url, "_blank");
+window.location.href = url;
 
 }
 
+window.bukaMasterHarga = function(){
+
+document.getElementById("masterHarga").style.display = "block";
+
+}
+
+window.tutupMasterHarga = function(){
+
+document.getElementById("masterHarga").style.display = "none";
+
+}
+window.simpanMasterHarga = async function(){
+
+Object.keys(daftarHarga).forEach(nama=>{
+
+daftarHarga[nama] =
+Number(document.getElementById("harga_"+nama).value);
+
+});
+
+await setDoc(docHarga, daftarHarga);
+
+alert("Master harga berhasil disimpan.");
+
+await loadHarga();
+
+}
+
+loadHarga();
 loadAnggota();
 loadSetoran();
 </script>
 
+<div id="masterHarga" style="display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+z-index:9999;
+overflow:auto;
+padding:15px;">
+
+<h2>💰 Master Harga</h2>
+
+<div id="listHarga"></div>
+
+<button class="btnSuccess" onclick="simpanMasterHarga()">
+💾 Simpan Harga
+</button>
+
+<button class="btnDanger" onclick="tutupMasterHarga()">
+❌ Tutup
+</button>
+
+</div>
 
 </body>
 </html>
