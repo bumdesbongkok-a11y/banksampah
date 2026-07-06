@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bank Sampah Sumber Rejeki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+background:#2E7D32;
+min-height:100vh;
+
+}
+
+.header{
+
+background:#1B5E20;
+color:#fff;
+padding:20px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+border-bottom-left-radius:25px;
+border-bottom-right-radius:25px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+}
+
+.container{
+
+width:95%;
+max-width:430px;
+margin:20px auto;
+
+}
+
+.card{
+
+background:#fff;
+padding:18px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+margin-bottom:20px;
+
+}
+
+.card h3{
+
+text-align:center;
+color:#2E7D32;
+margin-bottom:15px;
+
+}
+
+label{
+
+display:block;
+margin-top:14px;
+margin-bottom:6px;
+font-weight:bold;
+color:#333;
+
+}
+
+input,
+select{
+
+width:100%;
+padding:12px;
+font-size:15px;
+border:1px solid #CCC;
+border-radius:10px;
+outline:none;
+background:#FAFAFA;
+
+}
+
+input:focus,
+select:focus{
+
+border-color:#2E7D32;
+
+}
+
+input[readonly]{
+
+background:#ECEFF1;
+
+}
+
+.row{
+
+display:flex;
+gap:10px;
+
+}
+
+.col{
+
+flex:1;
+
+}
+
+button{
+
+width:100%;
+padding:13px;
+border:none;
+border-radius:10px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+margin-top:15px;
+
+}
+
+button:hover{
+
+transform:translateY(-1px);
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+.btnPrimary{
+
+background:#1976D2;
+color:white;
+
+}
+
+.btnSuccess{
+
+background:#43A047;
+color:white;
+
+}
+
+.btnWarning{
+
+background:#FB8C00;
+color:white;
+
+}
+
+.btnDanger{
+
+background:#E53935;
+color:white;
+
+}
+
+.btnSecondary{
+
+background:#6C757D;
+color:white;
+
+}
+
+.btnPrimary:hover{
+
+background:#1565C0;
+
+}
+
+.btnSuccess:hover{
+
+background:#2E7D32;
+
+}
+
+.btnWarning:hover{
+
+background:#EF6C00;
+
+}
+
+.btnDanger:hover{
+
+background:#C62828;
+
+}
+
+.btnSecondary:hover{
+
+background:#5A6268;
+
+}
+
+.tableCard{
+
+background:#fff;
+padding:15px;
+border-radius:16px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+.tableTitle{
+
+font-size:18px;
+font-weight:bold;
+text-align:center;
+color:#2E7D32;
+margin-bottom:15px;
+
+}
+
+.tableResponsive{
+
+overflow-x:auto;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+min-width:760px;
+
+}
+
+th{
+
+background:#2E7D32;
+color:#fff;
+padding:10px;
+font-size:14px;
+
+}
+
+td{
+
+padding:10px;
+border:1px solid #DDD;
+font-size:14px;
+text-align:center;
+
+}
+
+tbody tr:nth-child(even){
+
+background:#F5F5F5;
+
+}
+
+tbody tr:hover{
+
+background:#E8F5E9;
+
+}
+
+.loading{
+
+display:none;
+text-align:center;
+padding:15px;
+font-weight:bold;
+color:#2E7D32;
+
+}
+
+.loading.show{
+
+display:block;
+
+}
+
+.badge{
+
+display:inline-block;
+padding:4px 8px;
+border-radius:20px;
+background:#2E7D32;
+color:white;
+font-size:12px;
+
+}
+
+.footerSpace{
+
+height:40px;
+
+}
+
+@media(max-width:480px){
+
+.header{
+
+font-size:20px;
+
+}
+
+.card{
+
+padding:15px;
+
+}
+
+button{
+
+font-size:14px;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+🌿 Bank Sampah Sumber Rejeki
+</div>
+
+<div class="container">
+
+<!-- ================= DASHBOARD ================= -->
+
+<div class="card">
+
+<h3>Dashboard</h3>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">👥 Anggota</div>
+
+<h2 id="jmlAnggota">0</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">♻ Setoran</div>
+
+<h2 id="jmlSetoran">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">⚖ Berat</div>
+
+<h2 id="totalBerat">0 Kg</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">💰 Total</div>
+
+<h2 id="totalUang">Rp 0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FORM INPUT ================= -->
+
+<div class="card">
+
+<h3>Input Setoran</h3>
+
+<label>Hari</label>
+<input type="text" id="hari" readonly>
+
+<label>Tanggal</label>
+<input type="date" id="tanggal" readonly>
+
+<label>RW</label>
+<select id="rw">
+<option value="">-- Pilih RW --</option>
+<option value="RW 1">RW 1</option>
+<option value="RW 2">RW 2</option>
+<option value="RW 3">RW 3</option>
+<option value="RW 4">RW 4</option>
+<option value="RW 5">RW 5</option>
+</select>
+
+<label>Nama Anggota Baru</label>
+
+<div class="row">
+
+<div class="col">
+<input
+type="text"
+id="namaBaru"
+placeholder="Masukkan nama anggota">
+</div>
+
+<div style="width:110px;">
+<button
+class="btnSuccess"
+type="button"
+id="btnTambahAnggota">
+Tambah
+</button>
+</div>
+
+</div>
+
+<label>Nama Anggota</label>
+
+<select id="anggota">
+<option value="">-- Pilih Anggota --</option>
+</select>
+
+<label>Jenis Barang</label>
+
+<select id="jenisBarang">
+
+<option value="">-- Pilih Barang --</option>
+
+<option>Besi Tebal</option>
+
+<option>Besi Biasa</option>
+
+<option>Duplek</option>
+
+<option>Arnium</option>
+
+<option>Atum</option>
+
+<option>Pet</option>
+
+<option>Kaleng</option>
+
+<option>Blowing</option>
+
+<option>Gelasan</option>
+
+<option>Dus</option>
+
+<option>Tembaga</option>
+
+<option>Kuningan</option>
+
+<option>Plastik</option>
+
+<option>Lainnya</option>
+
+</select>
+
+<label>Berat (Kg)</label>
+
+<input
+type="number"
+step="0.01"
+min="0"
+id="berat"
+placeholder="0.00">
+
+<label>Harga / Kg</label>
+
+<input
+type="text"
+id="harga"
+readonly>
+
+<label>Total</label>
+
+<input
+type="text"
+id="total"
+readonly>
+
+<button
+class="btnPrimary"
+id="btnSimpan">
+
+💾 Simpan Data
+
+</button>
+
+</div>
+
+<!-- ================= FILTER ================= -->
+
+<div class="card">
+
+<h3>Filter Data</h3>
+
+<label>Tanggal</label>
+
+<input
+type="date"
+id="filterTanggal">
+
+<label>RW</label>
+
+<select id="filterRW">
+
+<option value="">Semua RW</option>
+
+<option>RW 1</option>
+
+<option>RW 2</option>
+
+<option>RW 3</option>
+
+<option>RW 4</option>
+
+<option>RW 5</option>
+
+</select>
+<label>Cari Nama</label>
+
+<input
+type="text"
+id="filterNama"
+placeholder="Cari nama anggota...">
+<button
+class="btnSecondary"
+id="btnReset">
+
+🔄 Reset Filter
+
+</button>
+
+<button class="btnSuccess" id="btnExportWA">
+📤 Export ke WhatsApp
+</button>
+
+</div>
+
+<!-- ================= RIWAYAT ================= -->
+
+<div class="tableCard">
+
+<div class="tableTitle">
+
+Riwayat Setoran
+
+</div>
+
+<div class="loading" id="loading">
+
+Mengambil data...
+
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelData">
+
+<thead>
+
+<tr>
+
+<th>No</th>
+
+<th>Tanggal</th>
+
+<th>RW</th>
+
+<th>Nama</th>
+
+<th>Barang</th>
+
+<th>Berat</th>
+
+<th>Harga</th>
+
+<th>Total</th>
+
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="footerSpace"></div>
+
+</div>
+<script type="module">
+
+/* ===========================
+   IMPORT FIREBASE
+=========================== */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import{
+getFirestore,
+collection,
+addDoc,
+getDocs,
+doc,
+updateDoc,
+deleteDoc,
+query,
+orderBy,
+serverTimestamp
+}from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+/* ===========================
+   KONFIGURASI FIREBASE
+=========================== */
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDeqyuN45uor7P7-RwkEcydjQzUoJcmY5g",
+
+authDomain:"bank-sampah-sumber.firebaseapp.com",
+
+projectId:"bank-sampah-sumber",
+
+storageBucket:"bank-sampah-sumber.firebasestorage.app",
+
+messagingSenderId:"1011731089090",
+
+appId:"1:1011731089090:web:3af05e635b787742905d5b"
+
+};
+
+
+/* ===========================
+   INISIALISASI
+=========================== */
+
+const app=initializeApp(firebaseConfig);
+
+const db=getFirestore(app);
+
+
+/* ===========================
+   COLLECTION
+=========================== */
+
+const colSetoran=collection(db,"setoran");
+
+const colAnggota=collection(db,"anggota");
+
+
+/* ===========================
+   VARIABEL GLOBAL
+=========================== */
+
+let daftarAnggota=[];
+
+let dataSetoran=[];
+
+let editId=null;
+
+
+/* ===========================
+   DAFTAR HARGA
+=========================== */
+
+const daftarHarga={
+
+"Besi Tebal":3500,
+
+"Besi Biasa":3000,
+
+"Duplek":600,
+
+"Arnium":20000,
+
+"Atum":1500,
+
+"Pet":2500,
+
+"Kaleng":2000,
+
+"Blowing":2500,
+
+"Gelasan":3000,
+
+"Dus":1700,
+
+"Tembaga":110000,
+
+"Kuningan":70000,
+
+"Plastik":1000,
+
+"Lainnya":0
+
+};
+
+
+/* ===========================
+   HARI DAN TANGGAL
+=========================== */
+
+const hariList=[
+"Minggu",
+"Senin",
+"Selasa",
+"Rabu",
+"Kamis",
+"Jumat",
+"Sabtu"
+];
+
+const sekarang=new Date();
+
+document.getElementById("hari").value=
+hariList[sekarang.getDay()];
+
+document.getElementById("tanggal").value=
+sekarang.toISOString().substring(0,10);
+
+
+/* ===========================
+   HITUNG TOTAL
+=========================== */
+
+const jenisBarang=
+document.getElementById("jenisBarang");
+
+const berat=
+document.getElementById("berat");
+
+jenisBarang.addEventListener("change",hitungTotal);
+
+berat.addEventListener("input",hitungTotal);
+
+function hitungTotal(){
+
+const jenis=jenisBarang.value;
+
+const b=parseFloat(berat.value)||0;
+
+const harga=daftarHarga[jenis]||0;
+
+document.getElementById("harga").value=
+"Rp "+
+harga.toLocaleString("id-ID");
+
+document.getElementById("total").value=
+"Rp "+
+(harga*b).toLocaleString("id-ID");
+
+}
+/* =====================================================
+   DATA ANGGOTA FIREBASE
+===================================================== */
+
+async function loadAnggota(){
+
+const snap=await getDocs(colAnggota);
+
+daftarAnggota=[];
+
+snap.forEach(docItem=>{
+
+daftarAnggota.push({
+
+id:docItem.id,
+
+...docItem.data()
+
+});
+
+});
+
+isiDropdownAnggota();
+
+}
+
+
+/* =====================================================
+   ISI DROPDOWN ANGGOTA
+===================================================== */
+
+function isiDropdownAnggota(){
+
+const rw=document.getElementById("rw").value;
+
+const select=document.getElementById("anggota");
+
+select.innerHTML="<option value=''>-- Pilih Anggota --</option>";
+
+daftarAnggota
+.filter(item=>item.rw===rw)
+.sort((a,b)=>a.nama.localeCompare(b.nama))
+.forEach(item=>{
+
+const option=document.createElement("option");
+
+option.value=item.nama;
+
+option.textContent=item.nama;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+/* =====================================================
+   SAAT RW BERUBAH
+===================================================== */
+
+document
+.getElementById("rw")
+.addEventListener("change",isiDropdownAnggota);
+
+
+/* =====================================================
+   TAMBAH ANGGOTA BARU
+===================================================== */
+
+document
+.getElementById("btnTambahAnggota")
+.addEventListener("click",async()=>{
+
+const rw=document.getElementById("rw").value;
+
+const nama=document
+.getElementById("namaBaru")
+.value
+.trim();
+
+if(rw===""){
+
+alert("Pilih RW terlebih dahulu");
+
+return;
+
+}
+
+if(nama===""){
+
+alert("Masukkan nama anggota");
+
+return;
+
+}
+
+
+/* cek apakah sudah ada */
+
+const ada=daftarAnggota.find(item=>
+
+item.rw===rw &&
+item.nama.toLowerCase()===nama.toLowerCase()
+
+);
+
+if(ada){
+
+alert("Nama sudah terdaftar");
+
+return;
+
+}
+
+
+/* simpan */
+
+await addDoc(colAnggota,{
+
+rw,
+
+nama,
+
+dibuat:serverTimestamp()
+
+});
+
+
+document
+.getElementById("namaBaru")
+.value="";
+
+await loadAnggota();
+
+alert("Anggota berhasil ditambahkan.");
+
+});
+
+/* =====================================================
+   SIMPAN DATA SETORAN
+===================================================== */
+
+document
+.getElementById("btnSimpan")
+.addEventListener("click", simpanData);
+
+async function simpanData(){
+
+const tanggal=document.getElementById("tanggal").value;
+
+const hari=document.getElementById("hari").value;
+
+const rw=document.getElementById("rw").value;
+
+const nama=document.getElementById("anggota").value;
+
+const barang=document.getElementById("jenisBarang").value;
+
+const berat=parseFloat(document.getElementById("berat").value)||0;
+
+const harga=daftarHarga[barang]||0;
+
+const total=berat*harga;
+
+
+/* ===========================
+   VALIDASI
+=========================== */
+
+if(rw==""){
+
+alert("Pilih RW");
+
+return;
+
+}
+
+if(nama==""){
+
+alert("Pilih Anggota");
+
+return;
+
+}
+
+if(barang==""){
+
+alert("Pilih Jenis Barang");
+
+return;
+
+}
+
+if(berat<=0){
+
+alert("Masukkan Berat");
+
+return;
+
+}
+
+
+/* ===========================
+   LOADING
+=========================== */
+
+document.getElementById("loading").classList.add("show");
+
+
+try{
+
+await addDoc(colSetoran,{
+
+tanggal,
+
+hari,
+
+rw,
+
+nama,
+
+barang,
+
+berat,
+
+harga,
+
+total,
+
+dibuat:serverTimestamp()
+
+});
+
+alert("Data berhasil disimpan.");
+
+
+/* reset form */
+
+document.getElementById("jenisBarang").value="";
+
+document.getElementById("berat").value="";
+
+document.getElementById("harga").value="";
+
+document.getElementById("total").value="";
+
+document.getElementById("anggota").selectedIndex=0;
+
+
+/* refresh tabel */
+
+await loadSetoran();
+
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menyimpan data");
+
+}
+
+document.getElementById("loading").classList.remove("show");
+
+}
+/* =====================================================
+   LOAD DATA SETORAN DARI FIREBASE
+===================================================== */
+
+async function loadSetoran(){
+
+document.getElementById("loading").classList.add("show");
+
+try{
+
+const q=query(colSetoran,orderBy("tanggal","desc"));
+
+const snap=await getDocs(q);
+
+dataSetoran=[];
+
+snap.forEach(docItem=>{
+
+dataSetoran.push({
+
+id:docItem.id,
+
+...docItem.data()
+
+});
+
+});
+
+tampilData();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal mengambil data.");
+
+}
+
+document.getElementById("loading").classList.remove("show");
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA KE TABEL
+===================================================== */
+
+function tampilData(){
+
+const tbody=document.querySelector("#tabelData tbody");
+
+tbody.innerHTML="";
+
+let filterTanggal=document.getElementById("filterTanggal").value;
+
+let filterRW=document.getElementById("filterRW").value;
+let filterNama = document
+.getElementById("filterNama")
+.value
+.toLowerCase();
+
+let hasil=dataSetoran.filter(item=>{
+
+let cocokTanggal=true;
+let cocokRW=true;
+let cocokNama=true;
+
+if(filterTanggal!=""){
+
+cocokTanggal=item.tanggal===filterTanggal;
+
+}
+
+if(filterRW!=""){
+
+cocokRW=item.rw===filterRW;
+
+}
+if(filterNama!=""){
+
+cocokNama=item.nama
+.toLowerCase()
+.includes(filterNama);
+
+}
+
+return cocokTanggal && cocokRW && cocokNama;
+
+});
+
+
+if(hasil.length==0){
+
+tbody.innerHTML=`
+
+<tr>
+
+<td colspan="9">
+
+Belum ada data.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+hasil.forEach((item,index)=>{
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item.tanggal}</td>
+
+<td>${item.rw}</td>
+
+<td>${item.nama}</td>
+
+<td>${item.barang}</td>
+
+<td>${item.berat}</td>
+
+<td>
+
+Rp ${Number(item.harga).toLocaleString("id-ID")}
+
+</td>
+
+<td>
+
+Rp ${Number(item.total).toLocaleString("id-ID")}
+
+</td>
+
+<td>
+
+<button
+class="btnWarning"
+onclick="editData('${item.id}')">
+
+✏️
+
+</button>
+
+<button
+class="btnDanger"
+onclick="hapusData('${item.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+// ================= Dashboard =================
+
+document.getElementById("jmlSetoran").textContent = hasil.length;
+
+document.getElementById("jmlAnggota").textContent = daftarAnggota.length;
+
+let totalBerat = 0;
+let totalUang = 0;
+
+hasil.forEach(item => {
+
+    totalBerat += Number(item.berat || 0);
+
+    totalUang += Number(item.total || 0);
+
+});
+
+document.getElementById("totalBerat").textContent =
+totalBerat.toFixed(2) + " Kg";
+
+document.getElementById("totalUang").textContent =
+"Rp " + totalUang.toLocaleString("id-ID");
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+document
+.getElementById("filterTanggal")
+.addEventListener("change",tampilData);
+
+document
+.getElementById("filterRW")
+.addEventListener("change",tampilData);
+
+document
+.getElementById("filterNama")
+.addEventListener("input",tampilData);
+
+
+/* =====================================================
+   RESET FILTER
+===================================================== */
+
+document
+.getElementById("btnReset")
+.addEventListener("click",()=>{
+
+document.getElementById("filterTanggal").value="";
+
+document.getElementById("filterRW").value="";
+
+document.getElementById("filterNama").value="";
+
+tampilData();
+
+});
+
+
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+
+/* =====================================================
+   EDIT DATA
+===================================================== */
+
+window.editData = async function(id){
+
+const data=dataSetoran.find(item=>item.id===id);
+
+if(!data) return;
+
+editId=id;
+
+document.getElementById("tanggal").value=data.tanggal;
+
+document.getElementById("hari").value=data.hari;
+
+document.getElementById("rw").value=data.rw;
+
+isiDropdownAnggota();
+
+setTimeout(()=>{
+
+document.getElementById("anggota").value=data.nama;
+
+},200);
+
+document.getElementById("jenisBarang").value=data.barang;
+
+document.getElementById("berat").value=data.berat;
+
+hitungTotal();
+
+document.getElementById("btnSimpan").innerHTML="💾 Update Data";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+/* =====================================================
+   UPDATE DATA
+===================================================== */
+
+async function updateData(){
+if(editId){
+
+await updateData();
+
+return;
+
+}
+
+const tanggal=document.getElementById("tanggal").value;
+
+const hari=document.getElementById("hari").value;
+
+const rw=document.getElementById("rw").value;
+
+const nama=document.getElementById("anggota").value;
+
+const barang=document.getElementById("jenisBarang").value;
+
+const berat=parseFloat(document.getElementById("berat").value)||0;
+
+const harga=daftarHarga[barang]||0;
+
+const total=berat*harga;
+
+await updateDoc(doc(db,"setoran",editId),{
+
+tanggal,
+
+hari,
+
+rw,
+
+nama,
+
+barang,
+
+berat,
+
+harga,
+
+total
+
+});
+
+alert("Data berhasil diperbarui.");
+
+editId=null;
+
+document.getElementById("btnSimpan").innerHTML="💾 Simpan Data";
+
+bersihkanForm();
+
+loadSetoran();
+
+}
+function bersihkanForm(){
+
+document.getElementById("rw").selectedIndex=0;
+
+document.getElementById("anggota").innerHTML="<option value=''>-- Pilih Anggota --</option>";
+
+document.getElementById("jenisBarang").selectedIndex=0;
+
+document.getElementById("berat").value="";
+
+document.getElementById("harga").value="";
+
+document.getElementById("total").value="";
+
+}
+/* =====================================================
+   HAPUS DATA
+===================================================== */
+
+window.hapusData = async function(id){
+
+const yakin = confirm("Yakin ingin menghapus data ini?");
+
+if(!yakin) return;
+
+try{
+
+await deleteDoc(doc(db,"setoran",id));
+
+alert("Data berhasil dihapus.");
+
+await loadSetoran();
+
+}catch(err){
+
+console.error(err);
+
+alert("Gagal menghapus data.");
+
+}
+
+}
+
+document.getElementById("btnExportWA").addEventListener("click", exportWAFilter);
+
+function exportWAFilter() {
+
+let filterTanggal = document.getElementById("filterTanggal").value;
+let filterRW = document.getElementById("filterRW").value;
+let filterNama = document.getElementById("filterNama").value.toLowerCase();
+
+let hasil = dataSetoran.filter(item => {
+
+let cocokTanggal = true;
+let cocokRW = true;
+let cocokNama = true;
+
+if (filterTanggal !== "") {
+cocokTanggal = item.tanggal === filterTanggal;
+}
+
+if (filterRW !== "") {
+cocokRW = item.rw === filterRW;
+}
+
+if (filterNama !== "") {
+cocokNama = item.nama.toLowerCase().includes(filterNama);
+}
+
+return cocokTanggal && cocokRW && cocokNama;
+
+});
+
+if (hasil.length === 0) {
+alert("Tidak ada data untuk diexport");
+return;
+}
+
+let pesan = "📊 *Laporan Bank Sampah (Filter)*\n\n";
+
+let totalBerat = 0;
+let totalUang = 0;
+
+hasil.forEach((item, i) => {
+
+pesan +=
+`${i + 1}. ${item.tanggal} | ${item.rw} | ${item.nama}\n` +
+`   ♻ ${item.barang} | ${item.berat} Kg\n` +
+`   💰 Rp ${Number(item.total).toLocaleString("id-ID")}\n\n`;
+
+totalBerat += Number(item.berat || 0);
+totalUang += Number(item.total || 0);
+
+});
+
+pesan +=
+`━━━━━━━━━━━━━━\n` +
+`⚖ Total Berat: ${totalBerat.toFixed(2)} Kg\n` +
+`💰 Total Uang: Rp ${totalUang.toLocaleString("id-ID")}\n\n` +
+`📌 Filter:\n` +
+`- Tanggal: ${filterTanggal || "Semua"}\n` +
+`- RW: ${filterRW || "Semua"}\n` +
+`- Nama: ${filterNama || "Semua"}\n\n` +
+`✔️ Laporan Bank Sampah Sumber Rejeki`;
+
+let nomorWA = "628xxxxxxxxxx"; // ganti nomor WA bisnis kamu
+
+let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+
+window.open(url, "_blank");
+
+}
+
+loadAnggota();
+loadSetoran();
+</script>
+
+
+</body>
+</html>
