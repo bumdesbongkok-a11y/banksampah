@@ -1187,7 +1187,15 @@ Belum ada data.
 return;
 
 }
+hasil.sort((a, b) => {
 
+    if (a.tanggal === b.tanggal) {
+        return a.nama.localeCompare(b.nama, "id");
+    }
+
+    return b.tanggal.localeCompare(a.tanggal);
+
+});
 
 hasil.forEach((item,index)=>{
 
