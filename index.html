@@ -954,9 +954,15 @@ alert(err.message);
    SIMPAN DATA SETORAN
 ===================================================== */
 
-document
-.getElementById("btnSimpan")
-.addEventListener("click", simpanData);
+document.getElementById("btnSimpan").addEventListener("click", async () => {
+
+    if (editId) {
+        await updateData();
+    } else {
+        await simpanData();
+    }
+
+});
 
 async function simpanData(){
 
@@ -1368,59 +1374,37 @@ behavior:"smooth"
 ===================================================== */
 
 async function updateData(){
-if(editId){
 
-await updateData();
+const tanggal = document.getElementById("tanggal").value;
+const hari = document.getElementById("hari").value;
+const rw = document.getElementById("rw").value;
+const nama = document.getElementById("anggota").value;
+const barang = document.getElementById("jenisBarang").value;
+const berat = parseFloat(document.getElementById("berat").value) || 0;
 
-return;
+const harga = Number(daftarHarga[barang] || 0);
+const total = berat * harga;
 
-}
-
-const tanggal=document.getElementById("tanggal").value;
-
-const hari=document.getElementById("hari").value;
-
-const rw=document.getElementById("rw").value;
-
-const nama=document.getElementById("anggota").value;
-
-const barang=document.getElementById("jenisBarang").value;
-
-const berat=parseFloat(document.getElementById("berat").value)||0;
-
-const harga=daftarHarga[barang]||0;
-
-const total=berat*harga;
-
-await updateDoc(doc(db,"setoran",editId),{
-
-tanggal,
-
-hari,
-
-rw,
-
-nama,
-
-barang,
-
-berat,
-
-harga,
-
-total
-
+await updateDoc(doc(db, "setoran", editId), {
+    tanggal,
+    hari,
+    rw,
+    nama,
+    barang,
+    berat,
+    harga,
+    total
 });
 
 alert("Data berhasil diperbarui.");
 
-editId=null;
+editId = null;
 
-document.getElementById("btnSimpan").innerHTML="💾 Simpan Data";
+document.getElementById("btnSimpan").innerHTML = "💾 Simpan Data";
 
 bersihkanForm();
 
-loadSetoran();
+await loadSetoran();
 
 }
 function bersihkanForm(){
@@ -1528,11 +1512,9 @@ pesan +=
 `- Nama: ${filterNama || "Semua"}\n\n` +
 `✔️ Laporan Bank Sampah Sumber Rejeki`;
 
-let nomorWA = "628xxxxxxxxxx"; // ganti nomor WA bisnis kamu
+let url = `https://wa.me/?text=${encodeURIComponent(pesan)}`;
 
-let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-
-window.location.href = url;
+window.open(url, "_blank");
 
 }
 
