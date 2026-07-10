@@ -1136,7 +1136,7 @@ Riwayat Setoran
 </div>
 
 </div>
-
+<!-- ================= halaman harga ================= -->
 <div id="halamanHarga" class="card" style="display:none;">
 
 <h2>💰 Master Harga</h2>
@@ -1194,17 +1194,171 @@ onclick="kembaliMenu()">
 </button>
 
 </div>
+<!-- ================= laporan ================= -->
 
+<div id="halamanLaporan" style="display:none;">
 
-<div id="halamanLaporan" class="card" style="display:none;">
-
-<h3>📊 Laporan</h3>
-
-<p>Menu ini akan kita buat pada Tahap 6.</p>
+<div class="card">
 
 <button class="btnSecondary" onclick="kembaliMenu()">
 ⬅ Kembali
 </button>
+
+<h2>📊 Laporan Setoran</h2>
+
+<label>Tanggal</label>
+
+<input type="date" id="lapTanggal">
+
+<label>Bulan</label>
+
+<input type="month" id="lapBulan">
+
+<label>RW</label>
+
+<select id="lapRW">
+
+<option value="">Semua RW</option>
+
+<option>RW 1</option>
+<option>RW 2</option>
+<option>RW 3</option>
+<option>RW 4</option>
+<option>RW 5</option>
+
+</select>
+
+<label>Nama Anggota</label>
+
+<select id="lapAnggota">
+
+<option value="">Semua Anggota</option>
+
+</select>
+
+<button class="btnPrimary" id="btnTampilkanLaporan">
+
+🔍 Tampilkan
+
+</button>
+
+<button class="btnSecondary" id="btnResetLaporan">
+
+🔄 Reset
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Ringkasan</h3>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div>Total Setoran</div>
+
+<h2 id="lapTotalSetoran">0</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div>Total Berat</div>
+
+<h2 id="lapTotalBerat">0 Kg</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div>Total Uang</div>
+
+<h2 id="lapTotalUang">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="tableCard">
+
+<div class="tableTitle">
+
+Data Laporan
+
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelLaporan">
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Tanggal</th>
+<th>RW</th>
+<th>Nama</th>
+<th>Barang</th>
+<th>Berat</th>
+<th>Total</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td colspan="7">
+
+Belum ada data.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div style="margin-top:15px;">
+
+<button class="btnSuccess" id="btnExportLaporan">
+
+📥 Export Excel
+
+</button>
+
+<button class="btnPrimary" id="btnShareLaporan">
+
+📲 Share WhatsApp
+
+</button>
+
+</div>
 
 </div>
 
@@ -1380,6 +1534,8 @@ tampilAnggota();
 
 generateIdAnggota();
 
+isiDropdownLaporanAnggota();
+
 }
 
 
@@ -1407,6 +1563,38 @@ option.value = item.idAnggota;
 option.textContent = item.idAnggota + " - " + item.nama;
 
 select.appendChild(option);
+
+});
+
+}
+
+/* =====================================================
+   ISI DROPDOWN LAPORAN ANGGOTA
+===================================================== */
+
+function isiDropdownLaporanAnggota(){
+
+const select =
+document.getElementById("lapAnggota");
+
+if(!select) return;
+
+select.innerHTML =
+"<option value=''>Semua Anggota</option>";
+
+const urut = [...daftarAnggota];
+
+urut.sort((a,b)=>
+a.nama.localeCompare(b.nama,"id")
+);
+
+urut.forEach(item=>{
+
+select.innerHTML += `
+<option value="${item.idAnggota}">
+${item.nama}
+</option>
+`;
 
 });
 
@@ -1956,6 +2144,136 @@ document.getElementById("loading").classList.remove("show");
 
 
 /* =====================================================
+   TAMPILKAN LAPORAN
+===================================================== */
+
+window.tampilkanLaporan = function(){
+
+const filterTanggal =
+document.getElementById("lapTanggal").value;
+
+const filterBulan =
+document.getElementById("lapBulan").value;
+
+const filterRW =
+document.getElementById("lapRW").value;
+
+const filterAnggota =
+document.getElementById("lapAnggota").value;
+
+let data = [...dataSetoran];
+
+/* Filter tanggal */
+
+if(filterTanggal){
+
+data = data.filter(item =>
+item.tanggal === filterTanggal
+);
+
+}
+
+/* Filter bulan */
+
+if(filterBulan){
+
+data = data.filter(item =>
+item.tanggal.startsWith(filterBulan)
+);
+
+}
+
+/* Filter RW */
+
+if(filterRW){
+
+data = data.filter(item =>
+item.rw === filterRW
+);
+
+}
+
+/* Filter Anggota */
+
+if(filterAnggota){
+
+data = data.filter(item =>
+item.idAnggota === filterAnggota
+);
+
+}
+
+const tbody =
+document.querySelector("#tabelLaporan tbody");
+
+tbody.innerHTML = "";
+
+let totalSetoran = 0;
+let totalBerat = 0;
+let totalUang = 0;
+
+if(data.length==0){
+
+tbody.innerHTML=`
+<tr>
+<td colspan="7">
+Tidak ada data.
+</td>
+</tr>
+`;
+
+}else{
+
+data.sort((a,b)=>
+b.tanggal.localeCompare(a.tanggal)
+);
+
+data.forEach((item,index)=>{
+
+totalSetoran++;
+
+totalBerat += Number(item.berat||0);
+
+totalUang += Number(item.total||0);
+
+tbody.innerHTML += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item.tanggal}</td>
+
+<td>${item.rw}</td>
+
+<td>${item.nama}</td>
+
+<td>${item.barang}</td>
+
+<td>${item.berat} Kg</td>
+
+<td>Rp ${Number(item.total).toLocaleString("id-ID")}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+document.getElementById("lapTotalSetoran").textContent =
+totalSetoran;
+
+document.getElementById("lapTotalBerat").textContent =
+totalBerat.toFixed(2)+" Kg";
+
+document.getElementById("lapTotalUang").textContent =
+"Rp "+totalUang.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
    TAMPILKAN DATA KE TABEL
 ===================================================== */
 
@@ -2128,6 +2446,9 @@ document
 .getElementById("filterNama")
 .addEventListener("input",tampilData);
 
+document
+.getElementById("btnTampilkanLaporan")
+.addEventListener("click", tampilkanLaporan);
 
 /* =====================================================
    RESET FILTER
