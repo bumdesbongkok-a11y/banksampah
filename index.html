@@ -63,6 +63,8 @@ margin-bottom:20px;
 text-align:center;
 color:#2E7D32;
 margin-bottom:15px;
+font-size:22px;
+font-weight:bold;
 
 }
 
@@ -335,6 +337,46 @@ font-size:14px;
 
 <div class="container">
 
+<!-- ================= MENU UTAMA ================= -->
+
+<div id="menuUtama" class="card">
+
+<h3>Menu Utama</h3>
+
+<button class="btnPrimary" onclick="bukaHalaman('halamanInput')">
+📥 Input Data Bank Sampah
+</button>
+
+<button class="btnSuccess" onclick="bukaHalaman('halamanPenjualan')">
+💰 Penjualan Bank Sampah
+</button>
+
+<button class="btnWarning" onclick="bukaHalaman('halamanAnggota')">
+👥 Data Anggota
+</button>
+
+<button class="btnSecondary" onclick="bukaHalaman('halamanHarga')">
+💵 Master Harga
+</button>
+
+<button class="btnPrimary" onclick="bukaHalaman('halamanLaporan')">
+📊 Laporan
+</button>
+
+</div>
+<div id="halamanInput" style="display:none;">
+
+<div class="card">
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅️ Kembali ke Menu
+</button>
+
+<h3>📥 Input Data Bank Sampah</h3>
+
+</div>
+
+
 <!-- ================= DASHBOARD ================= -->
 
 <div class="card">
@@ -399,11 +441,12 @@ font-size:14px;
 
 </div>
 
+
 <!-- ================= FORM INPUT ================= -->
 
 <div class="card">
 
-<h3>Input Setoran</h3>
+<h3>📥 Input Data Bank Sampah</h3>
 
 <label>Hari</label>
 <input type="text" id="hari" readonly>
@@ -420,6 +463,7 @@ font-size:14px;
 <option value="RW 4">RW 4</option>
 <option value="RW 5">RW 5</option>
 </select>
+
 
 <label>Nama Anggota Baru</label>
 
@@ -508,6 +552,7 @@ type="text"
 id="total"
 readonly>
 
+
 <button class="btnSecondary" onclick="bukaMasterHarga()">
 💰 Master Harga
 </button>
@@ -522,6 +567,8 @@ id="btnSimpan">
 
 </div>
 
+
+<hr style="margin:25px 0;">
 <!-- ================= FILTER ================= -->
 
 <div class="card">
@@ -571,6 +618,7 @@ id="btnReset">
 
 </div>
 
+<hr style="margin:25px 0;">
 <!-- ================= RIWAYAT ================= -->
 
 <div class="tableCard">
@@ -630,6 +678,534 @@ Mengambil data...
 <div class="footerSpace"></div>
 
 </div>
+
+<div id="halamanPenjualan" style="display:none;">
+
+<div class="card">
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅️ Kembali ke Menu
+</button>
+
+<h3>💰 Penjualan Bank Sampah</h3>
+
+</div>
+
+<!-- Dashboard -->
+
+<div class="card">
+
+<h3>Dashboard Penjualan</h3>
+
+<div class="row">
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>💰 Penjualan</div>
+<h2 id="totalPenjualan">Rp 0</h2>
+</div>
+</div>
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>📈 Laba</div>
+<h2 id="totalLaba">Rp 0</h2>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>⚖ Berat</div>
+<h2 id="beratTerjual">0 Kg</h2>
+</div>
+</div>
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>🚚 Transaksi</div>
+<h2 id="jumlahPenjualan">0</h2>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- Form -->
+
+<div class="card">
+
+<h3>Input Penjualan</h3>
+
+<label>Hari</label>
+<input type="text" id="jualHari" readonly>
+
+<label>Tanggal</label>
+<input type="date" id="jualTanggal">
+
+<label>Nama Pembeli</label>
+<input type="text" id="jualPembeli" placeholder="Nama Pembeli">
+
+<label>Jenis Barang</label>
+<select id="jualBarang">
+
+<option value="">-- Pilih Barang --</option>
+
+<option>Besi Tebal</option>
+<option>Besi Biasa</option>
+<option>Duplek</option>
+<option>Arnium</option>
+<option>Atum</option>
+<option>Pet</option>
+<option>Kaleng</option>
+<option>Blowing</option>
+<option>Gelasan</option>
+<option>Dus</option>
+<option>Tembaga</option>
+<option>Kuningan</option>
+<option>Plastik</option>
+<option>Lainnya</option>
+
+</select>
+
+<label>Berat (Kg)</label>
+<input type="number" id="jualBerat" step="0.01">
+
+<label>Harga Jual / Kg</label>
+<input type="number" id="jualHarga">
+
+<label>Total Penjualan</label>
+<input type="text" id="jualTotal" readonly>
+
+<label>Keterangan</label>
+<input type="text" id="jualKet">
+
+<button class="btnPrimary" id="btnSimpanPenjualan">
+💾 Simpan Penjualan
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Filter Penjualan</h3>
+
+<label>Tanggal</label>
+<input type="date" id="filterJualTanggal">
+
+<label>Pembeli</label>
+<input
+type="text"
+id="filterJualPembeli"
+placeholder="Cari pembeli">
+
+<label>Jenis Barang</label>
+
+<select id="filterJualBarang">
+
+<option value="">Semua Barang</option>
+
+<option>Besi Tebal</option>
+<option>Besi Biasa</option>
+<option>Duplek</option>
+<option>Arnium</option>
+<option>Atum</option>
+<option>Pet</option>
+<option>Kaleng</option>
+<option>Blowing</option>
+<option>Gelasan</option>
+<option>Dus</option>
+<option>Tembaga</option>
+<option>Kuningan</option>
+<option>Plastik</option>
+<option>Lainnya</option>
+
+</select>
+
+<button
+class="btnSecondary"
+id="btnResetPenjualan">
+
+🔄 Reset Filter
+
+</button>
+
+<button
+class="btnSuccess"
+id="btnExportPenjualan">
+
+📤 Export WhatsApp
+
+</button>
+
+</div>
+
+<!-- Riwayat -->
+
+<div class="tableCard">
+
+<div class="tableTitle">
+Riwayat Penjualan
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelPenjualan">
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Tanggal</th>
+<th>Pembeli</th>
+<th>Barang</th>
+<th>Berat</th>
+<th>Harga</th>
+<th>Total</th>
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td colspan="8">
+Belum ada data
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="halamanAnggota" style="display:none;">
+
+<div class="card">
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅️ Kembali ke Menu
+</button>
+
+<h3>👥 Data Anggota</h3>
+
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+
+<div class="card">
+
+<h3>Dashboard Anggota</h3>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div>👥 Total Anggota</div>
+
+<h2 id="dashTotalAnggota">0</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div>🏘 Total RW</div>
+
+<h2>5</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FORM ANGGOTA ================= -->
+
+<div class="card">
+
+<h3 id="judulFormAnggota">➕ Tambah Anggota</h3>
+
+<label>RW</label>
+
+<select id="anggotaRW">
+
+<option value="">-- Pilih RW --</option>
+
+<option>RW 1</option>
+<option>RW 2</option>
+<option>RW 3</option>
+<option>RW 4</option>
+<option>RW 5</option>
+
+</select>
+
+<label>ID Anggota</label>
+
+<input
+type="text"
+id="anggotaId"
+readonly
+placeholder="Otomatis">
+
+<label>Nama Anggota</label>
+
+<input
+type="text"
+id="anggotaNama"
+placeholder="Masukkan nama anggota">
+
+<button
+class="btnPrimary"
+id="btnSimpanAnggota">
+
+💾 Simpan Anggota
+
+</button>
+
+<button
+class="btnWarning"
+onclick="migrasiIdAnggota()">
+
+🔄 Generate ID Anggota Lama
+
+</button>
+
+</div>
+
+<button
+class="btnWarning"
+onclick="migrasiIdSetoran()">
+
+🔄 Generate ID Setoran Lama
+
+</button>
+
+<!-- ================= FILTER ================= -->
+
+<div class="card">
+
+<h3>Filter Anggota</h3>
+
+<label>RW</label>
+
+<select id="filterAnggotaRW">
+
+<option value="">Semua RW</option>
+
+<option>RW 1</option>
+<option>RW 2</option>
+<option>RW 3</option>
+<option>RW 4</option>
+<option>RW 5</option>
+
+</select>
+
+<label>Cari Nama</label>
+
+<input
+type="text"
+id="filterAnggotaNama"
+placeholder="Cari nama anggota">
+
+<button
+class="btnSecondary"
+id="btnResetAnggota">
+
+🔄 Reset Filter
+
+</button>
+
+</div>
+
+<!-- ================= TABEL ================= -->
+
+<div id="panelDaftarAnggota">
+
+<div class="tableCard">
+
+<div class="tableTitle">
+
+Daftar Anggota
+
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelAnggota">
+
+<thead>
+
+<tr>
+
+<th>No</th>
+
+<th>RW</th>
+
+<th>Nama</th>
+
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td colspan="4">
+
+Belum ada data.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= DETAIL ANGGOTA ================= -->
+
+<div id="panelDetailAnggota" style="display:none;">
+
+<div class="card">
+
+<button class="btnSecondary" onclick="kembaliDaftarAnggota()">
+⬅️ Kembali
+</button>
+
+<h3>👤 Detail Anggota</h3>
+
+<label>Nama Anggota</label>
+<input type="text" id="detailNamaAnggota" readonly>
+
+<label>RW</label>
+<input type="text" id="detailRWAnggota" readonly>
+
+</div>
+
+<div class="card">
+
+<h3>Ringkasan</h3>
+
+<div class="row">
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>Total Setoran</div>
+<h2 id="detailTotalSetoran">0</h2>
+</div>
+</div>
+
+<div class="col">
+<div class="card" style="padding:10px;text-align:center;">
+<div>Total Berat</div>
+<h2 id="detailTotalBerat">0 Kg</h2>
+</div>
+</div>
+
+</div>
+
+<div class="card" style="padding:10px;text-align:center;">
+<div>Total Uang</div>
+<h2 id="detailTotalUang">Rp 0</h2>
+</div>
+
+</div>
+
+<div class="tableCard">
+
+<div class="tableTitle">
+Riwayat Setoran
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelRiwayatAnggota">
+
+<thead>
+
+<tr>
+<th>Tanggal</th>
+<th>Barang</th>
+<th>Berat</th>
+<th>Total</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td colspan="4">Belum ada data</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="halamanHarga" class="card" style="display:none;">
+
+<h3>💵 Master Harga</h3>
+
+<p>Menu ini akan kita buat pada Tahap 5.</p>
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅ Kembali
+</button>
+
+</div>
+
+
+<div id="halamanLaporan" class="card" style="display:none;">
+
+<h3>📊 Laporan</h3>
+
+<p>Menu ini akan kita buat pada Tahap 6.</p>
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅ Kembali
+</button>
+
+</div>
+
+</div>
 <script type="module">
 
 /* ===========================
@@ -650,6 +1226,7 @@ updateDoc,
 deleteDoc,
 query,
 orderBy,
+writeBatch,
 serverTimestamp
 }from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
@@ -688,11 +1265,13 @@ const db=getFirestore(app);
    COLLECTION
 =========================== */
 
-const colSetoran=collection(db,"setoran");
+const colSetoran = collection(db,"setoran");
 
-const colAnggota=collection(db,"anggota");
+const colAnggota = collection(db,"anggota");
 
-const docHarga = doc(db, "harga", "daftar");
+const colPenjualan = collection(db,"penjualan");
+
+const docHarga = doc(db,"harga","daftar");
 
 /* ===========================
    VARIABEL GLOBAL
@@ -702,10 +1281,15 @@ let daftarAnggota=[];
 
 let dataSetoran=[];
 
+let dataPenjualan = [];
+
 let editId=null;
 
 let daftarHarga = {};
 
+let editAnggotaId = null;
+
+let nomorAnggota = 1;
 
 /* ===========================
    DAFTAR HARGA
@@ -789,6 +1373,10 @@ id:docItem.id,
 
 isiDropdownAnggota();
 
+tampilAnggota();
+
+generateIdAnggota();
+
 }
 
 
@@ -809,11 +1397,11 @@ daftarAnggota
 .sort((a,b)=>a.nama.localeCompare(b.nama))
 .forEach(item=>{
 
-const option=document.createElement("option");
+const option = document.createElement("option");
 
-option.value=item.nama;
+option.value = item.idAnggota;
 
-option.textContent=item.nama;
+option.textContent = item.nama;
 
 select.appendChild(option);
 
@@ -821,6 +1409,165 @@ select.appendChild(option);
 
 }
 
+/* =====================================================
+   TAMPILKAN DATA ANGGOTA
+===================================================== */
+
+function tampilAnggota(){
+
+const tbody =
+document.querySelector("#tabelAnggota tbody");
+
+tbody.innerHTML = "";
+
+let filterRW =
+document.getElementById("filterAnggotaRW").value;
+
+let filterNama =
+document.getElementById("filterAnggotaNama")
+.value
+.toLowerCase();
+
+let hasil = daftarAnggota.filter(item=>{
+
+let cocokRW = true;
+
+let cocokNama = true;
+
+if(filterRW!=""){
+
+cocokRW = item.rw===filterRW;
+
+}
+
+if(filterNama!=""){
+
+cocokNama = item.nama
+.toLowerCase()
+.includes(filterNama);
+
+}
+
+return cocokRW && cocokNama;
+
+});
+
+if(hasil.length==0){
+
+tbody.innerHTML=`
+<tr>
+<td colspan="4">
+Belum ada data.
+</td>
+</tr>
+`;
+
+document.getElementById("dashTotalAnggota").textContent=0;
+
+return;
+
+}
+
+hasil.sort((a,b)=>{
+
+if(a.rw===b.rw){
+
+return a.nama.localeCompare(b.nama,"id");
+
+}
+
+return a.rw.localeCompare(b.rw);
+
+});
+
+hasil.forEach((item,index)=>{
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item.rw}</td>
+
+<td>${item.nama}</td>
+
+<td>
+
+<button
+class="btnSuccess"
+onclick="lihatAnggota('${item.id}')">
+
+👁️
+
+</button>
+
+<button
+class="btnWarning"
+onclick="editAnggota('${item.id}')">
+
+✏️
+
+</button>
+
+<button
+class="btnDanger"
+onclick="hapusAnggota('${item.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("dashTotalAnggota").textContent =
+hasil.length;
+
+}
+
+/* =====================================================
+   EDIT ANGGOTA
+===================================================== */
+
+window.editAnggota = function(id){
+
+const data =
+daftarAnggota.find(item=>item.id===id);
+
+if(!data) return;
+
+editAnggotaId = id;
+
+document.getElementById("anggotaId").value =
+data.idAnggota || "";
+
+document.getElementById("anggotaRW").value =
+data.rw;
+
+document.getElementById("anggotaNama").value =
+data.nama;
+
+document.getElementById("judulFormAnggota").innerHTML =
+"✏️ Edit Anggota";
+
+document.getElementById("btnSimpanAnggota").innerHTML =
+"💾 Update Anggota";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
 
 /* =====================================================
    SAAT RW BERUBAH
@@ -950,6 +1697,8 @@ alert(err.message);
 
 }
 
+
+
 /* =====================================================
    SIMPAN DATA SETORAN
 ===================================================== */
@@ -970,11 +1719,23 @@ const tanggal=document.getElementById("tanggal").value;
 
 const hari=document.getElementById("hari").value;
 
-const rw=document.getElementById("rw").value;
+const rw = document.getElementById("rw").value;
 
-const nama=document.getElementById("anggota").value;
+const idAnggota = document.getElementById("anggota").value;
 
-const barang=document.getElementById("jenisBarang").value;
+const dataAnggota = daftarAnggota.find(item => item.idAnggota === idAnggota);
+
+if(!dataAnggota){
+
+alert("Anggota tidak ditemukan.");
+
+return;
+
+}
+
+const nama = dataAnggota.nama;
+
+const barang = document.getElementById("jenisBarang").value;
 
 const berat=parseFloat(document.getElementById("berat").value)||0;
 
@@ -1030,6 +1791,8 @@ document.getElementById("loading").classList.add("show");
 try{
 
 await addDoc(colSetoran,{
+
+idAnggota,
 
 tanggal,
 
@@ -1346,7 +2109,7 @@ isiDropdownAnggota();
 
 setTimeout(()=>{
 
-document.getElementById("anggota").value=data.nama;
+document.getElementById("anggota").value=data.idAnggota;
 
 },200);
 
@@ -1378,7 +2141,21 @@ async function updateData(){
 const tanggal = document.getElementById("tanggal").value;
 const hari = document.getElementById("hari").value;
 const rw = document.getElementById("rw").value;
-const nama = document.getElementById("anggota").value;
+
+const idAnggota = document.getElementById("anggota").value;
+
+const dataAnggota = daftarAnggota.find(item => item.idAnggota === idAnggota);
+
+if(!dataAnggota){
+
+alert("Anggota tidak ditemukan.");
+
+return;
+
+}
+
+const nama = dataAnggota.nama;
+
 const barang = document.getElementById("jenisBarang").value;
 const berat = parseFloat(document.getElementById("berat").value) || 0;
 
@@ -1546,9 +2323,1046 @@ await loadHarga();
 
 }
 
+window.bukaHalaman = function(id){
+
+document.getElementById("menuUtama").style.display = "none";
+
+document.getElementById("halamanInput").style.display = "none";
+document.getElementById("halamanPenjualan").style.display = "none";
+document.getElementById("halamanAnggota").style.display = "none";
+document.getElementById("halamanHarga").style.display = "none";
+document.getElementById("halamanLaporan").style.display = "none";
+
+document.getElementById(id).style.display = "block";
+
+}
+
+window.kembaliMenu = function(){
+
+document.getElementById("menuUtama").style.display = "block";
+
+document.getElementById("halamanInput").style.display = "none";
+document.getElementById("halamanPenjualan").style.display = "none";
+document.getElementById("halamanAnggota").style.display = "none";
+document.getElementById("halamanHarga").style.display = "none";
+document.getElementById("halamanLaporan").style.display = "none";
+
+}
+
+// =============================
+// Hari, Tanggal dan Total Penjualan
+// =============================
+
+document.getElementById("jualHari").value =
+hariList[new Date().getDay()];
+
+document.getElementById("jualTanggal").value =
+new Date().toISOString().substring(0,10);
+
+document.getElementById("jualBerat").addEventListener("input", hitungPenjualan);
+document.getElementById("jualHarga").addEventListener("input", hitungPenjualan);
+
+function hitungPenjualan(){
+
+let berat =
+parseFloat(document.getElementById("jualBerat").value) || 0;
+
+let harga =
+parseFloat(document.getElementById("jualHarga").value) || 0;
+
+let total = berat * harga;
+
+document.getElementById("jualTotal").value =
+"Rp " + total.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   SIMPAN PENJUALAN
+===================================================== */
+
+document
+.getElementById("btnSimpanPenjualan")
+.addEventListener("click", simpanPenjualan);
+
+async function simpanPenjualan(){
+
+if(editPenjualanId){
+
+await updatePenjualan();
+
+return;
+
+}
+const tanggal =
+document.getElementById("jualTanggal").value;
+
+const hari =
+document.getElementById("jualHari").value;
+
+const pembeli =
+document.getElementById("jualPembeli").value.trim();
+
+const barang =
+document.getElementById("jualBarang").value;
+
+const berat =
+parseFloat(document.getElementById("jualBerat").value) || 0;
+
+const harga =
+parseFloat(document.getElementById("jualHarga").value) || 0;
+
+const total = berat * harga;
+
+const keterangan =
+document.getElementById("jualKet").value.trim();
+
+if(pembeli==""){
+
+alert("Masukkan nama pembeli");
+
+return;
+
+}
+
+if(barang==""){
+
+alert("Pilih jenis barang");
+
+return;
+
+}
+
+if(berat<=0){
+
+alert("Masukkan berat");
+
+return;
+
+}
+
+if(harga<=0){
+
+alert("Masukkan harga jual");
+
+return;
+
+}
+
+try{
+
+await addDoc(colPenjualan,{
+
+tanggal,
+hari,
+pembeli,
+barang,
+berat,
+harga,
+total,
+keterangan,
+dibuat:serverTimestamp()
+
+});
+
+alert("Penjualan berhasil disimpan.");
+
+bersihkanPenjualan();
+
+await loadPenjualan();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menyimpan data.");
+
+}
+
+}
+
+function bersihkanPenjualan(){
+
+document.getElementById("jualPembeli").value="";
+
+document.getElementById("jualBarang").selectedIndex=0;
+
+document.getElementById("jualBerat").value="";
+
+document.getElementById("jualHarga").value="";
+
+document.getElementById("jualTotal").value="";
+
+document.getElementById("jualKet").value="";
+
+}
+
+/* =====================================================
+   UPDATE PENJUALAN
+===================================================== */
+
+async function updatePenjualan(){
+
+const tanggal =
+document.getElementById("jualTanggal").value;
+
+const hari =
+document.getElementById("jualHari").value;
+
+const pembeli =
+document.getElementById("jualPembeli").value.trim();
+
+const barang =
+document.getElementById("jualBarang").value;
+
+const berat =
+parseFloat(document.getElementById("jualBerat").value) || 0;
+
+const harga =
+parseFloat(document.getElementById("jualHarga").value) || 0;
+
+const total = berat * harga;
+
+const keterangan =
+document.getElementById("jualKet").value.trim();
+
+await updateDoc(doc(db,"penjualan",editPenjualanId),{
+
+tanggal,
+hari,
+pembeli,
+barang,
+berat,
+harga,
+total,
+keterangan
+
+});
+
+alert("Data berhasil diperbarui.");
+
+editPenjualanId = null;
+
+document.getElementById("btnSimpanPenjualan").innerHTML =
+"💾 Simpan Penjualan";
+
+bersihkanPenjualan();
+
+await loadPenjualan();
+
+}
+
+/* =====================================================
+   HAPUS PENJUALAN
+===================================================== */
+
+window.hapusPenjualan = async function(id){
+
+const yakin =
+confirm("Yakin ingin menghapus data ini?");
+
+if(!yakin) return;
+
+try{
+
+await deleteDoc(doc(db,"penjualan",id));
+
+alert("Data berhasil dihapus.");
+
+await loadPenjualan();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menghapus data.");
+
+}
+
+}
+
+/* =====================================================
+   LOAD DATA PENJUALAN
+===================================================== */
+
+async function loadPenjualan(){
+
+try{
+
+const q = query(colPenjualan, orderBy("tanggal","desc"));
+
+const snap = await getDocs(q);
+
+dataPenjualan = [];
+
+snap.forEach(docItem=>{
+
+dataPenjualan.push({
+
+id:docItem.id,
+
+...docItem.data()
+
+});
+
+});
+
+tampilPenjualan();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal mengambil data penjualan.");
+
+}
+
+}
+
+/* =====================================================
+   TAMPILKAN DATA PENJUALAN
+===================================================== */
+
+function tampilPenjualan(){
+
+const tbody =
+document.querySelector("#tabelPenjualan tbody");
+
+tbody.innerHTML = "";
+
+let filterTanggal =
+document.getElementById("filterJualTanggal").value;
+
+let filterPembeli =
+document.getElementById("filterJualPembeli")
+.value
+.toLowerCase();
+
+let filterBarang =
+document.getElementById("filterJualBarang").value;
+
+let hasil = dataPenjualan.filter(item=>{
+
+let cocokTanggal = true;
+let cocokPembeli = true;
+let cocokBarang = true;
+
+if(filterTanggal!=""){
+cocokTanggal = item.tanggal===filterTanggal;
+}
+
+if(filterPembeli!=""){
+cocokPembeli = item.pembeli
+.toLowerCase()
+.includes(filterPembeli);
+}
+
+if(filterBarang!=""){
+cocokBarang = item.barang===filterBarang;
+}
+
+return cocokTanggal &&
+cocokPembeli &&
+cocokBarang;
+
+});
+
+if(hasil.length==0){
+
+tbody.innerHTML=`
+<tr>
+<td colspan="8">
+Belum ada data.
+</td>
+</tr>
+`;
+
+document.getElementById("jumlahPenjualan").textContent=0;
+document.getElementById("beratTerjual").textContent="0 Kg";
+document.getElementById("totalPenjualan").textContent="Rp 0";
+document.getElementById("totalLaba").textContent="Rp 0";
+
+return;
+
+}
+
+hasil.sort((a,b)=>{
+
+if(a.tanggal===b.tanggal){
+
+return a.pembeli.localeCompare(b.pembeli,"id");
+
+}
+
+return b.tanggal.localeCompare(a.tanggal);
+
+});
+
+let totalBerat=0;
+let totalJual=0;
+
+hasil.forEach((item,index)=>{
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item.tanggal}</td>
+
+<td>${item.pembeli}</td>
+
+<td>${item.barang}</td>
+
+<td>${item.berat}</td>
+
+<td>Rp ${Number(item.harga).toLocaleString("id-ID")}</td>
+
+<td>Rp ${Number(item.total).toLocaleString("id-ID")}</td>
+
+<td>
+
+<button
+class="btnWarning"
+onclick="editPenjualan('${item.id}')">
+
+✏️
+
+</button>
+
+<button
+class="btnDanger"
+onclick="hapusPenjualan('${item.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+totalBerat+=Number(item.berat||0);
+
+totalJual+=Number(item.total||0);
+
+});
+
+document.getElementById("jumlahPenjualan").textContent =
+hasil.length;
+
+document.getElementById("beratTerjual").textContent =
+totalBerat.toFixed(2)+" Kg";
+
+document.getElementById("totalPenjualan").textContent =
+"Rp "+totalJual.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   EDIT PENJUALAN
+===================================================== */
+
+let editPenjualanId = null;
+
+window.editPenjualan = function(id){
+
+const data = dataPenjualan.find(item => item.id === id);
+
+if(!data) return;
+
+editPenjualanId = id;
+
+document.getElementById("jualTanggal").value = data.tanggal;
+
+document.getElementById("jualHari").value = data.hari;
+
+document.getElementById("jualPembeli").value = data.pembeli;
+
+document.getElementById("jualBarang").value = data.barang;
+
+document.getElementById("jualBerat").value = data.berat;
+
+document.getElementById("jualHarga").value = data.harga;
+
+document.getElementById("jualKet").value = data.keterangan || "";
+
+hitungPenjualan();
+
+document.getElementById("btnSimpanPenjualan").innerHTML =
+"💾 Update Penjualan";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+document
+.getElementById("filterJualTanggal")
+.addEventListener("change",tampilPenjualan);
+
+document
+.getElementById("filterJualPembeli")
+.addEventListener("input",tampilPenjualan);
+
+document
+.getElementById("filterJualBarang")
+.addEventListener("change",tampilPenjualan);
+
+document
+.getElementById("btnResetPenjualan")
+.addEventListener("click",()=>{
+
+document.getElementById("filterJualTanggal").value="";
+
+document.getElementById("filterJualPembeli").value="";
+
+document.getElementById("filterJualBarang").selectedIndex=0;
+
+tampilPenjualan();
+
+});
+
+document
+.getElementById("btnExportPenjualan")
+.addEventListener("click",exportPenjualanWA);
+
+function exportPenjualanWA(){
+
+let filterTanggal =
+document.getElementById("filterJualTanggal").value;
+
+let filterPembeli =
+document.getElementById("filterJualPembeli")
+.value
+.toLowerCase();
+
+let filterBarang =
+document.getElementById("filterJualBarang").value;
+
+let hasil = dataPenjualan.filter(item=>{
+
+let cocokTanggal = true;
+let cocokPembeli = true;
+let cocokBarang = true;
+
+if(filterTanggal!=""){
+cocokTanggal = item.tanggal===filterTanggal;
+}
+
+if(filterPembeli!=""){
+cocokPembeli = item.pembeli
+.toLowerCase()
+.includes(filterPembeli);
+}
+
+if(filterBarang!=""){
+cocokBarang = item.barang===filterBarang;
+}
+
+return cocokTanggal &&
+cocokPembeli &&
+cocokBarang;
+
+});
+
+if(hasil.length==0){
+
+alert("Tidak ada data.");
+
+return;
+
+}
+
+let pesan="📊 *Laporan Penjualan Bank Sampah*\n\n";
+
+let total=0;
+let berat=0;
+
+hasil.forEach((item,i)=>{
+
+pesan+=
+`${i+1}. ${item.tanggal}\n`+
+`Pembeli : ${item.pembeli}\n`+
+`${item.barang}\n`+
+`${item.berat} Kg\n`+
+`Rp ${Number(item.total).toLocaleString("id-ID")}\n\n`;
+
+total+=Number(item.total);
+
+berat+=Number(item.berat);
+
+});
+
+pesan+=
+"━━━━━━━━━━━━━━\n";
+
+pesan+=
+"⚖ Total Berat : "+
+berat.toFixed(2)+" Kg\n";
+
+pesan+=
+"💰 Total Penjualan : Rp "+
+total.toLocaleString("id-ID");
+
+window.open(
+
+"https://wa.me/?text="+
+encodeURIComponent(pesan),
+
+"_blank"
+
+);
+
+}
+
+document
+.getElementById("filterAnggotaRW")
+.addEventListener("change", tampilAnggota);
+
+document
+.getElementById("filterAnggotaNama")
+.addEventListener("input", tampilAnggota);
+
+document
+.getElementById("btnResetAnggota")
+.addEventListener("click",()=>{
+
+document.getElementById("filterAnggotaRW").selectedIndex=0;
+
+document.getElementById("filterAnggotaNama").value="";
+
+tampilAnggota();
+
+});
+
+document
+.getElementById("btnSimpanAnggota")
+.addEventListener("click", simpanAnggotaMaster);
+
+async function simpanAnggotaMaster(){
+
+if(editAnggotaId){
+
+await updateAnggota();
+
+return;
+
+}
+
+const rw =
+document.getElementById("anggotaRW").value;
+
+const nama =
+document.getElementById("anggotaNama")
+.value
+.trim();
+
+if(rw==""){
+
+alert("Pilih RW");
+
+return;
+
+}
+
+if(nama==""){
+
+alert("Masukkan nama anggota");
+
+return;
+
+}
+
+const idAnggota =
+document.getElementById("anggotaId").value;
+
+await addDoc(colAnggota,{
+
+idAnggota,
+
+rw,
+
+nama,
+
+dibuat:serverTimestamp()
+
+});
+
+alert("Anggota berhasil ditambahkan.");
+
+bersihkanFormAnggota();
+
+await loadAnggota();
+
+}
+
+/* =====================================================
+   UPDATE ANGGOTA
+===================================================== */
+
+async function updateAnggota(){
+
+const rw =
+document.getElementById("anggotaRW").value;
+
+const nama =
+document.getElementById("anggotaNama")
+.value
+.trim();
+
+if(rw==""){
+
+alert("Pilih RW");
+
+return;
+
+}
+
+if(nama==""){
+
+alert("Masukkan nama anggota");
+
+return;
+
+}
+
+const idAnggota =
+document.getElementById("anggotaId").value;
+
+await updateDoc(
+
+doc(db,"anggota",editAnggotaId),
+
+{
+
+idAnggota,
+
+rw,
+
+nama
+
+}
+
+);
+
+alert("Data anggota berhasil diperbarui.");
+
+bersihkanFormAnggota();
+
+await loadAnggota();
+
+}
+
+/* =====================================================
+   MIGRASI ID ANGGOTA LAMA
+===================================================== */
+
+window.migrasiIdAnggota = async function(){
+
+alert("Fungsi migrasi dijalankan");
+
+if(!confirm("Generate ID untuk semua anggota lama?")){
+return;
+}
+
+try{
+
+const batch = writeBatch(db);
+
+let nomor = 1;
+
+const dataUrut = [...daftarAnggota].sort((a,b)=>
+a.nama.localeCompare(b.nama)
+);
+
+for(const item of dataUrut){
+
+const ref = doc(db,"anggota",item.id);
+
+batch.update(ref,{
+
+idAnggota:"BS"+String(nomor).padStart(4,"0")
+
+});
+
+nomor++;
+
+}
+
+await batch.commit();
+
+alert("Migrasi berhasil.");
+
+await loadAnggota();
+
+}catch(err){
+
+console.log(err);
+
+alert("Migrasi gagal.");
+
+}
+
+}
+
+/* =====================================================
+   MIGRASI ID SETORAN LAMA
+===================================================== */
+
+window.migrasiIdSetoran = async function(){
+
+if(!confirm("Generate ID Anggota pada semua data setoran lama?")){
+    return;
+}
+
+try{
+
+const batch = writeBatch(db);
+
+let jumlah = 0;
+
+for(const item of dataSetoran){
+
+// Lewati jika sudah punya idAnggota
+if(item.idAnggota) continue;
+
+// Cari anggota berdasarkan RW dan Nama
+const anggota = daftarAnggota.find(a =>
+    a.rw === item.rw &&
+    a.nama === item.nama
+);
+
+if(anggota){
+
+const ref = doc(db,"setoran",item.id);
+
+batch.update(ref,{
+    idAnggota: anggota.idAnggota
+});
+
+jumlah++;
+
+}
+
+}
+
+await batch.commit();
+
+alert(jumlah + " data setoran berhasil diperbarui.");
+
+await loadSetoran();
+
+}catch(err){
+
+console.log(err);
+
+alert("Migrasi gagal.");
+
+}
+
+}
+
+/* =====================================================
+   HAPUS ANGGOTA
+===================================================== */
+
+window.hapusAnggota = async function(id){
+
+const yakin =
+confirm("Yakin ingin menghapus anggota ini?");
+
+if(!yakin) return;
+
+try{
+
+await deleteDoc(
+
+doc(db,"anggota",id)
+
+);
+
+alert("Anggota berhasil dihapus.");
+
+await loadAnggota();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menghapus anggota.");
+
+}
+
+}
+
+function bersihkanFormAnggota(){
+
+editAnggotaId = null;
+
+document.getElementById("anggotaRW").selectedIndex = 0;
+
+document.getElementById("anggotaNama").value = "";
+
+document.getElementById("judulFormAnggota").innerHTML =
+"➕ Tambah Anggota";
+
+document.getElementById("btnSimpanAnggota").innerHTML =
+"💾 Simpan Anggota";
+
+generateIdAnggota();
+}
+
+/* =====================================================
+   GENERATE ID ANGGOTA
+===================================================== */
+
+function generateIdAnggota(){
+
+let nomorTerbesar = 0;
+
+daftarAnggota.forEach(item=>{
+
+if(item.idAnggota){
+
+let angka =
+parseInt(
+item.idAnggota.replace("BS","")
+);
+
+if(angka > nomorTerbesar){
+
+nomorTerbesar = angka;
+
+}
+
+}
+
+});
+
+let nomorBaru = nomorTerbesar + 1;
+
+let idBaru =
+"BS"+String(nomorBaru).padStart(4,"0");
+
+document.getElementById("anggotaId").value =
+idBaru;
+
+}
+
+/* =====================================================
+   LIHAT DETAIL ANGGOTA
+===================================================== */
+
+window.lihatAnggota = function(id){
+
+const anggota = daftarAnggota.find(a => a.id === id);
+
+if(!anggota) return;
+
+document.getElementById("detailNamaAnggota").value = anggota.nama;
+document.getElementById("detailRWAnggota").value = anggota.rw;
+
+document.getElementById("panelDaftarAnggota").style.display="none";
+
+document.getElementById("panelDetailAnggota").style.display="block";
+
+const tbody =
+document.querySelector("#tabelRiwayatAnggota tbody");
+
+tbody.innerHTML="";
+
+const riwayat = dataSetoran.filter(item => {
+
+return item.nama === anggota.nama &&
+       item.rw === anggota.rw;
+
+});
+
+let totalSetoran=0;
+let totalBerat=0;
+let totalUang=0;
+
+if(riwayat.length==0){
+
+tbody.innerHTML=`
+<tr>
+<td colspan="4">
+Belum ada riwayat setoran
+</td>
+</tr>
+`;
+
+}else{
+
+riwayat.sort((a,b)=>b.tanggal.localeCompare(a.tanggal));
+
+riwayat.forEach(item=>{
+
+totalSetoran++;
+
+totalBerat += Number(item.berat||0);
+
+totalUang += Number(item.total||0);
+
+tbody.innerHTML +=`
+
+<tr>
+
+<td>${item.tanggal}</td>
+
+<td>${item.barang}</td>
+
+<td>${item.berat} Kg</td>
+
+<td>
+Rp ${Number(item.total).toLocaleString("id-ID")}
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+document.getElementById("detailTotalSetoran").textContent =
+totalSetoran;
+
+document.getElementById("detailTotalBerat").textContent =
+totalBerat.toFixed(2)+" Kg";
+
+document.getElementById("detailTotalUang").textContent =
+"Rp "+totalUang.toLocaleString("id-ID");
+
+}
+
+
+/* =====================================================
+   KEMBALI KE DAFTAR ANGGOTA
+===================================================== */
+
+window.kembaliDaftarAnggota = function(){
+
+document.getElementById("panelDetailAnggota").style.display = "none";
+
+document.getElementById("panelDaftarAnggota").style.display = "block";
+
+}
+
 loadHarga();
 loadAnggota();
 loadSetoran();
+loadPenjualan();
 </script>
 
 <div id="masterHarga" style="display:none;
