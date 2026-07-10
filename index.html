@@ -499,34 +499,6 @@ Tambah
 
 <option value="">-- Pilih Barang --</option>
 
-<option>Besi Tebal</option>
-
-<option>Besi Biasa</option>
-
-<option>Duplek</option>
-
-<option>Arnium</option>
-
-<option>Atum</option>
-
-<option>Pet</option>
-
-<option>Kaleng</option>
-
-<option>Blowing</option>
-
-<option>Gelasan</option>
-
-<option>Dus</option>
-
-<option>Tembaga</option>
-
-<option>Kuningan</option>
-
-<option>Plastik</option>
-
-<option>Lainnya</option>
-
 </select>
 
 <label>Berat (Kg)</label>
@@ -984,24 +956,7 @@ id="btnSimpanAnggota">
 💾 Simpan Anggota
 
 </button>
-
-<button
-class="btnWarning"
-onclick="migrasiIdAnggota()">
-
-🔄 Generate ID Anggota Lama
-
-</button>
-
 </div>
-
-<button
-class="btnWarning"
-onclick="migrasiIdSetoran()">
-
-🔄 Generate ID Setoran Lama
-
-</button>
 
 <!-- ================= FILTER ================= -->
 
@@ -1180,14 +1135,62 @@ Riwayat Setoran
 
 </div>
 
+</div>
+
 <div id="halamanHarga" class="card" style="display:none;">
 
-<h3>💵 Master Harga</h3>
+<h2>💰 Master Harga</h2>
 
-<p>Menu ini akan kita buat pada Tahap 5.</p>
+<div class="card">
 
-<button class="btnSecondary" onclick="kembaliMenu()">
+<h3>➕ Tambah Jenis Barang</h3>
+
+<label>Nama Barang</label>
+
+<input
+type="text"
+id="barangBaru"
+placeholder="Contoh : Plastik PET">
+
+<label>Harga / Kg</label>
+
+<input
+type="number"
+id="hargaBaru"
+placeholder="Contoh : 5000">
+
+<button
+class="btnPrimary"
+onclick="tambahJenisBarang()">
+
+➕ Tambah Barang
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Daftar Harga</h3>
+
+<div id="listHarga"></div>
+
+</div>
+
+<button
+class="btnSuccess"
+onclick="simpanMasterHarga()">
+
+💾 Simpan Harga
+
+</button>
+
+<button
+class="btnSecondary"
+onclick="kembaliMenu()">
+
 ⬅ Kembali
+
 </button>
 
 </div>
@@ -1401,7 +1404,7 @@ const option = document.createElement("option");
 
 option.value = item.idAnggota;
 
-option.textContent = item.nama;
+option.textContent = item.idAnggota + " - " + item.nama;
 
 select.appendChild(option);
 
@@ -1578,6 +1581,8 @@ document
 .addEventListener("change",isiDropdownAnggota);
 
 
+
+
 /* =====================================================
    TAMBAH ANGGOTA BARU
 ===================================================== */
@@ -1630,14 +1635,13 @@ return;
 
 /* simpan */
 
+const idAnggota = generateIdAnggota();
+
 await addDoc(colAnggota,{
-
-rw,
-
-nama,
-
-dibuat:serverTimestamp()
-
+    idAnggota,
+    rw,
+    nama,
+    dibuat:serverTimestamp()
 });
 
 
@@ -1650,6 +1654,10 @@ await loadAnggota();
 alert("Anggota berhasil ditambahkan.");
 
 });
+
+/* =====================================================
+   LOAD HARGA
+===================================================== */
 
 async function loadHarga(){
 
@@ -1683,7 +1691,9 @@ style="width:120px;">
 
 });
 
-document.getElementById("listHarga").innerHTML = html;
+tampilHarga();
+
+isiDropdownBarang();
 
 }
 
@@ -1697,7 +1707,63 @@ alert(err.message);
 
 }
 
+/* =====================================================
+   TAMPILKAN LIST HARGA
+===================================================== */
 
+function tampilHarga(){
+
+let html="";
+
+Object.keys(daftarHarga)
+.sort()
+.forEach(nama=>{
+
+html+=`
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+
+<div style="flex:1;">
+${nama}
+</div>
+
+<input
+type="number"
+id="harga_${nama}"
+value="${daftarHarga[nama]}"
+style="width:120px;">
+
+</div>
+`;
+
+});
+
+document.getElementById("listHarga").innerHTML=html;
+
+}
+
+/* =====================================================
+   ISI DROPDOWN JENIS BARANG
+===================================================== */
+
+function isiDropdownBarang(){
+
+const select = document.getElementById("jenisBarang");
+
+select.innerHTML =
+"<option value=''>-- Pilih Barang --</option>";
+
+Object.keys(daftarHarga)
+.sort()
+.forEach(nama=>{
+
+select.innerHTML +=
+`<option value="${nama}">
+${nama}
+</option>`;
+
+});
+
+}
 
 /* =====================================================
    SIMPAN DATA SETORAN
@@ -2323,7 +2389,67 @@ await loadHarga();
 
 }
 
+/* =====================================================
+   TAMBAH JENIS BARANG
+===================================================== */
+
+window.tambahJenisBarang = function(){
+
+const nama = document
+.getElementById("barangBaru")
+.value
+.trim();
+
+const harga = Number(
+document.getElementById("hargaBaru").value
+);
+
+if(nama===""){
+
+alert("Nama barang belum diisi.");
+
+return;
+
+}
+
+if(harga<=0){
+
+alert("Harga belum diisi.");
+
+return;
+
+}
+
+/* Cek apakah sudah ada */
+
+if(daftarHarga[nama]){
+
+alert("Jenis barang sudah ada.");
+
+return;
+
+}
+
+/* Tambahkan ke object */
+
+daftarHarga[nama]=harga;
+
+/* Tampilkan ulang */
+
+tampilHarga();
+isiDropdownBarang();
+
+/* Kosongkan form */
+
+document.getElementById("barangBaru").value="";
+
+document.getElementById("hargaBaru").value="";
+
+}
+
 window.bukaHalaman = function(id){
+
+console.log("Membuka :", id);
 
 document.getElementById("menuUtama").style.display = "none";
 
@@ -2332,6 +2458,8 @@ document.getElementById("halamanPenjualan").style.display = "none";
 document.getElementById("halamanAnggota").style.display = "none";
 document.getElementById("halamanHarga").style.display = "none";
 document.getElementById("halamanLaporan").style.display = "none";
+
+console.log(document.getElementById(id));
 
 document.getElementById(id).style.display = "block";
 
@@ -3062,114 +3190,7 @@ await loadAnggota();
 
 }
 
-/* =====================================================
-   MIGRASI ID ANGGOTA LAMA
-===================================================== */
 
-window.migrasiIdAnggota = async function(){
-
-alert("Fungsi migrasi dijalankan");
-
-if(!confirm("Generate ID untuk semua anggota lama?")){
-return;
-}
-
-try{
-
-const batch = writeBatch(db);
-
-let nomor = 1;
-
-const dataUrut = [...daftarAnggota].sort((a,b)=>
-a.nama.localeCompare(b.nama)
-);
-
-for(const item of dataUrut){
-
-const ref = doc(db,"anggota",item.id);
-
-batch.update(ref,{
-
-idAnggota:"BS"+String(nomor).padStart(4,"0")
-
-});
-
-nomor++;
-
-}
-
-await batch.commit();
-
-alert("Migrasi berhasil.");
-
-await loadAnggota();
-
-}catch(err){
-
-console.log(err);
-
-alert("Migrasi gagal.");
-
-}
-
-}
-
-/* =====================================================
-   MIGRASI ID SETORAN LAMA
-===================================================== */
-
-window.migrasiIdSetoran = async function(){
-
-if(!confirm("Generate ID Anggota pada semua data setoran lama?")){
-    return;
-}
-
-try{
-
-const batch = writeBatch(db);
-
-let jumlah = 0;
-
-for(const item of dataSetoran){
-
-// Lewati jika sudah punya idAnggota
-if(item.idAnggota) continue;
-
-// Cari anggota berdasarkan RW dan Nama
-const anggota = daftarAnggota.find(a =>
-    a.rw === item.rw &&
-    a.nama === item.nama
-);
-
-if(anggota){
-
-const ref = doc(db,"setoran",item.id);
-
-batch.update(ref,{
-    idAnggota: anggota.idAnggota
-});
-
-jumlah++;
-
-}
-
-}
-
-await batch.commit();
-
-alert(jumlah + " data setoran berhasil diperbarui.");
-
-await loadSetoran();
-
-}catch(err){
-
-console.log(err);
-
-alert("Migrasi gagal.");
-
-}
-
-}
 
 /* =====================================================
    HAPUS ANGGOTA
@@ -3231,30 +3252,32 @@ let nomorTerbesar = 0;
 
 daftarAnggota.forEach(item=>{
 
-if(item.idAnggota){
+    if(item.idAnggota){
 
-let angka =
-parseInt(
-item.idAnggota.replace("BS","")
-);
+        const angka = parseInt(item.idAnggota.replace("BS",""));
 
-if(angka > nomorTerbesar){
+        if(angka > nomorTerbesar){
 
-nomorTerbesar = angka;
+            nomorTerbesar = angka;
 
-}
+        }
 
-}
+    }
 
 });
 
-let nomorBaru = nomorTerbesar + 1;
+const idBaru = "BS" + String(nomorTerbesar + 1).padStart(4,"0");
 
-let idBaru =
-"BS"+String(nomorBaru).padStart(4,"0");
+// Jika form anggota sedang terbuka, isi inputnya
+const inputId = document.getElementById("anggotaId");
 
-document.getElementById("anggotaId").value =
-idBaru;
+if(inputId){
+
+    inputId.value = idBaru;
+
+}
+
+return idBaru;
 
 }
 
