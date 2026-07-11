@@ -666,9 +666,7 @@ id="btnReset">
 
 </button>
 
-<button class="btnSuccess" id="btnExportWA">
-📤 Export ke WhatsApp
-</button>
+
 
 </div>
 
@@ -909,7 +907,7 @@ id="btnResetPenjualan">
 class="btnSuccess"
 id="btnExportPenjualan">
 
-📤 Export WhatsApp
+📥 Export Excel
 
 </button>
 
@@ -2723,73 +2721,7 @@ alert("Gagal menghapus data.");
 
 }
 
-document.getElementById("btnExportWA").addEventListener("click", exportWAFilter);
 
-function exportWAFilter() {
-
-let filterTanggal = document.getElementById("filterTanggal").value;
-let filterRW = document.getElementById("filterRW").value;
-let filterNama = document.getElementById("filterNama").value.toLowerCase();
-
-let hasil = dataSetoran.filter(item => {
-
-let cocokTanggal = true;
-let cocokRW = true;
-let cocokNama = true;
-
-if (filterTanggal !== "") {
-cocokTanggal = item.tanggal === filterTanggal;
-}
-
-if (filterRW !== "") {
-cocokRW = item.rw === filterRW;
-}
-
-if (filterNama !== "") {
-cocokNama = item.nama.toLowerCase().includes(filterNama);
-}
-
-return cocokTanggal && cocokRW && cocokNama;
-
-});
-
-if (hasil.length === 0) {
-alert("Tidak ada data untuk diexport");
-return;
-}
-
-let pesan = "📊 *Laporan Bank Sampah (Filter)*\n\n";
-
-let totalBerat = 0;
-let totalUang = 0;
-
-hasil.forEach((item, i) => {
-
-pesan +=
-`${i + 1}. ${item.tanggal} | ${item.rw} | ${item.nama}\n` +
-`   ♻ ${item.barang} | ${item.berat} Kg\n` +
-`   💰 Rp ${Number(item.total).toLocaleString("id-ID")}\n\n`;
-
-totalBerat += Number(item.berat || 0);
-totalUang += Number(item.total || 0);
-
-});
-
-pesan +=
-`━━━━━━━━━━━━━━\n` +
-`⚖ Total Berat: ${totalBerat.toFixed(2)} Kg\n` +
-`💰 Total Uang: Rp ${totalUang.toLocaleString("id-ID")}\n\n` +
-`📌 Filter:\n` +
-`- Tanggal: ${filterTanggal || "Semua"}\n` +
-`- RW: ${filterRW || "Semua"}\n` +
-`- Nama: ${filterNama || "Semua"}\n\n` +
-`✔️ Laporan Bank Sampah Sumber Rejeki`;
-
-let url = `https://wa.me/?text=${encodeURIComponent(pesan)}`;
-
-window.open(url, "_blank");
-
-}
 
 window.simpanMasterHarga = async function(){
 
@@ -3411,93 +3343,132 @@ tampilPenjualan();
 
 document
 .getElementById("btnExportPenjualan")
-.addEventListener("click",exportPenjualanWA);
+.addEventListener("click", exportPenjualanExcel);
 
-function exportPenjualanWA(){
+function exportPenjualanExcel(){
+
+let filterBulan =
+document.getElementById("filterJualBulan").value;
 
 let filterTanggal =
 document.getElementById("filterJualTanggal").value;
 
 let filterPembeli =
-document.getElementById("filterJualPembeli")
-.value
-.toLowerCase();
+document.getElementById("filterJualPembeli").value.toLowerCase();
 
 let filterBarang =
 document.getElementById("filterJualBarang").value;
 
 let hasil = dataPenjualan.filter(item=>{
 
+let cocokBulan = true;
 let cocokTanggal = true;
 let cocokPembeli = true;
 let cocokBarang = true;
+
+if(filterBulan!=""){
+cocokBulan = item.tanggal.startsWith(filterBulan);
+}
 
 if(filterTanggal!=""){
 cocokTanggal = item.tanggal===filterTanggal;
 }
 
 if(filterPembeli!=""){
-cocokPembeli = item.pembeli
-.toLowerCase()
-.includes(filterPembeli);
+cocokPembeli = item.pembeli.toLowerCase().includes(filterPembeli);
 }
 
 if(filterBarang!=""){
 cocokBarang = item.barang===filterBarang;
 }
 
-return cocokTanggal &&
-cocokPembeli &&
-cocokBarang;
+return cocokBulan &&
+       cocokTanggal &&
+       cocokPembeli &&
+       cocokBarang;
 
 });
 
 if(hasil.length==0){
 
-alert("Tidak ada data.");
+alert("Tidak ada data untuk diexport.");
 
 return;
 
 }
 
-let pesan="📊 *Laporan Penjualan Bank Sampah*\n\n";
+hasil.sort((a,b)=>{
 
-let total=0;
-let berat=0;
+if(a.tanggal===b.tanggal){
 
-hasil.forEach((item,i)=>{
+return a.pembeli.localeCompare(b.pembeli,"id");
 
-pesan+=
-`${i+1}. ${item.tanggal}\n`+
-`Pembeli : ${item.pembeli}\n`+
-`${item.barang}\n`+
-`${item.berat} Kg\n`+
-`Rp ${Number(item.total).toLocaleString("id-ID")}\n\n`;
+}
 
-total+=Number(item.total);
-
-berat+=Number(item.berat);
+return b.tanggal.localeCompare(a.tanggal);
 
 });
 
-pesan+=
-"━━━━━━━━━━━━━━\n";
+let totalBerat = 0;
+let totalJual = 0;
 
-pesan+=
-"⚖ Total Berat : "+
-berat.toFixed(2)+" Kg\n";
+const excelData = [];
 
-pesan+=
-"💰 Total Penjualan : Rp "+
-total.toLocaleString("id-ID");
+excelData.push([
+"No",
+"Tanggal",
+"Hari",
+"Pembeli",
+"Barang",
+"Berat (Kg)",
+"Harga/Kg",
+"Total",
+"Keterangan"
+]);
 
-window.open(
+hasil.forEach((item,index)=>{
 
-"https://wa.me/?text="+
-encodeURIComponent(pesan),
+excelData.push([
 
-"_blank"
+index+1,
+item.tanggal,
+item.hari,
+item.pembeli,
+item.barang,
+Number(item.berat),
+Number(item.harga),
+Number(item.total),
+item.keterangan || ""
 
+]);
+
+totalBerat += Number(item.berat||0);
+totalJual += Number(item.total||0);
+
+});
+
+excelData.push([]);
+
+excelData.push(["Jumlah Transaksi",hasil.length]);
+excelData.push(["Total Berat",totalBerat.toFixed(2)+" Kg"]);
+excelData.push(["Total Penjualan","Rp "+totalJual.toLocaleString("id-ID")]);
+
+const wb = XLSX.utils.book_new();
+
+const ws = XLSX.utils.aoa_to_sheet(excelData);
+
+XLSX.utils.book_append_sheet(
+wb,
+ws,
+"Penjualan"
+);
+
+const tanggal =
+new Date().toISOString().substring(0,10);
+
+XLSX.writeFile(
+wb,
+`Penjualan_Bank_Sampah_${tanggal}.xlsx`
 );
 
 }
@@ -3950,11 +3921,9 @@ totalUang.toLocaleString("id-ID")+"\n\n";
 pesan +=
 "🌿 Bank Sampah Sumber Rejeki";
 
-window.open(
-"https://wa.me/?text="+
-encodeURIComponent(pesan),
-"_blank"
-);
+window.location.href =
+"https://api.whatsapp.com/send?text=" +
+encodeURIComponent(pesan);
 
 }
 
