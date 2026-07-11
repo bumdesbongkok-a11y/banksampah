@@ -2326,7 +2326,8 @@ data.sort((a,b)=>{
 
 if(a.tanggal===b.tanggal){
 
-return a.nama.localeCompare(b.nama,"id");
+return (a.idAnggota || "")
+.localeCompare(b.idAnggota || "");
 
 }
 
@@ -2452,10 +2453,13 @@ Belum ada data.
 return;
 
 }
-hasil.sort((a, b) => {
+hasil.sort((a,b)=>{
 
-    if (a.tanggal === b.tanggal) {
-        return a.nama.localeCompare(b.nama, "id");
+    if(a.tanggal===b.tanggal){
+
+        return (a.idAnggota || "")
+        .localeCompare(b.idAnggota || "");
+
     }
 
     return b.tanggal.localeCompare(a.tanggal);
@@ -3852,6 +3856,19 @@ return;
 
 }
 
+data.sort((a,b)=>{
+
+if(a.tanggal===b.tanggal){
+
+return (a.idAnggota || "")
+.localeCompare(b.idAnggota || "");
+
+}
+
+return b.tanggal.localeCompare(a.tanggal);
+
+});
+
 let totalBerat=0;
 let totalUang=0;
 
@@ -3981,7 +3998,8 @@ data.sort((a,b)=>{
 
 if(a.tanggal===b.tanggal){
 
-return a.nama.localeCompare(b.nama,"id");
+return (a.idAnggota || "")
+.localeCompare(b.idAnggota || "");
 
 }
 
