@@ -326,6 +326,53 @@ font-size:14px;
 
 }
 
+/* ================= MENU UTAMA ================= */
+
+#menuUtama{
+padding:20px;
+}
+
+#menuUtama h3{
+margin-bottom:20px;
+font-size:24px;
+}
+
+#menuUtama .menuRow{
+display:flex;
+gap:12px;
+margin-top:12px;
+}
+
+#menuUtama .menuRow button{
+margin-top:0;
+height:90px;
+}
+
+#menuUtama .menuInput{
+height:100px;
+font-size:18px;
+}
+
+#menuUtama .menuRow button{
+flex:1;
+font-size:16px;
+border-radius:15px;
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+}
+
+#menuUtama button:hover{
+transform:translateY(-3px);
+}
+.menuIcon{
+
+display:block;
+
+font-size:34px;
+
+margin-bottom:8px;
+
+}
+
 </style>
 
 </head>
@@ -343,27 +390,66 @@ font-size:14px;
 
 <h3>Menu Utama</h3>
 
-<button class="btnPrimary" onclick="bukaHalaman('halamanInput')">
-📥 Input Data Bank Sampah
+<button
+class="btnPrimary menuInput"
+onclick="bukaHalaman('halamanInput')">
+
+<span class="menuIcon">📥</span>
+
+Input Data Bank Sampah
+
 </button>
 
-<button class="btnSuccess" onclick="bukaHalaman('halamanPenjualan')">
-💰 Penjualan Bank Sampah
+<div class="menuRow">
+
+<button
+class="btnWarning"
+onclick="bukaHalaman('halamanAnggota')">
+
+<span class="menuIcon">👥</span>
+
+Data Anggota
+
 </button>
 
-<button class="btnWarning" onclick="bukaHalaman('halamanAnggota')">
-👥 Data Anggota
-</button>
+<button
+class="btnSecondary"
+onclick="bukaHalaman('halamanHarga')">
 
-<button class="btnSecondary" onclick="bukaHalaman('halamanHarga')">
-💵 Master Harga
-</button>
+<span class="menuIcon">💵</span>
 
-<button class="btnPrimary" onclick="bukaHalaman('halamanLaporan')">
-📊 Laporan
+Master Harga
+
 </button>
 
 </div>
+
+<div class="menuRow">
+
+<button
+class="btnSuccess"
+onclick="bukaHalaman('halamanPenjualan')">
+
+<span class="menuIcon">💰</span>
+
+Penjualan
+
+</button>
+
+<button
+class="btnPrimary"
+onclick="bukaHalaman('halamanLaporan')">
+
+<span class="menuIcon">📊</span>
+
+Laporan
+
+</button>
+
+</div>
+
+</div>
+<!-- ================= HALAMAN INPUT ================= -->
 <div id="halamanInput" style="display:none;">
 
 <div class="card">
@@ -525,10 +611,6 @@ id="total"
 readonly>
 
 
-<button class="btnSecondary" onclick="bukaMasterHarga()">
-💰 Master Harga
-</button>
-
 <button
 class="btnPrimary"
 id="btnSimpan">
@@ -650,7 +732,7 @@ Mengambil data...
 <div class="footerSpace"></div>
 
 </div>
-
+<!-- HALAMAN PENJUALAN -->
 <div id="halamanPenjualan" style="display:none;">
 
 <div class="card">
@@ -669,21 +751,33 @@ Mengambil data...
 
 <h3>Dashboard Penjualan</h3>
 
-<div class="row">
+<div class="card" style="padding:12px;text-align:center;background:#E8F5E9;">
 
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>💰 Penjualan</div>
+<div style="font-size:16px;font-weight:bold;">
+💰 Total Penjualan
+</div>
+
 <h2 id="totalPenjualan">Rp 0</h2>
-</div>
+
 </div>
 
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>📈 Laba</div>
+<div class="card" style="padding:12px;text-align:center;background:#FFF8E1;">
+
+<div style="font-size:16px;font-weight:bold;">
+💵 Total Nilai Setoran
+</div>
+
+<h2 id="totalSetoranPenjualan">Rp 0</h2>
+
+</div>
+
+<div class="card" style="padding:12px;text-align:center;background:#E3F2FD;">
+
+<div style="font-size:16px;font-weight:bold;">
+📈 Estimasi Laba
+</div>
+
 <h2 id="totalLaba">Rp 0</h2>
-</div>
-</div>
 
 </div>
 
@@ -761,11 +855,16 @@ Mengambil data...
 </button>
 
 </div>
-
+<!-- FILTER PENJUALAN-->
 <div class="card">
 
 <h3>Filter Penjualan</h3>
 
+<label>Bulan</label>
+
+<input
+type="month"
+id="filterJualBulan">
 <label>Tanggal</label>
 <input type="date" id="filterJualTanggal">
 
@@ -865,7 +964,7 @@ Belum ada data
 
 </div>
 
-
+<!-- ================= HALAMAN ANGGOTA ================= -->
 <div id="halamanAnggota" style="display:none;">
 
 <div class="card">
@@ -1138,7 +1237,13 @@ Riwayat Setoran
 </div>
 <!-- ================= halaman harga ================= -->
 <div id="halamanHarga" class="card" style="display:none;">
+<button
+class="btnSecondary"
+onclick="kembaliMenu()">
 
+⬅ Kembali
+
+</button>
 <h2>💰 Master Harga</h2>
 
 <div class="card">
@@ -1185,13 +1290,7 @@ onclick="simpanMasterHarga()">
 
 </button>
 
-<button
-class="btnSecondary"
-onclick="kembaliMenu()">
 
-⬅ Kembali
-
-</button>
 
 </div>
 <!-- ================= laporan ================= -->
@@ -1314,10 +1413,13 @@ Data Laporan
 
 <th>No</th>
 <th>Tanggal</th>
+<th>Hari</th>
 <th>RW</th>
+<th>ID</th>
 <th>Nama</th>
 <th>Barang</th>
 <th>Berat</th>
+<th>Harga/Kg</th>
 <th>Total</th>
 
 </tr>
@@ -1328,10 +1430,8 @@ Data Laporan
 
 <tr>
 
-<td colspan="7">
-
-Belum ada data.
-
+<td colspan="10">
+Tidak ada data.
 </td>
 
 </tr>
@@ -1363,6 +1463,9 @@ Belum ada data.
 </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
 <script type="module">
 
 /* ===========================
@@ -1448,9 +1551,6 @@ let editAnggotaId = null;
 
 let nomorAnggota = 1;
 
-/* ===========================
-   DAFTAR HARGA
-=========================== */
 
 /* ===========================
    HARI DAN TANGGAL
@@ -2216,7 +2316,7 @@ if(data.length==0){
 
 tbody.innerHTML=`
 <tr>
-<td colspan="7">
+<td colspan="10">
 Tidak ada data.
 </td>
 </tr>
@@ -2224,9 +2324,17 @@ Tidak ada data.
 
 }else{
 
-data.sort((a,b)=>
-b.tanggal.localeCompare(a.tanggal)
-);
+data.sort((a,b)=>{
+
+if(a.tanggal===b.tanggal){
+
+return a.nama.localeCompare(b.nama,"id");
+
+}
+
+return b.tanggal.localeCompare(a.tanggal);
+
+});
 
 data.forEach((item,index)=>{
 
@@ -2244,13 +2352,19 @@ tbody.innerHTML += `
 
 <td>${item.tanggal}</td>
 
+<td>${item.hari}</td>
+
 <td>${item.rw}</td>
+
+<td>${item.idAnggota || "-"}</td>
 
 <td>${item.nama}</td>
 
 <td>${item.barang}</td>
 
-<td>${item.berat} Kg</td>
+<td>${Number(item.berat).toFixed(2)} Kg</td>
+
+<td>Rp ${Number(item.harga).toLocaleString("id-ID")}</td>
 
 <td>Rp ${Number(item.total).toLocaleString("id-ID")}</td>
 
@@ -2470,11 +2584,6 @@ tampilData();
 
 
 /* =====================================================
-   LOAD AWAL
-===================================================== */
-
-
-/* =====================================================
    EDIT DATA
 ===================================================== */
 
@@ -2682,17 +2791,6 @@ window.open(url, "_blank");
 
 }
 
-window.bukaMasterHarga = function(){
-
-document.getElementById("masterHarga").style.display = "block";
-
-}
-
-window.tutupMasterHarga = function(){
-
-document.getElementById("masterHarga").style.display = "none";
-
-}
 window.simpanMasterHarga = async function(){
 
 Object.keys(daftarHarga).forEach(nama=>{
@@ -3082,6 +3180,10 @@ tbody.innerHTML = "";
 let filterTanggal =
 document.getElementById("filterJualTanggal").value;
 
+let filterBulan =
+document.getElementById("filterJualBulan").value;
+
+
 let filterPembeli =
 document.getElementById("filterJualPembeli")
 .value
@@ -3092,9 +3194,17 @@ document.getElementById("filterJualBarang").value;
 
 let hasil = dataPenjualan.filter(item=>{
 
+let cocokBulan = true;
 let cocokTanggal = true;
 let cocokPembeli = true;
 let cocokBarang = true;
+
+if(filterBulan!=""){
+
+cocokBulan =
+item.tanggal.startsWith(filterBulan);
+
+}
 
 if(filterTanggal!=""){
 cocokTanggal = item.tanggal===filterTanggal;
@@ -3110,7 +3220,8 @@ if(filterBarang!=""){
 cocokBarang = item.barang===filterBarang;
 }
 
-return cocokTanggal &&
+return cocokBulan &&
+cocokTanggal &&
 cocokPembeli &&
 cocokBarang;
 
@@ -3129,6 +3240,7 @@ Belum ada data.
 document.getElementById("jumlahPenjualan").textContent=0;
 document.getElementById("beratTerjual").textContent="0 Kg";
 document.getElementById("totalPenjualan").textContent="Rp 0";
+document.getElementById("totalSetoranPenjualan").textContent="Rp 0";
 document.getElementById("totalLaba").textContent="Rp 0";
 
 return;
@@ -3147,8 +3259,9 @@ return b.tanggal.localeCompare(a.tanggal);
 
 });
 
-let totalBerat=0;
-let totalJual=0;
+let totalBerat = 0;
+let totalJual = 0;
+let totalSetoran = 0;
 
 hasil.forEach((item,index)=>{
 
@@ -3200,6 +3313,14 @@ totalJual+=Number(item.total||0);
 
 });
 
+dataSetoran.forEach(item=>{
+
+totalSetoran += Number(item.total || 0);
+
+});
+
+let laba = totalJual - totalSetoran;
+
 document.getElementById("jumlahPenjualan").textContent =
 hasil.length;
 
@@ -3208,6 +3329,12 @@ totalBerat.toFixed(2)+" Kg";
 
 document.getElementById("totalPenjualan").textContent =
 "Rp "+totalJual.toLocaleString("id-ID");
+
+document.getElementById("totalSetoranPenjualan").textContent =
+"Rp " + totalSetoran.toLocaleString("id-ID");
+
+document.getElementById("totalLaba").textContent =
+"Rp " + laba.toLocaleString("id-ID");
 
 }
 
@@ -3253,6 +3380,8 @@ behavior:"smooth"
 });
 
 }
+
+document.getElementById("filterJualBulan").addEventListener("change", tampilPenjualan);
 
 document
 .getElementById("filterJualTanggal")
@@ -3702,37 +3831,279 @@ document.getElementById("panelDetailAnggota").style.display = "none";
 document.getElementById("panelDaftarAnggota").style.display = "block";
 
 }
+/* =====================================================
+   EXPORT WA
+===================================================== */
+document
+.getElementById("btnShareLaporan")
+.addEventListener("click", shareLaporanWA);
+/* =====================================================
+   SHARE LAPORAN WHATSAPP
+===================================================== */
+
+function shareLaporanWA(){
+
+let filterTanggal =
+document.getElementById("lapTanggal").value;
+
+let filterBulan =
+document.getElementById("lapBulan").value;
+
+let filterRW =
+document.getElementById("lapRW").value;
+
+let filterAnggota =
+document.getElementById("lapAnggota").value;
+
+let data = [...dataSetoran];
+
+if(filterTanggal){
+
+data = data.filter(item =>
+item.tanggal === filterTanggal);
+
+}
+
+if(filterBulan){
+
+data = data.filter(item =>
+item.tanggal.startsWith(filterBulan));
+
+}
+
+if(filterRW){
+
+data = data.filter(item =>
+item.rw === filterRW);
+
+}
+
+if(filterAnggota){
+
+data = data.filter(item =>
+item.idAnggota === filterAnggota);
+
+}
+
+let totalBerat = 0;
+let totalUang = 0;
+
+let pesan =
+"📊 *LAPORAN BANK SAMPAH SUMBER REJEKI*\n\n";
+
+pesan +=
+"📅 Tanggal : " +
+(filterTanggal || "Semua") + "\n";
+
+pesan +=
+"🗓 Bulan : " +
+(filterBulan || "Semua") + "\n";
+
+pesan +=
+"🏘 RW : " +
+(filterRW || "Semua") + "\n";
+
+pesan +=
+"👤 Anggota : " +
+(filterAnggota || "Semua") + "\n";
+
+pesan +=
+"\n━━━━━━━━━━━━━━━━━━\n\n";
+
+data.forEach((item,index)=>{
+
+pesan +=
+(index+1)+". "+
+item.tanggal+"\n";
+
+pesan +=
+item.idAnggota+" - "+item.nama+"\n";
+
+pesan +=
+item.barang+
+" | "+
+Number(item.berat).toFixed(2)+" Kg\n";
+
+pesan +=
+"Rp "+
+Number(item.total).toLocaleString("id-ID")+"\n\n";
+
+totalBerat += Number(item.berat||0);
+totalUang += Number(item.total||0);
+
+});
+
+pesan +=
+"━━━━━━━━━━━━━━━━━━\n";
+
+pesan +=
+"📦 Jumlah Setoran : "+data.length+"\n";
+
+pesan +=
+"⚖ Total Berat : "+
+totalBerat.toFixed(2)+" Kg\n";
+
+pesan +=
+"💰 Total Uang : Rp "+
+totalUang.toLocaleString("id-ID")+"\n\n";
+
+pesan +=
+"🌿 Bank Sampah Sumber Rejeki";
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(pesan),
+"_blank"
+);
+
+}
+
+/* =====================================================
+   EXPORT LAPORAN KE EXCEL
+===================================================== */
+
+document
+.getElementById("btnExportLaporan")
+.addEventListener("click", exportLaporanExcel);
+
+function exportLaporanExcel(){
+
+let filterTanggal =
+document.getElementById("lapTanggal").value;
+
+let filterBulan =
+document.getElementById("lapBulan").value;
+
+let filterRW =
+document.getElementById("lapRW").value;
+
+let filterAnggota =
+document.getElementById("lapAnggota").value;
+
+let data = [...dataSetoran];
+
+if(filterTanggal){
+
+data = data.filter(item =>
+item.tanggal === filterTanggal);
+
+}
+
+if(filterBulan){
+
+data = data.filter(item =>
+item.tanggal.startsWith(filterBulan));
+
+}
+
+if(filterRW){
+
+data = data.filter(item =>
+item.rw === filterRW);
+
+}
+
+if(filterAnggota){
+
+data = data.filter(item =>
+item.idAnggota === filterAnggota);
+
+}
+
+if(data.length==0){
+
+alert("Tidak ada data untuk diexport.");
+
+return;
+
+}
+
+data.sort((a,b)=>{
+
+if(a.tanggal===b.tanggal){
+
+return a.nama.localeCompare(b.nama,"id");
+
+}
+
+return b.tanggal.localeCompare(a.tanggal);
+
+});
+
+let totalBerat = 0;
+let totalUang = 0;
+
+const excelData = [];
+
+excelData.push([
+"No",
+"Tanggal",
+"Hari",
+"RW",
+"ID Anggota",
+"Nama",
+"Barang",
+"Berat (Kg)",
+"Harga/Kg",
+"Total"
+]);
+
+data.forEach((item,index)=>{
+
+excelData.push([
+
+index+1,
+item.tanggal,
+item.hari,
+item.rw,
+item.idAnggota,
+item.nama,
+item.barang,
+Number(item.berat),
+Number(item.harga),
+Number(item.total)
+
+]);
+
+totalBerat += Number(item.berat||0);
+totalUang += Number(item.total||0);
+
+});
+
+excelData.push([]);
+
+excelData.push(["Jumlah Setoran",data.length]);
+excelData.push(["Total Berat",totalBerat.toFixed(2)+" Kg"]);
+excelData.push(["Total Uang","Rp "+totalUang.toLocaleString("id-ID")]);
+
+const wb = XLSX.utils.book_new();
+
+const ws = XLSX.utils.aoa_to_sheet(excelData);
+
+XLSX.utils.book_append_sheet(
+wb,
+ws,
+"Laporan"
+);
+
+const tanggal =
+new Date().toISOString().substring(0,10);
+
+XLSX.writeFile(
+wb,
+`Laporan_Bank_Sampah_${tanggal}.xlsx`
+);
+
+}
 
 loadHarga();
 loadAnggota();
 loadSetoran();
 loadPenjualan();
+
+
+
 </script>
-
-<div id="masterHarga" style="display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:white;
-z-index:9999;
-overflow:auto;
-padding:15px;">
-
-<h2>💰 Master Harga</h2>
-
-<div id="listHarga"></div>
-
-<button class="btnSuccess" onclick="simpanMasterHarga()">
-💾 Simpan Harga
-</button>
-
-<button class="btnDanger" onclick="tutupMasterHarga()">
-❌ Tutup
-</button>
-
-</div>
 
 </body>
 </html>
