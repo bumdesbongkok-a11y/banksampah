@@ -1452,7 +1452,7 @@ Tidak ada data.
 
 <button class="btnPrimary" id="btnShareLaporan">
 
-📲 Share WhatsApp
+📋 Salin Laporan
 
 </button>
 
@@ -3803,16 +3803,16 @@ document.getElementById("panelDaftarAnggota").style.display = "block";
 
 }
 /* =====================================================
-   EXPORT WA
+   SALIN LAPORAN
 ===================================================== */
 document
 .getElementById("btnShareLaporan")
-.addEventListener("click", shareLaporanWA);
+.addEventListener("click", salinLaporan);
 /* =====================================================
    SHARE LAPORAN WHATSAPP
 ===================================================== */
 
-function shareLaporanWA(){
+async function salinLaporan(){
 
 let filterTanggal =
 document.getElementById("lapTanggal").value;
@@ -3826,104 +3826,94 @@ document.getElementById("lapRW").value;
 let filterAnggota =
 document.getElementById("lapAnggota").value;
 
-let data = [...dataSetoran];
+let data=[...dataSetoran];
 
 if(filterTanggal){
-
-data = data.filter(item =>
-item.tanggal === filterTanggal);
-
+data=data.filter(item=>item.tanggal===filterTanggal);
 }
 
 if(filterBulan){
-
-data = data.filter(item =>
-item.tanggal.startsWith(filterBulan));
-
+data=data.filter(item=>item.tanggal.startsWith(filterBulan));
 }
 
 if(filterRW){
-
-data = data.filter(item =>
-item.rw === filterRW);
-
+data=data.filter(item=>item.rw===filterRW);
 }
 
 if(filterAnggota){
+data=data.filter(item=>item.idAnggota===filterAnggota);
+}
 
-data = data.filter(item =>
-item.idAnggota === filterAnggota);
+if(data.length===0){
+
+alert("Tidak ada data untuk disalin.");
+
+return;
 
 }
 
-let totalBerat = 0;
-let totalUang = 0;
+let totalBerat=0;
+let totalUang=0;
 
-let pesan =
-"📊 *LAPORAN BANK SAMPAH SUMBER REJEKI*\n\n";
+let pesan="📊 LAPORAN BANK SAMPAH SUMBER REJEKI\n\n";
 
-pesan +=
-"📅 Tanggal : " +
-(filterTanggal || "Semua") + "\n";
+pesan+="Tanggal : "+(filterTanggal||"Semua")+"\n";
+pesan+="Bulan   : "+(filterBulan||"Semua")+"\n";
+pesan+="RW      : "+(filterRW||"Semua")+"\n";
+pesan+="Anggota : "+(filterAnggota||"Semua")+"\n";
 
-pesan +=
-"🗓 Bulan : " +
-(filterBulan || "Semua") + "\n";
-
-pesan +=
-"🏘 RW : " +
-(filterRW || "Semua") + "\n";
-
-pesan +=
-"👤 Anggota : " +
-(filterAnggota || "Semua") + "\n";
-
-pesan +=
-"\n━━━━━━━━━━━━━━━━━━\n\n";
+pesan+="\n==============================\n\n";
 
 data.forEach((item,index)=>{
 
-pesan +=
-(index+1)+". "+
-item.tanggal+"\n";
+pesan+=
+(index+1)+". "+item.tanggal+"\n";
 
-pesan +=
+pesan+=
 item.idAnggota+" - "+item.nama+"\n";
 
-pesan +=
+pesan+=
 item.barang+
 " | "+
 Number(item.berat).toFixed(2)+" Kg\n";
 
-pesan +=
+pesan+=
 "Rp "+
 Number(item.total).toLocaleString("id-ID")+"\n\n";
 
-totalBerat += Number(item.berat||0);
-totalUang += Number(item.total||0);
+totalBerat+=Number(item.berat||0);
+totalUang+=Number(item.total||0);
 
 });
 
-pesan +=
-"━━━━━━━━━━━━━━━━━━\n";
+pesan+="==============================\n";
+pesan+="Jumlah Setoran : "+data.length+"\n";
+pesan+="Total Berat    : "+totalBerat.toFixed(2)+" Kg\n";
+pesan+="Total Uang     : Rp "+totalUang.toLocaleString("id-ID");
 
-pesan +=
-"📦 Jumlah Setoran : "+data.length+"\n";
+try{
 
-pesan +=
-"⚖ Total Berat : "+
-totalBerat.toFixed(2)+" Kg\n";
+await navigator.clipboard.writeText(pesan);
 
-pesan +=
-"💰 Total Uang : Rp "+
-totalUang.toLocaleString("id-ID")+"\n\n";
+alert("✅ Laporan berhasil disalin.\n\nSilakan buka WhatsApp Business lalu Tempel (Paste).");
 
-pesan +=
-"🌿 Bank Sampah Sumber Rejeki";
+}catch(err){
 
-window.location.href =
-"https://api.whatsapp.com/send?text=" +
-encodeURIComponent(pesan);
+const textarea=document.createElement("textarea");
+
+textarea.value=pesan;
+
+document.body.appendChild(textarea);
+
+textarea.select();
+
+document.execCommand("copy");
+
+document.body.removeChild(textarea);
+
+alert("✅ Laporan berhasil disalin.\n\nSilakan buka WhatsApp Business lalu Tempel (Paste).");
+
+}
 
 }
 
