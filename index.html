@@ -1465,7 +1465,7 @@ Belum ada data.
 
 <div>👥 Total Anggota</div>
 
-<h2 id="dashTotalAnggota">0</h2>
+<h2 id="dashTotalAnggotaMenu">0</h2>
 
 </div>
 
@@ -2384,7 +2384,7 @@ Belum ada data.
 `;
 
 document.getElementById("dashTotalAnggota").textContent=0;
-
+document.getElementById("dashTotalAnggotaMenu").textContent = 0;
 return;
 
 }
@@ -2454,7 +2454,8 @@ onclick="hapusAnggota('${item.id}')">
 
 document.getElementById("dashTotalAnggota").textContent =
 hasil.length;
-
+document.getElementById("dashTotalAnggotaMenu").textContent =
+hasil.length;
 }
 
 /* =====================================================
