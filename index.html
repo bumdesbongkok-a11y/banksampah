@@ -644,7 +644,7 @@ Rp 0
 
 <div style="font-size:14px;">
 
-📈 Laba
+📈 TOTAL LABA
 
 </div>
 
@@ -1027,7 +1027,7 @@ Mengambil data...
 <div class="card" style="padding:12px;text-align:center;background:#E3F2FD;">
 
 <div style="font-size:16px;font-weight:bold;">
-📈 Estimasi Laba
+📈 TOTAL LABA
 </div>
 
 <h2 id="totalLaba">Rp 0</h2>
@@ -1966,7 +1966,7 @@ Tidak ada data.
 <h2>💰 Kas Bank Sampah</h2>
 
 <button class="btnSecondary"
-onclick="bukaHalaman('menuUtama')">
+onclick="kembaliMenu()">
 
 ⬅️ Kembali ke Menu
 
@@ -1977,15 +1977,8 @@ onclick="bukaHalaman('menuUtama')">
 <div class="col">
 
 <div class="card">
-
-<div>Saldo Kas</div>
-
-<h2 id="kasSaldo">
-
-Rp 0
-
-</h2>
-
+<div>📦 Total Setoran</div>
+<h2 id="kasSetoran">Rp 0</h2>
 </div>
 
 </div>
@@ -1993,15 +1986,8 @@ Rp 0
 <div class="col">
 
 <div class="card">
-
-<div>Total Penjualan</div>
-
-<h2 id="kasPenjualan">
-
-Rp 0
-
-</h2>
-
+<div>🛒 Total Penjualan</div>
+<h2 id="kasPenjualan">Rp 0</h2>
 </div>
 
 </div>
@@ -2009,15 +1995,26 @@ Rp 0
 <div class="col">
 
 <div class="card">
+<div>📈 Total Laba</div>
+<h2 id="kasLaba">Rp 0</h2>
+</div>
 
-<div>Total Penarikan</div>
+</div>
 
-<h2 id="kasPenarikan">
+<div class="col">
 
-Rp 0
+<div class="card">
+<div>🏢 Saldo Kas BUMDES</div>
+<h2 id="kasBUMDES">Rp 0</h2>
+</div>
 
-</h2>
+</div>
 
+<div class="col">
+
+<div class="card">
+<div>👷 Hak Petugas Collecting</div>
+<h2 id="kasCollecting">Rp 0</h2>
 </div>
 
 </div>
@@ -2025,6 +2022,7 @@ Rp 0
 </div>
 
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
@@ -5337,41 +5335,55 @@ wb,
 
 function hitungKas(){
 
+let totalSetoran = 0;
 let totalPenjualan = 0;
 
-let totalPenarikan = 0;
+// Total nilai setoran anggota
+dataSetoran.forEach(item=>{
+
+    totalSetoran += Number(item.total || 0);
+
+});
 
 // Total penjualan
 dataPenjualan.forEach(item=>{
 
-totalPenjualan += Number(item.total || 0);
+    totalPenjualan += Number(item.total || 0);
 
 });
 
-// Total penarikan
-dataPenarikan.forEach(item=>{
+// Hitung laba
+let laba = totalPenjualan - totalSetoran;
+	
+if(laba < 0){
+    laba = 0;
+}
 
-totalPenarikan += Number(item.nominal || 0);
+// Pembagian laba
+let saldoBUMDES = laba / 2;
+let hakCollecting = laba / 2;
 
-});
-
-const saldoKas =
-totalPenjualan - totalPenarikan;
+// Tampilkan pada menu Kas
+document.getElementById("kasSetoran").textContent =
+"Rp " + totalSetoran.toLocaleString("id-ID");
 
 document.getElementById("kasPenjualan").textContent =
 "Rp " + totalPenjualan.toLocaleString("id-ID");
 
-document.getElementById("kasPenarikan").textContent =
-"Rp " + totalPenarikan.toLocaleString("id-ID");
+document.getElementById("kasLaba").textContent =
+"Rp " + laba.toLocaleString("id-ID");
 
-document.getElementById("kasSaldo").textContent =
-"Rp " + saldoKas.toLocaleString("id-ID");
+document.getElementById("kasBUMDES").textContent =
+"Rp " + saldoBUMDES.toLocaleString("id-ID");
 
+document.getElementById("kasCollecting").textContent =
+"Rp " + hakCollecting.toLocaleString("id-ID");
+
+// Dashboard
 document.getElementById("dashSaldoKas").textContent =
-"Rp " + saldoKas.toLocaleString("id-ID");
+"Rp " + saldoBUMDES.toLocaleString("id-ID");
 
 }
-
 /* =====================================================
    HITUNG TOTAL SALDO ANGGOTA
 ===================================================== */
