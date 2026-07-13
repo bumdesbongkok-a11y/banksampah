@@ -373,6 +373,94 @@ margin-bottom:8px;
 
 }
 
+/* ================= MENU ================= */
+
+.menuRow{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+margin-top:10px;
+
+}
+
+.menuRow button{
+
+width:100%;
+
+height:60px;
+
+font-size:15px;
+
+font-weight:bold;
+
+border-radius:12px;
+
+}
+
+.menuInput{
+
+width:100%;
+
+height:65px;
+
+font-size:17px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+
+}
+
+/* ================= DASHBOARD ================= */
+
+#dashboardUtama{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:10px;
+
+}
+
+#dashboardUtama .card{
+
+padding:15px;
+
+text-align:center;
+
+border-radius:12px;
+
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+#dashboardUtama h2{
+
+margin-top:8px;
+
+font-size:20px;
+
+color:#2e7d32;
+
+}
+
+#dashboardUtama div:first-child{
+
+font-size:14px;
+
+font-weight:bold;
+
+color:#666;
+
+}
+
 </style>
 
 </head>
@@ -388,7 +476,7 @@ margin-bottom:8px;
 
 <div id="menuUtama" class="card">
 
-<h3>Menu Utama</h3>
+<h3>🏠 Menu Utama</h3>
 
 <button
 class="btnPrimary menuInput"
@@ -406,9 +494,7 @@ Input Data Bank Sampah
 class="btnWarning"
 onclick="bukaHalaman('halamanAnggota')">
 
-<span class="menuIcon">👥</span>
-
-Data Anggota
+👥 Data Anggota
 
 </button>
 
@@ -416,9 +502,7 @@ Data Anggota
 class="btnSecondary"
 onclick="bukaHalaman('halamanHarga')">
 
-<span class="menuIcon">💵</span>
-
-Master Harga
+💵 Master Harga
 
 </button>
 
@@ -430,25 +514,196 @@ Master Harga
 class="btnSuccess"
 onclick="bukaHalaman('halamanPenjualan')">
 
-<span class="menuIcon">💰</span>
-
-Penjualan
+🛒 Penjualan
 
 </button>
 
 <button
 class="btnPrimary"
-onclick="bukaHalaman('halamanLaporan')">
+onclick="bukaHalaman('halamanPenarikan')">
 
-<span class="menuIcon">📊</span>
-
-Laporan
+💳 Penarikan
 
 </button>
 
 </div>
 
+<div class="menuRow">
+
+<button
+class="btnSuccess"
+onclick="bukaHalaman('halamanKas')">
+
+🏦 Kas Bank Sampah
+
+</button>
+
+<button
+class="btnWarning"
+onclick="bukaHalaman('halamanLaporan')">
+
+📊 Laporan
+
+</button>
+
 </div>
+
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<div class="card">
+
+<h3>📊 Dashboard Bank Sampah</h3>
+
+<div class="row" id="dashboardUtama">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+👥 Total Anggota
+
+</div>
+
+<h2 id="dashTotalAnggota">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+💰 Total Saldo Anggota
+
+</div>
+
+<h2 id="dashTotalSaldo">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+📦 Total Setoran
+
+</div>
+
+<h2 id="dashTotalSetoran">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+🛒 Total Penjualan
+
+</div>
+
+<h2 id="dashTotalPenjualan">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+📈 Laba
+
+</div>
+
+<h2 id="dashLaba">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;">
+
+<div style="font-size:14px;">
+
+💳 Total Penarikan
+
+</div>
+
+<h2 id="dashTotalPenarikan">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+🏦 Saldo Kas
+
+</div>
+
+<h2 id="dashSaldoKas">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <!-- ================= HALAMAN INPUT ================= -->
 <div id="halamanInput" style="display:none;">
 
@@ -962,6 +1217,227 @@ Belum ada data
 
 </div>
 
+<!-- ================= HALAMAN PENARIKAN ================= -->
+
+<div id="halamanPenarikan" style="display:none;">
+
+<div class="card">
+
+<button class="btnSecondary" onclick="kembaliMenu()">
+⬅️ Kembali ke Menu
+</button>
+
+<h3>💳 Penarikan Saldo</h3>
+
+<!-- ================= DASHBOARD ================= -->
+
+<div class="card">
+
+<h3>Dashboard Penarikan</h3>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;background:#FBE9E7;">
+
+<div>💳 Total Penarikan</div>
+
+<h2 id="dashTotalPenarikan">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card" style="padding:10px;text-align:center;background:#E8F5E9;">
+
+<div>🧾 Transaksi</div>
+
+<h2 id="dashJumlahPenarikan">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FORM PENARIKAN ================= -->
+
+<div class="card">
+
+<h3>Input Penarikan Saldo</h3>
+
+<label>Hari</label>
+<input type="text" id="tarikHari" readonly>
+
+<label>Tanggal</label>
+<input type="date" id="tarikTanggal">
+
+<label>ID Anggota</label>
+
+<select id="tarikAnggota">
+
+<option value="">-- Pilih Anggota --</option>
+
+</select>
+
+<label>Nama Anggota</label>
+
+<input
+type="text"
+id="tarikNama"
+readonly>
+
+<label>RW</label>
+
+<input
+type="text"
+id="tarikRW"
+readonly>
+
+<label>Saldo Saat Ini</label>
+
+<input
+type="text"
+id="tarikSaldo"
+readonly>
+
+<label>Nominal Penarikan</label>
+
+<input
+type="number"
+id="tarikNominal"
+placeholder="Masukkan nominal">
+
+<label>Keterangan</label>
+
+<input
+type="text"
+id="tarikKeterangan"
+placeholder="Contoh : Keperluan pribadi">
+
+<button
+class="btnPrimary"
+id="btnSimpanPenarikan">
+
+💾 Simpan Penarikan
+
+</button>
+
+</div>
+
+<!-- ================= FILTER PENARIKAN ================= -->
+
+<div class="card">
+
+<h3>Filter Penarikan</h3>
+
+<label>Tanggal</label>
+
+<input
+type="date"
+id="filterTarikTanggal">
+
+<label>RW</label>
+
+<select id="filterTarikRW">
+
+<option value="">Semua RW</option>
+
+<option>RW 1</option>
+<option>RW 2</option>
+<option>RW 3</option>
+<option>RW 4</option>
+<option>RW 5</option>
+
+</select>
+
+<label>Cari Nama</label>
+
+<input
+type="text"
+id="filterTarikNama"
+placeholder="Cari nama anggota">
+
+<button
+class="btnSecondary"
+id="btnResetPenarikan">
+
+🔄 Reset Filter
+
+</button>
+
+</div>
+
+<!-- ================= RIWAYAT PENARIKAN ================= -->
+
+<div class="tableCard">
+
+<div class="tableTitle">
+
+Riwayat Penarikan
+
+</div>
+
+<div class="tableResponsive">
+
+<table id="tabelPenarikan">
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Tanggal</th>
+<th>ID</th>
+<th>Nama</th>
+<th>RW</th>
+<th>Nominal</th>
+<th>Keterangan</th>
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td colspan="8">
+
+Belum ada data.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
 <!-- ================= HALAMAN ANGGOTA ================= -->
 <div id="halamanAnggota" style="display:none;">
 
@@ -1010,6 +1486,7 @@ Belum ada data
 </div>
 
 </div>
+
 
 <!-- ================= FORM ANGGOTA ================= -->
 
@@ -1114,9 +1591,13 @@ Daftar Anggota
 
 <th>No</th>
 
+<th>ID</th>
+
 <th>RW</th>
 
 <th>Nama</th>
+
+<th>Saldo</th>
 
 <th>Aksi</th>
 
@@ -1195,6 +1676,18 @@ Belum ada data.
 
 </div>
 
+<div class="card" style="padding:10px;text-align:center;background:#E3F2FD;">
+
+<div>💳 Saldo Saat Ini</div>
+
+<h2 id="detailSaldoAnggota">
+
+Rp 0
+
+</h2>
+
+</div>
+
 <div class="tableCard">
 
 <div class="tableTitle">
@@ -1209,9 +1702,10 @@ Riwayat Setoran
 
 <tr>
 <th>Tanggal</th>
-<th>Barang</th>
-<th>Berat</th>
-<th>Total</th>
+<th>Keterangan</th>
+<th>Masuk</th>
+<th>Keluar</th>
+<th>Saldo</th>
 </tr>
 
 </thead>
@@ -1219,7 +1713,7 @@ Riwayat Setoran
 <tbody>
 
 <tr>
-<td colspan="4">Belum ada data</td>
+<td colspan="5">Belum ada data</td>
 </tr>
 
 </tbody>
@@ -1291,6 +1785,9 @@ onclick="simpanMasterHarga()">
 
 
 </div>
+
+
+
 <!-- ================= laporan ================= -->
 
 <div id="halamanLaporan" style="display:none;">
@@ -1462,6 +1959,73 @@ Tidak ada data.
 
 </div>
 
+<!-- ================= KAS ================= -->
+
+<div id="halamanKas" style="display:none;">
+
+<h2>💰 Kas Bank Sampah</h2>
+
+<button class="btnSecondary"
+onclick="bukaHalaman('menuUtama')">
+
+⬅️ Kembali ke Menu
+
+</button>
+
+<div class="row">
+
+<div class="col">
+
+<div class="card">
+
+<div>Saldo Kas</div>
+
+<h2 id="kasSaldo">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card">
+
+<div>Total Penjualan</div>
+
+<h2 id="kasPenjualan">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<div class="card">
+
+<div>Total Penarikan</div>
+
+<h2 id="kasPenarikan">
+
+Rp 0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <script type="module">
@@ -1529,6 +2093,9 @@ const colAnggota = collection(db,"anggota");
 
 const colPenjualan = collection(db,"penjualan");
 
+const colPenarikan =
+collection(db,"penarikan");
+
 const docHarga = doc(db,"harga","daftar");
 
 /* ===========================
@@ -1542,6 +2109,10 @@ let dataSetoran=[];
 let dataPenjualan = [];
 
 let editId=null;
+
+let dataPenarikan = [];
+
+let editPenarikanId = null;
 
 let daftarHarga = {};
 
@@ -1634,6 +2205,8 @@ generateIdAnggota();
 
 isiDropdownLaporanAnggota();
 
+hitungTotalSaldo();
+
 }
 
 
@@ -1699,6 +2272,67 @@ ${item.nama}
 }
 
 /* =====================================================
+   ISI DROPDOWN PENARIKAN
+===================================================== */
+
+function isiDropdownPenarikan(){
+
+const select = document.getElementById("tarikAnggota");
+
+select.innerHTML =
+"<option value=''>-- Pilih ID Anggota --</option>";
+
+daftarAnggota
+.sort((a,b)=>a.nama.localeCompare(b.nama))
+.forEach(item=>{
+
+const option = document.createElement("option");
+
+option.value = item.idAnggota;
+
+option.textContent =
+item.idAnggota + " - " + item.nama;
+
+select.appendChild(option);
+
+});
+
+}
+
+/* =====================================================
+   PILIH ANGGOTA PENARIKAN
+===================================================== */
+
+document.getElementById("tarikAnggota").addEventListener("change", function(){
+
+const id = this.value;
+
+const anggota = daftarAnggota.find(item => item.idAnggota === id);
+
+if(!anggota){
+
+document.getElementById("tarikNama").value = "";
+
+document.getElementById("tarikRW").value = "";
+
+document.getElementById("tarikSaldo").value = "";
+
+return;
+
+}
+
+document.getElementById("tarikNama").value = anggota.nama;
+
+document.getElementById("tarikRW").value = anggota.rw;
+
+const saldo = hitungSaldoAnggota(id);
+
+document.getElementById("tarikSaldo").value =
+"Rp " + saldo.toLocaleString("id-ID");
+
+});
+
+/* =====================================================
    TAMPILKAN DATA ANGGOTA
 ===================================================== */
 
@@ -1745,7 +2379,7 @@ if(hasil.length==0){
 
 tbody.innerHTML=`
 <tr>
-<td colspan="4">
+<td colspan="6">
 Belum ada data.
 </td>
 </tr>
@@ -1775,32 +2409,37 @@ tbody.innerHTML+=`
 
 <tr>
 
-<td>${index+1}</td>
+<td>${index + 1}</td>
+
+<td>${item.idAnggota}</td>
 
 <td>${item.rw}</td>
 
 <td>${item.nama}</td>
 
+<td style="text-align:right;font-weight:bold;color:green;">
+
+Rp ${hitungSaldoAnggota(item.idAnggota).toLocaleString("id-ID")}
+
+</td>
+
 <td>
 
-<button
-class="btnSuccess"
+<button class="btnInfo"
 onclick="lihatAnggota('${item.id}')">
 
 👁️
 
 </button>
 
-<button
-class="btnWarning"
+<button class="btnWarning"
 onclick="editAnggota('${item.id}')">
 
 ✏️
 
 </button>
 
-<button
-class="btnDanger"
+<button class="btnDanger"
 onclick="hapusAnggota('${item.id}')">
 
 🗑️
@@ -2227,6 +2866,10 @@ id:docItem.id,
 });
 
 tampilData();
+
+hitungTotalSaldo();
+
+hitungTotalSetoran();
 
 }catch(err){
 
@@ -2810,26 +3453,36 @@ document.getElementById("menuUtama").style.display = "none";
 
 document.getElementById("halamanInput").style.display = "none";
 document.getElementById("halamanPenjualan").style.display = "none";
+document.getElementById("halamanPenarikan").style.display = "none"; // Tambahkan ini
 document.getElementById("halamanAnggota").style.display = "none";
 document.getElementById("halamanHarga").style.display = "none";
 document.getElementById("halamanLaporan").style.display = "none";
+document.getElementById("halamanKas").style.display="none";
+
 
 console.log(document.getElementById(id));
 
 document.getElementById(id).style.display = "block";
+if(id=="halamanPenarikan"){
 
+    isiDropdownPenarikan();
+
+}
 }
 
 window.kembaliMenu = function(){
 
 document.getElementById("menuUtama").style.display = "block";
 
+
 document.getElementById("halamanInput").style.display = "none";
 document.getElementById("halamanPenjualan").style.display = "none";
+document.getElementById("halamanPenarikan").style.display = "none"; // Tambahkan ini
 document.getElementById("halamanAnggota").style.display = "none";
 document.getElementById("halamanHarga").style.display = "none";
 document.getElementById("halamanLaporan").style.display = "none";
-
+document.getElementById("halamanKas").style.display="none";
+document.getElementById("dashboard").style.display = "none";
 }
 
 // =============================
@@ -3092,6 +3745,10 @@ id:docItem.id,
 
 tampilPenjualan();
 
+hitungKas();
+
+hitungTotalPenjualan();
+
 }catch(err){
 
 console.log(err);
@@ -3270,6 +3927,9 @@ document.getElementById("totalSetoranPenjualan").textContent =
 "Rp " + totalSetoran.toLocaleString("id-ID");
 
 document.getElementById("totalLaba").textContent =
+"Rp " + laba.toLocaleString("id-ID");
+
+document.getElementById("dashLaba").textContent =
 "Rp " + laba.toLocaleString("id-ID");
 
 }
@@ -3497,6 +4157,512 @@ tampilAnggota();
 
 });
 
+/* =====================================================
+   LOAD DATA PENARIKAN
+===================================================== */
+
+async function loadPenarikan(){
+
+try{
+
+const snap = await getDocs(colPenarikan);
+
+dataPenarikan = [];
+
+snap.forEach(docItem=>{
+
+dataPenarikan.push({
+
+id:docItem.id,
+
+...docItem.data()
+
+});
+
+});
+
+tampilPenarikan();
+
+tampilAnggota();
+
+hitungKas();
+
+hitungTotalSaldo();
+
+hitungTotalPenarikan();
+
+console.log(
+"Data Penarikan :",
+dataPenarikan.length
+);
+
+}catch(err){
+
+console.error(
+"Gagal load penarikan",
+err
+);
+
+}
+
+}
+/* =====================================================
+   HITUNG SALDO ANGGOTA
+===================================================== */
+
+function hitungSaldoAnggota(idAnggota){
+
+let totalSetoran = 0;
+let totalPenarikan = 0;
+
+// Total setoran
+dataSetoran.forEach(item=>{
+
+    if(item.idAnggota === idAnggota){
+
+        totalSetoran += Number(item.total || 0);
+
+    }
+
+});
+
+// Total penarikan
+dataPenarikan.forEach(item=>{
+
+    if(item.idAnggota === idAnggota){
+
+        totalPenarikan += Number(item.nominal || 0);
+
+    }
+
+});
+
+return totalSetoran - totalPenarikan;
+
+}
+
+/* =====================================================
+   SIMPAN PENARIKAN
+===================================================== */
+
+document
+.getElementById("btnSimpanPenarikan")
+.addEventListener("click",()=>{
+
+if(editPenarikanId){
+
+updatePenarikan();
+
+}else{
+
+simpanPenarikan();
+
+}
+
+});
+
+async function simpanPenarikan(){
+
+const tanggal =
+document.getElementById("tarikTanggal").value;
+
+const hari =
+document.getElementById("tarikHari").value;
+
+const idAnggota =
+document.getElementById("tarikAnggota").value;
+
+const nama =
+document.getElementById("tarikNama").value;
+
+const rw =
+document.getElementById("tarikRW").value;
+
+const nominal =
+parseFloat(
+document.getElementById("tarikNominal").value
+) || 0;
+
+const keterangan =
+document.getElementById("tarikKeterangan").value.trim();
+
+if(idAnggota==""){
+
+alert("Pilih anggota.");
+
+return;
+
+}
+
+if(nominal<=0){
+
+alert("Masukkan nominal penarikan.");
+
+return;
+
+}
+
+const saldo =
+hitungSaldoAnggota(idAnggota);
+
+if(nominal>saldo){
+
+alert("Saldo anggota tidak mencukupi.");
+
+return;
+
+}
+
+try{
+
+await addDoc(colPenarikan,{
+
+tanggal,
+hari,
+idAnggota,
+nama,
+rw,
+nominal,
+keterangan,
+dibuat:serverTimestamp()
+
+});
+
+alert("Penarikan berhasil disimpan.");
+
+await loadPenarikan();
+
+bersihkanPenarikan();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menyimpan penarikan.");
+
+}
+
+}
+
+function bersihkanPenarikan(){
+
+document.getElementById("tarikAnggota").selectedIndex=0;
+
+document.getElementById("tarikNama").value="";
+
+document.getElementById("tarikRW").value="";
+
+document.getElementById("tarikSaldo").value="";
+
+document.getElementById("tarikNominal").value="";
+
+document.getElementById("tarikKeterangan").value="";
+
+}
+
+/* =====================================================
+   UPDATE PENARIKAN
+===================================================== */
+
+async function updatePenarikan(){
+
+const tanggal =
+document.getElementById("tarikTanggal").value;
+
+const hari =
+document.getElementById("tarikHari").value;
+
+const idAnggota =
+document.getElementById("tarikAnggota").value;
+
+const nama =
+document.getElementById("tarikNama").value;
+
+const rw =
+document.getElementById("tarikRW").value;
+
+const nominal =
+parseFloat(document.getElementById("tarikNominal").value)||0;
+
+const keterangan =
+document.getElementById("tarikKeterangan").value;
+
+await updateDoc(
+doc(db,"penarikan",editPenarikanId),
+{
+
+tanggal,
+hari,
+idAnggota,
+nama,
+rw,
+nominal,
+keterangan
+
+}
+);
+
+alert("Penarikan berhasil diperbarui.");
+
+editPenarikanId = null;
+
+document.getElementById("btnSimpanPenarikan").innerHTML =
+"💾 Simpan Penarikan";
+
+bersihkanPenarikan();
+
+await loadPenarikan();
+
+}
+
+/* =====================================================
+   HAPUS PENARIKAN
+===================================================== */
+
+window.hapusPenarikan = async function(id){
+
+const yakin =
+confirm("Yakin ingin menghapus penarikan ini?");
+
+if(!yakin) return;
+
+try{
+
+await deleteDoc(
+doc(db,"penarikan",id)
+);
+
+alert("Data berhasil dihapus.");
+
+await loadPenarikan();
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal menghapus data.");
+
+}
+
+}
+
+/* =====================================================
+   TAMPILKAN PENARIKAN
+===================================================== */
+
+function tampilPenarikan(){
+
+const tbody =
+document.querySelector("#tabelPenarikan tbody");
+
+tbody.innerHTML="";
+
+let filterTanggal =
+document.getElementById("filterTarikTanggal").value;
+
+let filterRW =
+document.getElementById("filterTarikRW").value;
+
+let filterNama =
+document.getElementById("filterTarikNama")
+.value
+.toLowerCase();
+
+let hasil = dataPenarikan.filter(item=>{
+
+let cocokTanggal = true;
+let cocokRW = true;
+let cocokNama = true;
+
+if(filterTanggal!=""){
+
+cocokTanggal =
+item.tanggal===filterTanggal;
+
+}
+
+if(filterRW!=""){
+
+cocokRW =
+item.rw===filterRW;
+
+}
+
+if(filterNama!=""){
+
+cocokNama =
+item.nama
+.toLowerCase()
+.includes(filterNama);
+
+}
+
+return cocokTanggal &&
+       cocokRW &&
+       cocokNama;
+
+});
+
+if(hasil.length==0){
+
+tbody.innerHTML=`
+<tr>
+<td colspan="8">
+Belum ada data.
+</td>
+</tr>
+`;
+
+document.getElementById("dashTotalPenarikan").textContent="Rp 0";
+document.getElementById("dashJumlahPenarikan").textContent="0";
+
+return;
+
+}
+
+let total=0;
+
+hasil.sort((a,b)=>
+b.tanggal.localeCompare(a.tanggal)
+);
+
+hasil.forEach((item,index)=>{
+
+total+=Number(item.nominal||0);
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${item.tanggal}</td>
+
+<td>${item.idAnggota}</td>
+
+<td>${item.nama}</td>
+
+<td>${item.rw}</td>
+
+<td>
+Rp ${Number(item.nominal).toLocaleString("id-ID")}
+</td>
+
+<td>${item.keterangan||"-"}</td>
+
+<td>
+
+<button
+class="btnWarning"
+onclick="editPenarikan('${item.id}')">
+
+✏️
+
+</button>
+
+<button
+class="btnDanger"
+onclick="hapusPenarikan('${item.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("dashTotalPenarikan").textContent=
+"Rp "+total.toLocaleString("id-ID");
+
+document.getElementById("dashJumlahPenarikan").textContent =
+hasil.length;
+
+}
+
+document
+.getElementById("filterTarikTanggal")
+.addEventListener("change", tampilPenarikan);
+
+document
+.getElementById("filterTarikRW")
+.addEventListener("change", tampilPenarikan);
+
+document
+.getElementById("filterTarikNama")
+.addEventListener("input", tampilPenarikan);
+
+document
+.getElementById("btnResetPenarikan")
+.addEventListener("click",()=>{
+
+document.getElementById("filterTarikTanggal").value="";
+
+document.getElementById("filterTarikRW").selectedIndex=0;
+
+document.getElementById("filterTarikNama").value="";
+
+tampilPenarikan();
+
+});
+
+/* =====================================================
+   EDIT PENARIKAN
+===================================================== */
+
+window.editPenarikan = function(id){
+
+const data =
+dataPenarikan.find(item=>item.id===id);
+
+if(!data) return;
+
+editPenarikanId = id;
+
+document.getElementById("tarikTanggal").value =
+data.tanggal;
+
+document.getElementById("tarikHari").value =
+data.hari;
+
+document.getElementById("tarikAnggota").value =
+data.idAnggota;
+
+document.getElementById("tarikNama").value =
+data.nama;
+
+document.getElementById("tarikRW").value =
+data.rw;
+
+const saldo =
+hitungSaldoAnggota(data.idAnggota);
+
+document.getElementById("tarikSaldo").value =
+"Rp "+saldo.toLocaleString("id-ID");
+
+document.getElementById("tarikNominal").value =
+data.nominal;
+
+document.getElementById("tarikKeterangan").value =
+data.keterangan || "";
+
+document.getElementById("btnSimpanPenarikan").innerHTML =
+"💾 Update Penarikan";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* =====================================================
+   simpan anggota master
+===================================================== */
 document
 .getElementById("btnSimpanAnggota")
 .addEventListener("click", simpanAnggotaMaster);
@@ -3728,16 +4894,60 @@ document.querySelector("#tabelRiwayatAnggota tbody");
 
 tbody.innerHTML="";
 
-const riwayat = dataSetoran.filter(item => {
+let riwayat = [];
 
-return item.nama === anggota.nama &&
-       item.rw === anggota.rw;
+// ================= SETORAN =================
+
+dataSetoran.forEach(item=>{
+
+if(item.idAnggota===anggota.idAnggota){
+
+riwayat.push({
+
+tanggal:item.tanggal,
+
+jenis:item.barang,
+
+berat:item.berat,
+
+masuk:Number(item.total||0),
+
+keluar:0
+
+});
+
+}
+
+});
+
+// ================= PENARIKAN =================
+
+dataPenarikan.forEach(item=>{
+
+if(item.idAnggota===anggota.idAnggota){
+
+riwayat.push({
+
+tanggal:item.tanggal,
+
+jenis:"Penarikan Saldo",
+
+berat:"-",
+
+masuk:0,
+
+keluar:Number(item.nominal||0)
+
+});
+
+}
 
 });
 
 let totalSetoran=0;
 let totalBerat=0;
 let totalUang=0;
+let totalPenarikan = 0;
 
 if(riwayat.length==0){
 
@@ -3751,15 +4961,28 @@ Belum ada riwayat setoran
 
 }else{
 
-riwayat.sort((a,b)=>b.tanggal.localeCompare(a.tanggal));
+riwayat.sort((a,b)=>a.tanggal.localeCompare(b.tanggal));
+
+let saldoBerjalan = 0;
 
 riwayat.forEach(item=>{
 
+if(item.masuk>0){
+
 totalSetoran++;
+
+totalUang += item.masuk;
+
+if(item.berat!="-"){
 
 totalBerat += Number(item.berat||0);
 
-totalUang += Number(item.total||0);
+}
+
+}
+
+saldoBerjalan += item.masuk;
+saldoBerjalan -= item.keluar;
 
 tbody.innerHTML +=`
 
@@ -3767,12 +4990,32 @@ tbody.innerHTML +=`
 
 <td>${item.tanggal}</td>
 
-<td>${item.barang}</td>
-
-<td>${item.berat} Kg</td>
+<td>${item.jenis}</td>
 
 <td>
-Rp ${Number(item.total).toLocaleString("id-ID")}
+
+${item.masuk==0 ? "-" :
+
+"Rp "+item.masuk.toLocaleString("id-ID")}
+
+</td>
+
+<td>
+
+${item.keluar==0 ? "-" :
+
+"Rp "+item.keluar.toLocaleString("id-ID")}
+
+</td>
+
+<td>
+
+<b>
+
+Rp ${saldoBerjalan.toLocaleString("id-ID")}
+
+</b>
+
 </td>
 
 </tr>
@@ -3783,6 +5026,16 @@ Rp ${Number(item.total).toLocaleString("id-ID")}
 
 }
 
+dataPenarikan.forEach(item=>{
+
+if(item.idAnggota===anggota.idAnggota){
+
+totalPenarikan += Number(item.nominal || 0);
+
+}
+
+});
+
 document.getElementById("detailTotalSetoran").textContent =
 totalSetoran;
 
@@ -3791,6 +5044,11 @@ totalBerat.toFixed(2)+" Kg";
 
 document.getElementById("detailTotalUang").textContent =
 "Rp "+totalUang.toLocaleString("id-ID");
+
+const saldo = totalUang - totalPenarikan;
+
+document.getElementById("detailSaldoAnggota").textContent =
+"Rp " + saldo.toLocaleString("id-ID");
 
 }
 
@@ -4073,10 +5331,128 @@ wb,
 
 }
 
+/* =====================================================
+   HITUNG KAS BANK SAMPAH
+===================================================== */
+
+function hitungKas(){
+
+let totalPenjualan = 0;
+
+let totalPenarikan = 0;
+
+// Total penjualan
+dataPenjualan.forEach(item=>{
+
+totalPenjualan += Number(item.total || 0);
+
+});
+
+// Total penarikan
+dataPenarikan.forEach(item=>{
+
+totalPenarikan += Number(item.nominal || 0);
+
+});
+
+const saldoKas =
+totalPenjualan - totalPenarikan;
+
+document.getElementById("kasPenjualan").textContent =
+"Rp " + totalPenjualan.toLocaleString("id-ID");
+
+document.getElementById("kasPenarikan").textContent =
+"Rp " + totalPenarikan.toLocaleString("id-ID");
+
+document.getElementById("kasSaldo").textContent =
+"Rp " + saldoKas.toLocaleString("id-ID");
+
+document.getElementById("dashSaldoKas").textContent =
+"Rp " + saldoKas.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   HITUNG TOTAL SALDO ANGGOTA
+===================================================== */
+
+function hitungTotalSaldo(){
+
+let totalSaldo = 0;
+
+daftarAnggota.forEach(item=>{
+
+totalSaldo += hitungSaldoAnggota(item.idAnggota);
+
+});
+
+document.getElementById("dashTotalSaldo").textContent =
+"Rp " + totalSaldo.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   HITUNG TOTAL SETORAN
+===================================================== */
+
+function hitungTotalSetoran(){
+
+let total = 0;
+
+dataSetoran.forEach(item=>{
+
+total += Number(item.total || 0);
+
+});
+
+document.getElementById("dashTotalSetoran").textContent =
+"Rp " + total.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   HITUNG TOTAL PENJUALAN
+===================================================== */
+
+function hitungTotalPenjualan(){
+
+let total = 0;
+
+dataPenjualan.forEach(item=>{
+
+total += Number(item.total || 0);
+
+});
+
+document.getElementById("dashTotalPenjualan").textContent =
+"Rp " + total.toLocaleString("id-ID");
+
+}
+
+/* =====================================================
+   HITUNG TOTAL PENARIKAN
+===================================================== */
+
+function hitungTotalPenarikan(){
+
+let total = 0;
+
+dataPenarikan.forEach(item=>{
+
+total += Number(item.nominal || 0);
+
+});
+
+document.getElementById("dashTotalPenarikan").textContent =
+"Rp " + total.toLocaleString("id-ID");
+
+}
+
 loadHarga();
 loadAnggota();
 loadSetoran();
 loadPenjualan();
+loadPenarikan();
 
 
 
