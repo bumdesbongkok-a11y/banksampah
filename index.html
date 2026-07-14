@@ -907,12 +907,14 @@ id="filterTanggal">
 <option>RW 5</option>
 
 </select>
-<label>Cari Nama</label>
+<label>Nama Anggota</label>
 
-<input
-type="text"
-id="filterNama"
-placeholder="Cari nama anggota...">
+<select id="filterNama">
+
+<option value="">Semua Anggota</option>
+
+</select>
+
 <button
 class="btnSecondary"
 id="btnReset">
@@ -1287,11 +1289,25 @@ Rp 0
 <label>Tanggal</label>
 <input type="date" id="tarikTanggal">
 
+<label>RW</label>
+
+<select id="tarikRW">
+
+<option value="">Pilih RW</option>
+
+<option>RW 1</option>
+<option>RW 2</option>
+<option>RW 3</option>
+<option>RW 4</option>
+<option>RW 5</option>
+
+</select>
+
 <label>ID Anggota</label>
 
 <select id="tarikAnggota">
 
-<option value="">-- Pilih Anggota --</option>
+<option value="">-- Pilih ID Anggota --</option>
 
 </select>
 
@@ -1302,12 +1318,6 @@ type="text"
 id="tarikNama"
 readonly>
 
-<label>RW</label>
-
-<input
-type="text"
-id="tarikRW"
-readonly>
 
 <label>Saldo Saat Ini</label>
 
@@ -1366,12 +1376,13 @@ id="filterTarikTanggal">
 
 </select>
 
-<label>Cari Nama</label>
+<label>Nama Anggota</label>
 
-<input
-type="text"
-id="filterTarikNama"
-placeholder="Cari nama anggota">
+<select id="filterTarikNama">
+
+<option value="">Semua Anggota</option>
+
+</select>
 
 <button
 class="btnSecondary"
@@ -1465,7 +1476,7 @@ Belum ada data.
 
 <div>👥 Total Anggota</div>
 
-<h2 id="dashTotalAnggotaMenu">0</h2>
+<h2 id="dashTotalAnggota">0</h2>
 
 </div>
 
@@ -1552,12 +1563,13 @@ id="btnSimpanAnggota">
 
 </select>
 
-<label>Cari Nama</label>
+<label>Nama Anggota</label>
 
-<input
-type="text"
-id="filterAnggotaNama"
-placeholder="Cari nama anggota">
+<select id="filterAnggotaNama">
+
+<option value="">Semua Anggota</option>
+
+</select>
 
 <button
 class="btnSecondary"
@@ -2203,10 +2215,48 @@ generateIdAnggota();
 
 isiDropdownLaporanAnggota();
 
+
+
 hitungTotalSaldo();
 
 }
 
+/* =====================================================
+   ISI DROPDOWN ANGGOTA UMUM
+===================================================== */
+
+function isiDropdownAnggotaUmum(idRW,idSelect,semua=false){
+
+const rw =
+document.getElementById(idRW)?.value || "";
+
+const select =
+document.getElementById(idSelect);
+
+if(!select) return;
+
+select.innerHTML =
+semua
+? "<option value=''>Semua Anggota</option>"
+: "<option value=''>-- Pilih Anggota --</option>";
+
+daftarAnggota
+.filter(item=>rw==="" || item.rw===rw)
+.sort((a,b)=>a.nama.localeCompare(b.nama,"id"))
+.forEach(item=>{
+
+const option=document.createElement("option");
+
+option.value=item.idAnggota;
+
+option.textContent=
+item.idAnggota+" - "+item.nama;
+
+select.appendChild(option);
+
+});
+
+}
 
 /* =====================================================
    ISI DROPDOWN ANGGOTA
@@ -2214,26 +2264,10 @@ hitungTotalSaldo();
 
 function isiDropdownAnggota(){
 
-const rw=document.getElementById("rw").value;
-
-const select=document.getElementById("anggota");
-
-select.innerHTML="<option value=''>-- Pilih Anggota --</option>";
-
-daftarAnggota
-.filter(item=>item.rw===rw)
-.sort((a,b)=>a.nama.localeCompare(b.nama))
-.forEach(item=>{
-
-const option = document.createElement("option");
-
-option.value = item.idAnggota;
-
-option.textContent = item.idAnggota + " - " + item.nama;
-
-select.appendChild(option);
-
-});
+    isiDropdownAnggotaUmum(
+        "rw",
+        "anggota"
+    );
 
 }
 
@@ -2243,6 +2277,9 @@ select.appendChild(option);
 
 function isiDropdownLaporanAnggota(){
 
+const rw =
+document.getElementById("lapRW").value;
+
 const select =
 document.getElementById("lapAnggota");
 
@@ -2251,51 +2288,86 @@ if(!select) return;
 select.innerHTML =
 "<option value=''>Semua Anggota</option>";
 
-const urut = [...daftarAnggota];
-
-urut.sort((a,b)=>
-a.nama.localeCompare(b.nama,"id")
-);
-
-urut.forEach(item=>{
-
-select.innerHTML += `
-<option value="${item.idAnggota}">
-${item.nama}
-</option>
-`;
-
-});
-
-}
-
-/* =====================================================
-   ISI DROPDOWN PENARIKAN
-===================================================== */
-
-function isiDropdownPenarikan(){
-
-const select = document.getElementById("tarikAnggota");
-
-select.innerHTML =
-"<option value=''>-- Pilih ID Anggota --</option>";
-
 daftarAnggota
-.sort((a,b)=>a.nama.localeCompare(b.nama))
+.filter(item => rw==="" || item.rw===rw)
+.sort((a,b)=>a.nama.localeCompare(b.nama,"id"))
 .forEach(item=>{
 
-const option = document.createElement("option");
+const option=document.createElement("option");
 
-option.value = item.idAnggota;
+option.value=item.idAnggota;
 
-option.textContent =
-item.idAnggota + " - " + item.nama;
+option.textContent=
+item.idAnggota+" - "+item.nama;
 
 select.appendChild(option);
 
 });
 
 }
+
+/*************************************************
+   ISI DROPDOWN FILTER PENARIKAN
+*************************************************/
+
+function isiDropdownFilterPenarikan(){
+
+    isiDropdownAnggotaUmum(
+        "filterTarikRW",
+        "filterTarikNama",
+        true
+    );
+
+}
+
+/* =====================================================
+   ISI DROPDOWN FILTER SETORAN
+===================================================== */
+
+function isiDropdownFilterSetoran(){
+
+    isiDropdownAnggotaUmum(
+        "filterRW",
+        "filterNama",
+        true
+    );
+
+}
+
+/* =====================================================
+   ISI DROPDOWN FILTER DATA ANGGOTA
+===================================================== */
+
+function isiDropdownFilterAnggota(){
+
+    isiDropdownAnggotaUmum(
+        "filterAnggotaRW",
+        "filterAnggotaNama",
+        true
+    );
+
+}
+
+/* =====================================================
+   PILIH RW PENARIKAN
+===================================================== */
+
+function isiDropdownPenarikan(){
+
+    isiDropdownAnggotaUmum(
+        "tarikRW",
+        "tarikAnggota"
+    );
+
+}
+
+document
+.getElementById("tarikRW")
+.addEventListener("change",function(){
+
+    isiDropdownPenarikan();
+
+});
 
 /* =====================================================
    PILIH ANGGOTA PENARIKAN
@@ -2311,7 +2383,6 @@ if(!anggota){
 
 document.getElementById("tarikNama").value = "";
 
-document.getElementById("tarikRW").value = "";
 
 document.getElementById("tarikSaldo").value = "";
 
@@ -2345,9 +2416,7 @@ let filterRW =
 document.getElementById("filterAnggotaRW").value;
 
 let filterNama =
-document.getElementById("filterAnggotaNama")
-.value
-.toLowerCase();
+document.getElementById("filterAnggotaNama").value;
 
 let hasil = daftarAnggota.filter(item=>{
 
@@ -2363,9 +2432,7 @@ cocokRW = item.rw===filterRW;
 
 if(filterNama!=""){
 
-cocokNama = item.nama
-.toLowerCase()
-.includes(filterNama);
+cocokNama = item.idAnggota===filterNama;
 
 }
 
@@ -2384,7 +2451,7 @@ Belum ada data.
 `;
 
 document.getElementById("dashTotalAnggota").textContent=0;
-document.getElementById("dashTotalAnggotaMenu").textContent = 0;
+
 return;
 
 }
@@ -2454,8 +2521,7 @@ onclick="hapusAnggota('${item.id}')">
 
 document.getElementById("dashTotalAnggota").textContent =
 hasil.length;
-document.getElementById("dashTotalAnggotaMenu").textContent =
-hasil.length;
+
 }
 
 /* =====================================================
@@ -2503,6 +2569,7 @@ behavior:"smooth"
 document
 .getElementById("rw")
 .addEventListener("change",isiDropdownAnggota);
+
 
 
 
@@ -3041,10 +3108,8 @@ tbody.innerHTML="";
 let filterTanggal=document.getElementById("filterTanggal").value;
 
 let filterRW=document.getElementById("filterRW").value;
-let filterNama = document
-.getElementById("filterNama")
-.value
-.toLowerCase();
+let filterNama =
+document.getElementById("filterNama").value;
 
 let hasil=dataSetoran.filter(item=>{
 
@@ -3065,9 +3130,8 @@ cocokRW=item.rw===filterRW;
 }
 if(filterNama!=""){
 
-cocokNama=item.nama
-.toLowerCase()
-.includes(filterNama);
+cocokNama =
+item.idAnggota===filterNama;
 
 }
 
@@ -3198,15 +3262,46 @@ document
 
 document
 .getElementById("filterRW")
-.addEventListener("change",tampilData);
+.addEventListener("change",function(){
+
+    isiDropdownFilterSetoran();
+
+    tampilData();
+
+});
 
 document
 .getElementById("filterNama")
-.addEventListener("input",tampilData);
+.addEventListener("change",tampilData);
 
 document
 .getElementById("btnTampilkanLaporan")
 .addEventListener("click", tampilkanLaporan);
+
+document.getElementById("lapRW")
+.addEventListener("change", isiDropdownLaporanAnggota);
+
+/* =====================================================
+   RESET FILTER LAPORAN
+===================================================== */
+
+document
+.getElementById("btnResetLaporan")
+.addEventListener("click",()=>{
+
+    document.getElementById("lapTanggal").value="";
+
+    document.getElementById("lapBulan").value="";
+
+    document.getElementById("lapRW").value="";
+
+    isiDropdownLaporanAnggota();
+
+    document.getElementById("lapAnggota").value="";
+
+    tampilkanLaporan();
+
+});
 
 /* =====================================================
    RESET FILTER
@@ -4138,11 +4233,17 @@ wb,
 
 document
 .getElementById("filterAnggotaRW")
-.addEventListener("change", tampilAnggota);
+.addEventListener("change",function(){
+
+    isiDropdownFilterAnggota();
+
+    tampilAnggota();
+
+});
 
 document
 .getElementById("filterAnggotaNama")
-.addEventListener("input", tampilAnggota);
+.addEventListener("change",tampilAnggota);
 
 document
 .getElementById("btnResetAnggota")
@@ -4463,9 +4564,7 @@ let filterRW =
 document.getElementById("filterTarikRW").value;
 
 let filterNama =
-document.getElementById("filterTarikNama")
-.value
-.toLowerCase();
+document.getElementById("filterTarikNama").value;
 
 let hasil = dataPenarikan.filter(item=>{
 
@@ -4490,9 +4589,7 @@ item.rw===filterRW;
 if(filterNama!=""){
 
 cocokNama =
-item.nama
-.toLowerCase()
-.includes(filterNama);
+item.idAnggota===filterNama;
 
 }
 
@@ -4589,11 +4686,17 @@ document
 
 document
 .getElementById("filterTarikRW")
-.addEventListener("change", tampilPenarikan);
+.addEventListener("change", function(){
+
+    isiDropdownFilterPenarikan();
+
+    tampilPenarikan();
+
+});	
 
 document
 .getElementById("filterTarikNama")
-.addEventListener("input", tampilPenarikan);
+.addEventListener("change", tampilPenarikan);
 
 document
 .getElementById("btnResetPenarikan")
@@ -5460,6 +5563,8 @@ document.getElementById("dashTotalPenarikan").textContent =
 "Rp " + total.toLocaleString("id-ID");
 
 }
+
+
 
 loadHarga();
 loadAnggota();
