@@ -1476,7 +1476,7 @@ Belum ada data.
 
 <div>👥 Total Anggota</div>
 
-<h2 id="dashTotalAnggota">0</h2>
+<h2 id="dashTotalAnggotaAnggota">0</h2>
 
 </div>
 
@@ -2219,6 +2219,8 @@ isiDropdownLaporanAnggota();
 
 hitungTotalSaldo();
 
+updateDashboard();
+
 }
 
 /* =====================================================
@@ -2450,7 +2452,11 @@ Belum ada data.
 </tr>
 `;
 
-document.getElementById("dashTotalAnggota").textContent=0;
+const dashMenu = document.getElementById("dashTotalAnggota");
+if (dashMenu) dashMenu.textContent = 0;
+
+const dashAnggota = document.getElementById("dashTotalAnggotaAnggota");
+if (dashAnggota) dashAnggota.textContent = 0;
 
 return;
 
@@ -2519,8 +2525,11 @@ onclick="hapusAnggota('${item.id}')">
 
 });
 
-document.getElementById("dashTotalAnggota").textContent =
-hasil.length;
+const dashMenu = document.getElementById("dashTotalAnggota");
+if (dashMenu) dashMenu.textContent = hasil.length;
+
+const dashAnggota = document.getElementById("dashTotalAnggotaAnggota");
+if (dashAnggota) dashAnggota.textContent = hasil.length;
 
 }
 
@@ -2936,6 +2945,8 @@ tampilData();
 hitungTotalSaldo();
 
 hitungTotalSetoran();
+
+updateDashboard();
 
 }catch(err){
 
@@ -3843,6 +3854,8 @@ hitungKas();
 
 hitungTotalPenjualan();
 
+loadPenjualan()
+
 }catch(err){
 
 console.log(err);
@@ -4290,6 +4303,8 @@ hitungKas();
 hitungTotalSaldo();
 
 hitungTotalPenarikan();
+
+updateDashboard();
 
 console.log(
 "Data Penarikan :",
@@ -4880,6 +4895,7 @@ alert("Data anggota berhasil diperbarui.");
 bersihkanFormAnggota();
 
 await loadAnggota();
+
 
 }
 
@@ -5562,6 +5578,43 @@ total += Number(item.nominal || 0);
 document.getElementById("dashTotalPenarikan").textContent =
 "Rp " + total.toLocaleString("id-ID");
 
+}
+
+function updateDashboard(){
+
+    const totalAnggota = daftarAnggota.length;
+
+    let totalSetoran = dataSetoran.reduce((a,b)=>a+b.total,0);
+
+    let totalPenjualan = dataPenjualan.reduce((a,b)=>a+b.total,0);
+
+    let totalPenarikan = dataPenarikan.reduce((a,b)=>a+b.nominal,0);
+
+    let totalSaldo = 0;
+
+    daftarAnggota.forEach(item=>{
+        totalSaldo += hitungSaldoAnggota(item.idAnggota);
+    });
+
+    let laba = totalPenjualan - totalSetoran;
+    if(laba<0) laba=0;
+
+    let saldoKas = laba/2;
+
+    const isi=(id,nilai)=>{
+        const el=document.getElementById(id);
+        if(el) el.textContent=nilai;
+    };
+
+    isi("dashTotalAnggota",totalAnggota);
+    isi("dashTotalAnggotaHalaman",totalAnggota);
+
+    isi("dashTotalSaldo","Rp "+totalSaldo.toLocaleString("id-ID"));
+    isi("dashTotalSetoran","Rp "+totalSetoran.toLocaleString("id-ID"));
+    isi("dashTotalPenjualan","Rp "+totalPenjualan.toLocaleString("id-ID"));
+    isi("dashTotalPenarikan","Rp "+totalPenarikan.toLocaleString("id-ID"));
+    isi("dashLaba","Rp "+laba.toLocaleString("id-ID"));
+    isi("dashSaldoKas","Rp "+saldoKas.toLocaleString("id-ID"));
 }
 
 
