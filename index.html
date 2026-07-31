@@ -3,5631 +3,2742 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Bank Sampah Sumber Rejeki</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-
-background:#2E7D32;
-min-height:100vh;
-
-}
-
-.header{
-
-background:#1B5E20;
-color:#fff;
-padding:20px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
-border-bottom-left-radius:25px;
-border-bottom-right-radius:25px;
-box-shadow:0 4px 10px rgba(0,0,0,.2);
-
-}
-
-.container{
-
-width:95%;
-max-width:430px;
-margin:20px auto;
-
-}
-
-.card{
-
-background:#fff;
-padding:18px;
-border-radius:16px;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
-margin-bottom:20px;
-
-}
-
-.card h3{
-
-text-align:center;
-color:#2E7D32;
-margin-bottom:15px;
-font-size:22px;
-font-weight:bold;
-
-}
-
-label{
-
-display:block;
-margin-top:14px;
-margin-bottom:6px;
-font-weight:bold;
-color:#333;
-
-}
-
-input,
-select{
-
-width:100%;
-padding:12px;
-font-size:15px;
-border:1px solid #CCC;
-border-radius:10px;
-outline:none;
-background:#FAFAFA;
-
-}
-
-input:focus,
-select:focus{
-
-border-color:#2E7D32;
-
-}
-
-input[readonly]{
-
-background:#ECEFF1;
-
-}
-
-.row{
-
-display:flex;
-gap:10px;
-
-}
-
-.col{
-
-flex:1;
-
-}
-
-button{
-
-width:100%;
-padding:13px;
-border:none;
-border-radius:10px;
-font-size:15px;
-font-weight:bold;
-cursor:pointer;
-transition:.2s;
-margin-top:15px;
-
-}
-
-button:hover{
-
-transform:translateY(-1px);
-
-}
-
-button:active{
-
-transform:scale(.98);
-
-}
-
-.btnPrimary{
-
-background:#1976D2;
-color:white;
-
-}
-
-.btnSuccess{
-
-background:#43A047;
-color:white;
-
-}
-
-.btnWarning{
-
-background:#FB8C00;
-color:white;
-
-}
-
-.btnDanger{
-
-background:#E53935;
-color:white;
-
-}
-
-.btnSecondary{
-
-background:#6C757D;
-color:white;
-
-}
-
-.btnPrimary:hover{
-
-background:#1565C0;
-
-}
-
-.btnSuccess:hover{
-
-background:#2E7D32;
-
-}
-
-.btnWarning:hover{
-
-background:#EF6C00;
-
-}
-
-.btnDanger:hover{
-
-background:#C62828;
-
-}
-
-.btnSecondary:hover{
-
-background:#5A6268;
-
-}
-
-.tableCard{
-
-background:#fff;
-padding:15px;
-border-radius:16px;
-box-shadow:0 4px 12px rgba(0,0,0,.15);
-
-}
-
-.tableTitle{
-
-font-size:18px;
-font-weight:bold;
-text-align:center;
-color:#2E7D32;
-margin-bottom:15px;
-
-}
-
-.tableResponsive{
-
-overflow-x:auto;
-
-}
-
-table{
-
-width:100%;
-border-collapse:collapse;
-min-width:760px;
-
-}
-
-th{
-
-background:#2E7D32;
-color:#fff;
-padding:10px;
-font-size:14px;
-
-}
-
-td{
-
-padding:10px;
-border:1px solid #DDD;
-font-size:14px;
-text-align:center;
-
-}
-
-tbody tr:nth-child(even){
-
-background:#F5F5F5;
-
-}
-
-tbody tr:hover{
-
-background:#E8F5E9;
-
-}
-
-.loading{
-
-display:none;
-text-align:center;
-padding:15px;
-font-weight:bold;
-color:#2E7D32;
-
-}
-
-.loading.show{
-
-display:block;
-
-}
-
-.badge{
-
-display:inline-block;
-padding:4px 8px;
-border-radius:20px;
-background:#2E7D32;
-color:white;
-font-size:12px;
-
-}
-
-.footerSpace{
-
-height:40px;
-
-}
-
-@media(max-width:480px){
-
-.header{
-
-font-size:20px;
-
-}
-
-.card{
-
-padding:15px;
-
-}
-
-button{
-
-font-size:14px;
-
-}
-
-}
-
-/* ================= MENU UTAMA ================= */
-
-#menuUtama{
-padding:20px;
-}
-
-#menuUtama h3{
-margin-bottom:20px;
-font-size:24px;
-}
-
-#menuUtama .menuRow{
-display:flex;
-gap:12px;
-margin-top:12px;
-}
-
-#menuUtama .menuRow button{
-margin-top:0;
-height:90px;
-}
-
-#menuUtama .menuInput{
-height:100px;
-font-size:18px;
-}
-
-#menuUtama .menuRow button{
-flex:1;
-font-size:16px;
-border-radius:15px;
-box-shadow:0 5px 12px rgba(0,0,0,.15);
-}
-
-#menuUtama button:hover{
-transform:translateY(-3px);
-}
-.menuIcon{
-
-display:block;
-
-font-size:34px;
-
-margin-bottom:8px;
-
-}
-
-/* ================= MENU ================= */
-
-.menuRow{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:10px;
-
-margin-top:10px;
-
-}
-
-.menuRow button{
-
-width:100%;
-
-height:60px;
-
-font-size:15px;
-
-font-weight:bold;
-
-border-radius:12px;
-
-}
-
-.menuInput{
-
-width:100%;
-
-height:65px;
-
-font-size:17px;
-
-font-weight:bold;
-
-margin-bottom:10px;
-
-}
-
-/* ================= DASHBOARD ================= */
-
-#dashboardUtama{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:12px;
-
-margin-top:10px;
-
-}
-
-#dashboardUtama .card{
-
-padding:15px;
-
-text-align:center;
-
-border-radius:12px;
-
-box-shadow:0 2px 8px rgba(0,0,0,.1);
-
-}
-
-#dashboardUtama h2{
-
-margin-top:8px;
-
-font-size:20px;
-
-color:#2e7d32;
-
-}
-
-#dashboardUtama div:first-child{
-
-font-size:14px;
-
-font-weight:bold;
-
-color:#666;
-
-}
-
-</style>
+    <!-- ================================
+         META
+    ================================= -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#2E7D32">
+
+    <title>
+        Bank Sampah Sumber Rejeki
+    </title>
+
+    <!-- ================================
+         CSS
+    ================================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
 
 </head>
+
 <body>
 
-<div class="header">
-🌿 Bank Sampah Sumber Rejeki
+    <!-- ================================
+         CONTAINER
+    ================================= -->
+
+    <div class="container">
+
+
+
+
+        <!-- ================================
+             HEADER
+        ================================= -->
+
+        <header class="header">
+
+    <div class="logoCircle">
+
+        ♻️
+
+    </div>
+
+    <h1>
+
+        Bank Sampah
+
+    </h1>
+
+    <h2>
+
+        Sumber Rejeki
+
+    </h2>
+
+    <p>
+
+        BUMDes Sumber Rejeki
+
+    </p>
+
+</header>
+
+<!-- ================================
+     DASHBOARD
+================================= -->
+
+<div
+id="dashboardHome"
+class="dashboard">
+
+    <div class="card dashboardCard">
+
+        <h3>👥</h3>
+
+        <p>Total Anggota</p>
+
+        <span id="dashAnggota">
+
+            0
+
+        </span>
+
+    </div>
+
+    <div class="card dashboardCard">
+
+        <h3>♻️</h3>
+
+        <p>Total Setoran</p>
+
+        <span id="dashSetoran">
+
+            Rp0
+
+        </span>
+
+    </div>
+
+    <div class="card dashboardCard">
+
+        <h3>💰</h3>
+
+        <p>Total Penjualan</p>
+
+        <span id="dashPenjualan">
+
+            Rp0
+
+        </span>
+
+    </div>
+	
+	<div class="card dashboardCard">
+
+    <h3>💸</h3>
+
+    <p>Operasional</p>
+
+    <span id="dashOperasional">
+
+        Rp0
+
+    </span>
+
 </div>
 
-<div class="container">
+    <div class="card dashboardCard">
 
-<!-- ================= MENU UTAMA ================= -->
+        <h3>📈</h3>
 
-<div id="menuUtama" class="card">
+        <p>Total Laba</p>
 
-<h3>🏠 Menu Utama</h3>
+        <span id="dashLaba">
 
-<button
-class="btnPrimary menuInput"
-onclick="bukaHalaman('halamanInput')">
+            Rp0
 
-<span class="menuIcon">📥</span>
+        </span>
 
-Input Data Bank Sampah
+    </div>
+
+    <div class="card dashboardCard">
+
+        <h3>💳</h3>
+
+        <p>Saldo Anggota</p>
+
+        <span id="dashSaldo">
+
+            Rp0
+
+        </span>
+
+    </div>
+
+    <div class="card dashboardCard">
+
+        <h3>🏦</h3>
+
+        <p>Kas Bank Sampah</p>
+
+        <span id="dashKas">
+
+            Rp0
+
+        </span>
+
+    </div>
+	
+	<div class="card dashboardCard">
+
+    <h3>🏢</h3>
+
+    <p>Hak BUMDes</p>
+
+    <span id="dashBUMDes">
+
+        Rp0
+
+    </span>
+
+</div>
+
+<div class="card dashboardCard">
+
+    <h3>👷</h3>
+
+    <p>Hak Collecting</p>
+
+    <span id="dashCollecting">
+
+        Rp0
+
+    </span>
+
+</div>
+
+</div>
+
+        <!-- ================================
+             MENU
+        ================================= -->
+
+        <nav
+            id="menuUtama"
+            class="menuGrid">
+
+            <button id="btnAnggota">
+
+                👥
+                <span>
+                    Anggota
+                </span>
+
+            </button>
+
+            <button id="btnHarga">
+
+                🏷
+                <span>
+                    Harga
+                </span>
+
+            </button>
+
+            <button id="btnSetoran">
+
+                📥
+                <span>
+                    Setoran
+                </span>
+
+            </button>
+
+            <button id="btnPenjualan">
+
+                💰
+                <span>
+                    Penjualan
+                </span>
+
+            </button>
+
+            <button id="btnPenarikan">
+
+                💳
+                <span>
+                    Penarikan
+                </span>
+
+            </button>
+			
+			</button>
+			
+			<button id="btnOperasional">
+
+    💰
+    <span>
+
+        Operasional
+
+    </span>
 
 </button>
 
-<div class="menuRow">
+            <button id="btnLaporan">
 
-<button
-class="btnWarning"
-onclick="bukaHalaman('halamanAnggota')">
+                📊
+                <span>
+                    Laporan
+                </span>
 
-👥 Data Anggota
+            
 
-</button>
+            <button id="btnPengaturan">
 
-<button
-class="btnSecondary"
-onclick="bukaHalaman('halamanHarga')">
+                ⚙
+                <span>
+                    Pengaturan
+                </span>
 
-💵 Master Harga
+            </button>
+			
+<button id="btnMigrasi">
 
-</button>
+    🔄
 
-</div>
+    <span>
 
-<div class="menuRow">
+        Migrasi
 
-<button
-class="btnSuccess"
-onclick="bukaHalaman('halamanPenjualan')">
+    </span>
 
-🛒 Penjualan
+</button>			
 
-</button>
-
-<button
-class="btnPrimary"
-onclick="bukaHalaman('halamanPenarikan')">
-
-💳 Penarikan
-
-</button>
-
-</div>
-
-<div class="menuRow">
-
-<button
-class="btnSuccess"
-onclick="bukaHalaman('halamanKas')">
-
-🏦 Kas Bank Sampah
-
-</button>
-
-<button
-class="btnWarning"
-onclick="bukaHalaman('halamanLaporan')">
-
-📊 Laporan
-
-</button>
-
-</div>
+        </nav>
 
 
 
-<!-- ================= DASHBOARD ================= -->
 
-<div class="card">
+        <!-- ================================
+             HALAMAN AKAN DIMULAI DI SINI
+        ================================= -->
 
-<h3>📊 Dashboard Bank Sampah</h3>
+       <main id="konten">
 
-<div class="row" id="dashboardUtama">
+    <!-- =====================================================
+         DATA ANGGOTA
+    ====================================================== -->
 
-<div class="col">
+    <section
+id="halAnggota"
+class="halaman">
 
-<div class="card" style="padding:10px;text-align:center;">
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
 
-<div style="font-size:14px;">
+    <div class="pageHeader">
 
-👥 Total Anggota
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>👥 Data Anggota</h2>
+
+        <p>Kelola data anggota Bank Sampah.</p>
+
+    </div>
 
 </div>
 
-<h2 id="dashTotalAnggota">
 
-0
 
-</h2>
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Input Anggota
+
+        </h3>
+
+        <label for="txtIdAnggota">
+
+            ID Anggota
+
+        </label>
+
+        <input
+        type="text"
+        id="txtIdAnggota"
+        readonly>
+
+
+
+        <label for="txtNama">
+
+            Nama Anggota
+
+        </label>
+
+        <input
+        type="text"
+        id="txtNama"
+        placeholder="Masukkan nama anggota">
+
+
+
+        <label for="cmbRW">
+
+            RW
+
+        </label>
+
+        <select id="cmbRW">
+
+            <option value="">
+                -- Pilih RW --
+            </option>
+
+            <option value="1">RW 1</option>
+            <option value="2">RW 2</option>
+            <option value="3">RW 3</option>
+            <option value="4">RW 4</option>
+            <option value="5">RW 5</option>
+
+        </select>
+
+
+
+        <!-- Tombol -->
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanAnggota"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateAnggota"
+            class="btn"
+            disabled>
+
+                ✏️ Update
+
+            </button>
+
+            <button
+            id="btnBatalAnggota"
+            class="btn"
+            disabled>
+
+                ❌ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DASHBOARD ANGGOTA
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Dashboard Anggota
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Total Anggota</td>
+
+                <td id="dashTotalAnggota">0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>RW 1</td>
+
+                <td id="dashRW1">0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>RW 2</td>
+
+                <td id="dashRW2">0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>RW 3</td>
+
+                <td id="dashRW3">0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>RW 4</td>
+
+                <td id="dashRW4">0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>RW 5</td>
+
+                <td id="dashRW5">0</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Pencarian
+
+        </h3>
+
+        <input
+        type="text"
+        id="txtCariAnggota"
+        placeholder="Cari nama anggota...">
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Daftar Anggota
+
+        </h3>
+
+        <table id="tblAnggota">
+
+            <thead>
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>ID</th>
+
+                    <th>Nama</th>
+
+                    <th>RW</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+         MASTER HARGA
+    ====================================================== -->
+
+    <section
+id="halHarga"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>🏷 Master Harga</h2>
+
+        <p>Kelola daftar harga sampah.</p>
+
+    </div>
 
 </div>
 
+
+
+    <!-- =====================================================
+         INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Input Harga
+
+        </h3>
+
+        <label>
+
+            Jenis Barang
+
+        </label>
+
+        <input
+        type="text"
+        id="txtJenisBarang"
+        placeholder="Contoh : Botol Plastik">
+
+
+
+
+        <label>
+
+            Harga / Kg
+
+        </label>
+
+        <input
+        type="number"
+        id="txtHarga"
+        placeholder="0">
+
+
+
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanHarga"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateHarga"
+            class="btn"
+            disabled>
+
+                ✏️ Update
+
+            </button>
+
+            <button
+            id="btnBatalHarga"
+            class="btn"
+            disabled>
+
+                ❌ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Dashboard Harga
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>
+
+                    Total Jenis Barang
+
+                </td>
+
+                <td id="dashTotalHarga">
+
+                    0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Pencarian
+
+        </h3>
+
+        <input
+        type="text"
+        id="txtCariHarga"
+        placeholder="Cari jenis barang...">
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Daftar Harga
+
+        </h3>
+
+        <table
+        id="tblHarga">
+
+            <thead>
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>Jenis Barang</th>
+
+                    <th>Harga</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+         SETORAN
+    ====================================================== -->
+
+    <section
+id="halSetoran"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>📥 Setoran</h2>
+
+        <p>Input transaksi setoran sampah.</p>
+
+    </div>
+
 </div>
 
-<div class="col">
 
-<div class="card" style="padding:10px;text-align:center;">
 
-<div style="font-size:14px;">
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
 
-💰 Total Saldo Anggota
+    <div class="card">
 
-</div>
+        <h3>
 
-<h2 id="dashTotalSaldo">
+            Data Setoran
 
-Rp 0
+        </h3>
 
-</h2>
+        <label for="txtTanggal">
 
-</div>
+            Tanggal
 
-</div>
+        </label>
 
-<div class="col">
+        <input
+        type="date"
+        id="txtTanggal">
 
-<div class="card" style="padding:10px;text-align:center;">
 
-<div style="font-size:14px;">
 
-📦 Total Setoran
+        <label for="txtHari">
 
-</div>
+            Hari
 
-<h2 id="dashTotalSetoran">
+        </label>
 
-Rp 0
+        <input
+        type="text"
+        id="txtHari"
+        readonly>
 
-</h2>
 
-</div>
 
-</div>
+        <label for="cmbRWSetoran">
 
-<div class="col">
+    RW
 
-<div class="card" style="padding:10px;text-align:center;">
+</label>
 
-<div style="font-size:14px;">
+<select id="cmbRWSetoranInput">
 
-🛒 Total Penjualan
-
-</div>
-
-<h2 id="dashTotalPenjualan">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">
-
-📈 TOTAL LABA
-
-</div>
-
-<h2 id="dashLaba">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">
-
-💳 Total Penarikan
-
-</div>
-
-<h2 id="dashTotalPenarikan">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-🏦 Saldo Kas
-
-</div>
-
-<h2 id="dashSaldoKas">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= HALAMAN INPUT ================= -->
-<div id="halamanInput" style="display:none;">
-
-<div class="card">
-
-<button class="btnSecondary" onclick="kembaliMenu()">
-⬅️ Kembali ke Menu
-</button>
-
-<h3>📥 Input Data Bank Sampah</h3>
-
-</div>
-
-
-<!-- ================= DASHBOARD ================= -->
-
-<div class="card">
-
-<h3>Dashboard</h3>
-
-<div class="row">
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">👥 Anggota</div>
-
-<h2 id="jmlAnggota">0</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">♻ Setoran</div>
-
-<h2 id="jmlSetoran">0</h2>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">⚖ Berat</div>
-
-<h2 id="totalBerat">0 Kg</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div style="font-size:14px;">💰 Total</div>
-
-<h2 id="totalUang">Rp 0</h2>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= FORM INPUT ================= -->
-
-<div class="card">
-
-<h3>📥 Input Data Bank Sampah</h3>
-
-<label>Hari</label>
-<input type="text" id="hari" readonly>
-
-<label>Tanggal</label>
-<input type="date" id="tanggal" readonly>
-
-<label>RW</label>
-<select id="rw">
-<option value="">-- Pilih RW --</option>
-<option value="RW 1">RW 1</option>
-<option value="RW 2">RW 2</option>
-<option value="RW 3">RW 3</option>
-<option value="RW 4">RW 4</option>
-<option value="RW 5">RW 5</option>
 </select>
 
 
-<label>Nama Anggota Baru</label>
 
-<div class="row">
+        <label for="cmbAnggota">
 
-<div class="col">
-<input
+            Anggota
+
+        </label>
+
+        <select id="cmbAnggota">
+
+            <option value="">
+
+                -- Pilih Anggota --
+
+            </option>
+
+        </select>
+
+
+
+        <label for="cmbBarang">
+
+            Jenis Barang
+
+        </label>
+
+        <select id="cmbJenisBarang">
+
+            <option value="">
+
+                -- Pilih Barang --
+
+            </option>
+
+        </select>
+
+
+
+        <label for="txtBerat">
+
+            Berat (Kg)
+
+        </label>
+
+        <input
+        type="number"
+        id="txtBerat"
+        step="0.01">
+
+
+
+        <label for="txtHarga">
+
+            Harga / Kg
+
+        </label>
+
+        <input
 type="text"
-id="namaBaru"
-placeholder="Masukkan nama anggota">
-</div>
-
-<div style="width:110px;">
-<button
-class="btnSuccess"
-type="button"
-id="btnTambahAnggota">
-Tambah
-</button>
-</div>
-
-</div>
-
-<label>Nama Anggota</label>
-
-<select id="anggota">
-<option value="">-- Pilih Anggota --</option>
-</select>
-
-<label>Jenis Barang</label>
-
-<select id="jenisBarang">
-
-<option value="">-- Pilih Barang --</option>
-
-</select>
-
-<label>Berat (Kg)</label>
-
-<input
-type="number"
-step="0.01"
-min="0"
-id="berat"
-placeholder="0.00">
-
-<label>Harga / Kg</label>
-
-<input
-type="text"
-id="harga"
+id="txtHargaSetoran"
 readonly>
 
-<label>Total</label>
 
-<input
+
+        <label for="txtTotal">
+
+            Total
+
+        </label>
+
+        <input
 type="text"
-id="total"
+id="txtTotal"
 readonly>
 
 
-<button
-class="btnPrimary"
-id="btnSimpan">
 
-💾 Simpan Data
+        <div class="buttonGroup">
 
-</button>
+            <button
+            id="btnSimpanSetoran"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateSetoran"
+            class="btn"
+            disabled>
+
+                ✏️ Update
+
+            </button>
+
+            <button
+            id="btnBatalSetoran"
+            class="btn"
+            disabled>
+
+                ❌ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Dashboard Setoran
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Total Transaksi</td>
+
+                <td id="dashTotalTransaksi">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Setoran</td>
+
+                <td id="dashTotalSetoran">
+
+                    Rp0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+<!-- =====================================================
+     FILTER
+===================================================== -->
+
+<div class="card">
+
+    <h3>
+
+        Filter
+
+    </h3>
+
+    <label for="txtFilterTanggal">
+
+        Tanggal
+
+    </label>
+
+    <input
+    type="date"
+    id="txtFilterTanggal">
+
+    <label for="cmbRWSetoran">
+
+        Pilih RW
+
+    </label>
+
+    <select
+    id="cmbRWSetoran">
+
+    </select>
+
+    <label for="cmbFilterAnggotaSetoran">
+
+        Pilih Anggota
+
+    </label>
+
+    <select
+    id="cmbFilterAnggotaSetoran">
+
+    </select>
 
 </div>
 
 
-<hr style="margin:25px 0;">
-<!-- ================= FILTER ================= -->
 
-<div class="card">
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
 
-<h3>Filter Data</h3>
+    <div class="card">
 
-<label>Tanggal</label>
+        <h3>
+
+            Riwayat Setoran
+
+        </h3>
+
+        <table id="tblSetoran">
+
+            <thead>
+
+                <tr>
+
+                    <th>Tanggal</th>
+
+                    <th>Nama</th>
+
+                    <th>Barang</th>
+
+                    <th>Total</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+         PENJUALAN
+    ====================================================== -->
+
+   <section
+id="halPenjualan"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>💰 Penjualan</h2>
+
+        <p>Kelola transaksi penjualan.</p>
+
+    </div>
+
+</div>
+
+
+
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Data Penjualan
+
+        </h3>
+
+
+
+        <label for="txtTanggalJual">
+
+            Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtTanggalJual">
+
+
+
+        <label for="txtHariJual">
+
+            Hari
+
+        </label>
+
+        <input
+        type="text"
+        id="txtHariJual"
+        readonly>
+
+
+
+        <label for="cmbBarangJual">
+
+            Jenis Barang
+
+        </label>
+
+        <select id="cmbJenisBarangJual"></select>
+
+        </select>
+
+
+
+        <label for="txtBeratJual">
+
+            Berat (Kg)
+
+        </label>
+
+        <input
+        type="number"
+        id="txtBeratJual"
+        step="0.01">
+
+
+
+        <label for="txtHargaJual">
+
+            Harga / Kg
+
+        </label>
+
+        <input
+        type="number"
+        id="txtHargaJual">
+
+
+
+        <label for="txtTotalJual">
+
+            Total Penjualan
+
+        </label>
+
+        <input
+        type="number"
+        id="txtTotalJual"
+        readonly>
+
+
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanJual"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateJual"
+            class="btn"
+            disabled>
+
+                ✏️ Update
+
+            </button>
+
+            <button
+            id="btnBatalJual"
+            class="btn"
+            disabled>
+
+                ❌ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Dashboard Penjualan
+
+        </h3>
+
+        <table>
+
+    <tr>
+
+        <td>Total Transaksi</td>
+
+        <td id="dashTotalPenjualanTransaksi">
+
+            0
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td>Total Penjualan</td>
+
+        <td id="dashTotalPenjualan">
+
+            Rp0
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td>Total Nilai Setoran</td>
+
+        <td id="dashTotalSetoranPenjualan">
+
+    Rp0
+
+</td>
+
+    </tr>
+
+    <tr>
+
+        <td>Total Operasional</td>
+
+        <td id="dashTotalOperasional">
+
+            Rp0
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td>Estimasi Laba</td>
+
+        <td id="dashEstimasiLaba">
+
+            Rp0
+
+        </td>
+
+    </tr>
+
+</table>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Filter
+
+        </h3>
+
+        <input
+        type="date"
+        id="txtFilterTanggalJual">
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Riwayat Penjualan
+
+        </h3>
+
+        <table
+        id="tblPenjualan">
+
+            <thead>
+
+                <tr>
+
+                    <th>Tanggal</th>
+
+                    <th>Barang</th>
+
+                    <th>Berat</th>
+
+                    <th>Total</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+     PENARIKAN
+===================================================== -->
+
+<section
+id="halPenarikan"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>💳 Penarikan</h2>
+
+            <p>Kelola penarikan saldo anggota.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Data Penarikan
+
+        </h3>
+
+        <label for="txtTanggalTarik">
+
+            Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtTanggalTarik">
+
+
+
+        <label for="txtHariTarik">
+
+            Hari
+
+        </label>
+
+        <input
+        type="text"
+        id="txtHariTarik"
+        readonly>
+
+
+
+        <label for="cmbRWTarik">
+
+            RW
+
+        </label>
+
+        <select
+        id="cmbRWTarik">
+
+        </select>
+
+
+
+        <label for="cmbAnggotaTarik">
+
+            Anggota
+
+        </label>
+
+        <select
+        id="cmbAnggotaTarik">
+
+            <option value="">
+
+                -- Pilih Anggota --
+
+            </option>
+
+        </select>
+
+
+
+        <label for="txtSaldoTarik">
+
+            Saldo Saat Ini
+
+        </label>
+
+        <input
+        type="number"
+        id="txtSaldoTarik"
+        readonly>
+
+
+
+        <label for="txtNominalTarik">
+
+            Nominal Penarikan
+
+        </label>
+
+        <input
+        type="number"
+        id="txtNominalTarik"
+        placeholder="0">
+
+
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanTarik"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateTarik"
+            class="btn"
+            disabled>
+
+                ✏️ Update
+
+            </button>
+
+            <button
+            id="btnBatalTarik"
+            class="btn"
+            disabled>
+
+                ❌ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Dashboard Penarikan
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Total Transaksi</td>
+
+                <td id="dashTotalTarik">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Penarikan</td>
+
+                <td id="dashNominalTarik">
+
+                    Rp0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Filter
+
+        </h3>
+
+        <label for="txtFilterTarik">
+
+            Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtFilterTarik">
+
+        <label for="cmbRWFilterTarik">
+
+            RW
+
+        </label>
+
+        <select
+        id="cmbRWFilterTarik">
+
+        </select>
+
+        <label for="cmbFilterAnggotaTarik">
+
+            Anggota
+
+        </label>
+
+        <select
+        id="cmbFilterAnggotaTarik">
+
+            <option value="">
+
+                Semua Anggota
+
+            </option>
+
+        </select>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Riwayat Penarikan
+
+        </h3>
+
+        <table
+        id="tblPenarikan">
+
+            <thead>
+
+                <tr>
+
+                    <th>Tanggal</th>
+
+                    <th>Nama</th>
+
+                    <th>Nominal</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+    <!-- =====================================================
+         LAPORAN
+    ====================================================== -->
+
+    <section
+id="halLaporan"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>📊 Laporan</h2>
+
+        <p>Laporan transaksi dan rekapitulasi.</p>
+
+    </div>
+
+</div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Filter Laporan
+
+        </h3>
+
+
+
+        <label for="lapTanggalAwal">
+
+    Periode Awal
+
+</label>
 
 <input
 type="date"
-id="filterTanggal">
+id="lapTanggalAwal">
 
-<label>RW</label>
 
-<select id="filterRW">
 
-<option value="">Semua RW</option>
+<label for="lapTanggalAkhir">
 
-<option>RW 1</option>
+    Periode Akhir
 
-<option>RW 2</option>
-
-<option>RW 3</option>
-
-<option>RW 4</option>
-
-<option>RW 5</option>
-
-</select>
-<label>Nama Anggota</label>
-
-<select id="filterNama">
-
-<option value="">Semua Anggota</option>
-
-</select>
-
-<button
-class="btnSecondary"
-id="btnReset">
-
-🔄 Reset Filter
-
-</button>
-
-
-
-</div>
-
-<hr style="margin:25px 0;">
-<!-- ================= RIWAYAT ================= -->
-
-<div class="tableCard">
-
-<div class="tableTitle">
-
-Riwayat Setoran
-
-</div>
-
-<div class="loading" id="loading">
-
-Mengambil data...
-
-</div>
-
-<div class="tableResponsive">
-
-<table id="tabelData">
-
-<thead>
-
-<tr>
-
-<th>No</th>
-
-<th>Tanggal</th>
-
-<th>RW</th>
-
-<th>Nama</th>
-
-<th>Barang</th>
-
-<th>Berat</th>
-
-<th>Harga</th>
-
-<th>Total</th>
-
-<th>Aksi</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div class="footerSpace"></div>
-
-</div>
-<!-- HALAMAN PENJUALAN -->
-<div id="halamanPenjualan" style="display:none;">
-
-<div class="card">
-
-<button class="btnSecondary" onclick="kembaliMenu()">
-⬅️ Kembali ke Menu
-</button>
-
-<h3>💰 Penjualan Bank Sampah</h3>
-
-</div>
-
-<!-- Dashboard -->
-
-<div class="card">
-
-<h3>Dashboard Penjualan</h3>
-
-<div class="card" style="padding:12px;text-align:center;background:#E8F5E9;">
-
-<div style="font-size:16px;font-weight:bold;">
-💰 Total Penjualan
-</div>
-
-<h2 id="totalPenjualan">Rp 0</h2>
-
-</div>
-
-<div class="card" style="padding:12px;text-align:center;background:#FFF8E1;">
-
-<div style="font-size:16px;font-weight:bold;">
-💵 Total Nilai Setoran
-</div>
-
-<h2 id="totalSetoranPenjualan">Rp 0</h2>
-
-</div>
-
-<div class="card" style="padding:12px;text-align:center;background:#E3F2FD;">
-
-<div style="font-size:16px;font-weight:bold;">
-📈 TOTAL LABA
-</div>
-
-<h2 id="totalLaba">Rp 0</h2>
-
-</div>
-
-<div class="row">
-
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>⚖ Berat</div>
-<h2 id="beratTerjual">0 Kg</h2>
-</div>
-</div>
-
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>🚚 Transaksi</div>
-<h2 id="jumlahPenjualan">0</h2>
-</div>
-</div>
-
-</div>
-
-</div>
-
-<!-- Form -->
-
-<div class="card">
-
-<h3>Input Penjualan</h3>
-
-<label>Hari</label>
-<input type="text" id="jualHari" readonly>
-
-<label>Tanggal</label>
-<input type="date" id="jualTanggal">
-
-<label>Nama Pembeli</label>
-<input type="text" id="jualPembeli" placeholder="Nama Pembeli">
-
-<label>Jenis Barang</label>
-<select id="jualBarang">
-
-<option value="">-- Pilih Barang --</option>
-
-<option>Besi Tebal</option>
-<option>Besi Biasa</option>
-<option>Duplek</option>
-<option>Arnium</option>
-<option>Atum</option>
-<option>Pet</option>
-<option>Kaleng</option>
-<option>Blowing</option>
-<option>Gelasan</option>
-<option>Dus</option>
-<option>Tembaga</option>
-<option>Kuningan</option>
-<option>Plastik</option>
-<option>Lainnya</option>
-
-</select>
-
-<label>Berat (Kg)</label>
-<input type="number" id="jualBerat" step="0.01">
-
-<label>Harga Jual / Kg</label>
-<input type="number" id="jualHarga">
-
-<label>Total Penjualan</label>
-<input type="text" id="jualTotal" readonly>
-
-<label>Keterangan</label>
-<input type="text" id="jualKet">
-
-<button class="btnPrimary" id="btnSimpanPenjualan">
-💾 Simpan Penjualan
-</button>
-
-</div>
-<!-- FILTER PENJUALAN-->
-<div class="card">
-
-<h3>Filter Penjualan</h3>
-
-<label>Bulan</label>
-
-<input
-type="month"
-id="filterJualBulan">
-<label>Tanggal</label>
-<input type="date" id="filterJualTanggal">
-
-<label>Pembeli</label>
-<input
-type="text"
-id="filterJualPembeli"
-placeholder="Cari pembeli">
-
-<label>Jenis Barang</label>
-
-<select id="filterJualBarang">
-
-<option value="">Semua Barang</option>
-
-<option>Besi Tebal</option>
-<option>Besi Biasa</option>
-<option>Duplek</option>
-<option>Arnium</option>
-<option>Atum</option>
-<option>Pet</option>
-<option>Kaleng</option>
-<option>Blowing</option>
-<option>Gelasan</option>
-<option>Dus</option>
-<option>Tembaga</option>
-<option>Kuningan</option>
-<option>Plastik</option>
-<option>Lainnya</option>
-
-</select>
-
-<button
-class="btnSecondary"
-id="btnResetPenjualan">
-
-🔄 Reset Filter
-
-</button>
-
-<button
-class="btnSuccess"
-id="btnExportPenjualan">
-
-📥 Export Excel
-
-</button>
-
-</div>
-
-<!-- Riwayat -->
-
-<div class="tableCard">
-
-<div class="tableTitle">
-Riwayat Penjualan
-</div>
-
-<div class="tableResponsive">
-
-<table id="tabelPenjualan">
-
-<thead>
-
-<tr>
-
-<th>No</th>
-<th>Tanggal</th>
-<th>Pembeli</th>
-<th>Barang</th>
-<th>Berat</th>
-<th>Harga</th>
-<th>Total</th>
-<th>Aksi</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td colspan="8">
-Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= HALAMAN PENARIKAN ================= -->
-
-<div id="halamanPenarikan" style="display:none;">
-
-<div class="card">
-
-<button class="btnSecondary" onclick="kembaliMenu()">
-⬅️ Kembali ke Menu
-</button>
-
-<h3>💳 Penarikan Saldo</h3>
-
-<!-- ================= DASHBOARD ================= -->
-
-<div class="card">
-
-<h3>Dashboard Penarikan</h3>
-
-<div class="row">
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;background:#FBE9E7;">
-
-<div>💳 Total Penarikan</div>
-
-<h2 id="dashTotalPenarikan">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;background:#E8F5E9;">
-
-<div>🧾 Transaksi</div>
-
-<h2 id="dashJumlahPenarikan">
-
-0
-
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= FORM PENARIKAN ================= -->
-
-<div class="card">
-
-<h3>Input Penarikan Saldo</h3>
-
-<label>Hari</label>
-<input type="text" id="tarikHari" readonly>
-
-<label>Tanggal</label>
-<input type="date" id="tarikTanggal">
-
-<label>RW</label>
-
-<select id="tarikRW">
-
-<option value="">Pilih RW</option>
-
-<option>RW 1</option>
-<option>RW 2</option>
-<option>RW 3</option>
-<option>RW 4</option>
-<option>RW 5</option>
-
-</select>
-
-<label>ID Anggota</label>
-
-<select id="tarikAnggota">
-
-<option value="">-- Pilih ID Anggota --</option>
-
-</select>
-
-<label>Nama Anggota</label>
-
-<input
-type="text"
-id="tarikNama"
-readonly>
-
-
-<label>Saldo Saat Ini</label>
-
-<input
-type="text"
-id="tarikSaldo"
-readonly>
-
-<label>Nominal Penarikan</label>
-
-<input
-type="number"
-id="tarikNominal"
-placeholder="Masukkan nominal">
-
-<label>Keterangan</label>
-
-<input
-type="text"
-id="tarikKeterangan"
-placeholder="Contoh : Keperluan pribadi">
-
-<button
-class="btnPrimary"
-id="btnSimpanPenarikan">
-
-💾 Simpan Penarikan
-
-</button>
-
-</div>
-
-<!-- ================= FILTER PENARIKAN ================= -->
-
-<div class="card">
-
-<h3>Filter Penarikan</h3>
-
-<label>Tanggal</label>
+</label>
 
 <input
 type="date"
-id="filterTarikTanggal">
+id="lapTanggalAkhir">
 
-<label>RW</label>
 
-<select id="filterTarikRW">
 
-<option value="">Semua RW</option>
+        <label for="lapRW">
 
-<option>RW 1</option>
-<option>RW 2</option>
-<option>RW 3</option>
-<option>RW 4</option>
-<option>RW 5</option>
+            RW
+
+        </label>
+
+        <select
+        id="lapRW">
+
+        </select>
+
+
+
+        <label for="lapAnggota">
+
+            Anggota
+
+        </label>
+
+        <select
+        id="lapAnggota">
+
+        </select>
+
+<label for="cmbJenisLaporan">
+
+    Jenis Laporan
+
+</label>
+
+<select
+id="cmbJenisLaporan">
+
+    <option value="setoran">
+
+        Setoran
+
+    </option>
+
+    <option value="penjualan">
+
+        Penjualan
+
+    </option>
+
+    <option value="penarikan">
+
+        Penarikan
+
+    </option>
+
+    <option value="saldo">
+
+        Saldo Anggota
+
+    </option>
+
+    <option value="rw">
+
+        Rekap RW
+
+    </option>
 
 </select>
 
-<label>Nama Anggota</label>
+    </div>
+	
+    <!-- =====================================================
+         TOMBOL
+    ====================================================== -->
 
-<select id="filterTarikNama">
+    <div class="card">
 
-<option value="">Semua Anggota</option>
+        <div class="buttonGroup">
+		
+			<button
+id="btnTampilLaporan"
+class="btn">
 
-</select>
+    🔍 Tampilkan
+
+</button>
+
+            <button
+            id="btnResetLaporan"
+            class="btn">
+
+                🔄 Reset
+
+            </button>
+
+            <button
+            id="btnExcelLaporan"
+            class="btn">
+
+                📄 Excel
+
+            </button>
+
+            <button
+id="btnSalinLaporan"
+class="btn">
+
+    📋 Salin
+
+</button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Hasil Laporan
+
+        </h3>
+
+        <table
+        id="tblLaporan">
+
+            <thead>
+
+                
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     OPERASIONAL
+===================================================== -->
+
+<section
+id="halOperasional"
+class="halaman">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>💰 Kas Operasional</h2>
+
+            <p>Input pengeluaran operasional Bank Sampah.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOTAL OPERASIONAL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Total Pengeluaran
+
+        </h3>
+
+        <h2
+        id="totalOperasional">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <label for="txtTanggalOperasional">
+
+            Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtTanggalOperasional">
+
+
+
+        <label for="txtHariOperasional">
+
+            Hari
+
+        </label>
+
+        <input
+        type="text"
+        id="txtHariOperasional"
+        readonly>
+
+
+
+        <label for="cmbKategoriOperasional">
+
+            Kategori
+
+        </label>
+
+        <select
+        id="cmbKategoriOperasional">
+
+            <option value="">
+
+                -- Pilih Kategori --
+
+            </option>
+
+            <option value="BBM">
+
+                BBM
+
+            </option>
+
+            <option value="ATK">
+
+                ATK
+
+            </option>
+
+            <option value="Konsumsi">
+
+                Konsumsi
+
+            </option>
+
+            <option value="Transportasi">
+
+                Transportasi
+
+            </option>
+
+            <option value="Peralatan">
+
+                Peralatan
+
+            </option>
+
+            <option value="Perawatan">
+
+                Perawatan
+
+            </option>
+
+            <option value="Lainnya">
+
+                Lainnya
+
+            </option>
+
+        </select>
+
+
+
+        <label for="txtUraianOperasional">
+
+            Uraian
+
+        </label>
+
+        <textarea
+        id="txtUraianOperasional"
+        rows="3"></textarea>
+
+
+
+        <label for="txtNominalOperasional">
+
+            Nominal
+
+        </label>
+
+        <input
+        type="number"
+        id="txtNominalOperasional"
+        placeholder="Masukkan nominal">
+
+
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanOperasional"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+id="btnUpdateOperasional"
+class="btn"
+disabled>
+
+    ✏ Update
+
+</button>
 
 <button
-class="btnSecondary"
-id="btnResetPenarikan">
+id="btnBatalOperasional"
+class="btn"
+disabled>
 
-🔄 Reset Filter
+    ✖ Batal
 
 </button>
 
-</div>
+        </div>
 
-<!-- ================= RIWAYAT PENARIKAN ================= -->
-
-<div class="tableCard">
-
-<div class="tableTitle">
-
-Riwayat Penarikan
-
-</div>
-
-<div class="tableResponsive">
-
-<table id="tabelPenarikan">
-
-<thead>
-
-<tr>
-
-<th>No</th>
-<th>Tanggal</th>
-<th>ID</th>
-<th>Nama</th>
-<th>RW</th>
-<th>Nominal</th>
-<th>Keterangan</th>
-<th>Aksi</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td colspan="8">
-
-Belum ada data.
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 
 
-<!-- ================= HALAMAN ANGGOTA ================= -->
-<div id="halamanAnggota" style="display:none;">
+    <!-- =====================================================
+         DATA OPERASIONAL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Riwayat Operasional
+
+        </h3>
+
+        <table
+        id="tblOperasional">
+
+            <thead>
+
+                <tr>
+
+                    <th>Tanggal</th>
+
+                    <th>Kategori</th>
+
+                    <th>Uraian</th>
+
+                    <th>Nominal</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+ 
+<!-- =====================================================
+     PENGATURAN
+===================================================== -->
+
+<section
+id="halPengaturan"
+class="halaman">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>⚙ Pengaturan</h2>
+
+            <p>Konfigurasi aplikasi Bank Sampah.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INFORMASI APLIKASI
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Informasi Aplikasi
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Nama Aplikasi</td>
+
+                <td id="setNamaApp">
+
+                    Bank Sampah Sumber Rejeki
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Versi</td>
+
+                <td id="setVersiApp">
+
+                    V3.0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Anggota</td>
+
+                <td id="setTotalAnggota">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Setoran</td>
+
+                <td id="setTotalSetoran">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Penjualan</td>
+
+                <td id="setTotalPenjualan">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Penarikan</td>
+
+                <td id="setTotalPenarikan">
+
+                    0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DATABASE
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Database
+
+        </h3>
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnBackup"
+            class="btn">
+
+                💾 Backup Data
+
+            </button>
+			
+			<input
+type="file"
+id="fileRestore"
+accept=".json"
+hidden>
+
+            <button
+            id="btnRestore"
+            class="btn">
+
+                📂 Restore Data
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TENTANG
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Tentang
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Developer</td>
+
+                <td>
+
+                    BUMDes Sumber Rejeki
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Database</td>
+
+                <td>
+
+                    Firebase Firestore
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Versi</td>
+
+                <td>
+
+                    V3.0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     MIGRASI
+===================================================== -->
+
+<section
+id="halMigrasi"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>
+
+                🔄 Migrasi Data
+
+            </h2>
+
+            <p>
+
+                Backup dan Restore seluruh data Firebase.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INFORMASI
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Informasi Data
+
+        </h3>
+
+        <table>
+
+            <tr>
+
+                <td>Anggota</td>
+
+                <td id="migAnggota">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Harga</td>
+
+                <td id="migHarga">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Setoran</td>
+
+                <td id="migSetoran">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Penjualan</td>
+
+                <td id="migPenjualan">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Penarikan</td>
+
+                <td id="migPenarikan">
+
+                    0
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Operasional</td>
+
+                <td id="migOperasional">
+
+                    0
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
 
 <div class="card">
 
-<button class="btnSecondary" onclick="kembaliMenu()">
-⬅️ Kembali ke Menu
-</button>
+    <h3>
 
-<h3>👥 Data Anggota</h3>
+        Migrasi Data V2
 
-</div>
+    </h3>
 
-<!-- ================= DASHBOARD ================= -->
+    <p>
 
-<div class="card">
+        Memindahkan seluruh data dari aplikasi lama (V2)
+        ke struktur Bank Sampah V3.
 
-<h3>Dashboard Anggota</h3>
+    </p>
 
-<div class="row">
+    <button
+    id="btnMigrasiV2"
+    class="btn">
 
-<div class="col">
+        🔄 Migrasi V2 → V3
 
-<div class="card" style="padding:10px;text-align:center;">
-
-<div>👥 Total Anggota</div>
-
-<h2 id="dashTotalAnggotaAnggota">0</h2>
+    </button>
 
 </div>
 
-</div>
+    <!-- =====================================================
+         BACKUP
+    ====================================================== -->
 
-<div class="col">
+    <div class="card">
 
-<div class="card" style="padding:10px;text-align:center;">
+        <h3>
 
-<div>🏘 Total RW</div>
+            Backup Data
 
-<h2>5</h2>
+        </h3>
 
-</div>
+        <p>
 
-</div>
+            Simpan seluruh data Bank Sampah ke file JSON.
 
-</div>
+        </p>
 
-</div>
+        <button
+        id="btnBackupMigrasi"
+        class="btn">
 
+            💾 Backup Data
 
-<!-- ================= FORM ANGGOTA ================= -->
+        </button>
 
-<div class="card">
+    </div>
 
-<h3 id="judulFormAnggota">➕ Tambah Anggota</h3>
 
-<label>RW</label>
 
-<select id="anggotaRW">
+    <!-- =====================================================
+         RESTORE
+    ====================================================== -->
 
-<option value="">-- Pilih RW --</option>
+    <div class="card">
 
-<option>RW 1</option>
-<option>RW 2</option>
-<option>RW 3</option>
-<option>RW 4</option>
-<option>RW 5</option>
+        <h3>
 
-</select>
+            Restore Data
 
-<label>ID Anggota</label>
+        </h3>
 
-<input
-type="text"
-id="anggotaId"
-readonly
-placeholder="Otomatis">
+        <p>
 
-<label>Nama Anggota</label>
+            Pilih file backup untuk mengembalikan data.
 
-<input
-type="text"
-id="anggotaNama"
-placeholder="Masukkan nama anggota">
+        </p>
 
-<button
-class="btnPrimary"
-id="btnSimpanAnggota">
+        <input
+        type="file"
+        id="fileMigrasi"
+        accept=".json"
+        hidden>
 
-💾 Simpan Anggota
+        <button
+        id="btnPilihFile"
+        class="btn">
 
-</button>
-</div>
+            📂 Pilih File
 
-<!-- ================= FILTER ================= -->
+        </button>
 
-<div class="card">
+        <button
+        id="btnRestoreMigrasi"
+        class="btn">
 
-<h3>Filter Anggota</h3>
+            🔄 Restore Data
 
-<label>RW</label>
+        </button>
 
-<select id="filterAnggotaRW">
+    </div>
 
-<option value="">Semua RW</option>
 
-<option>RW 1</option>
-<option>RW 2</option>
-<option>RW 3</option>
-<option>RW 4</option>
-<option>RW 5</option>
 
-</select>
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
 
-<label>Nama Anggota</label>
+    <div class="card">
 
-<select id="filterAnggotaNama">
+        <h3>
 
-<option value="">Semua Anggota</option>
+            Status
 
-</select>
+        </h3>
 
-<button
-class="btnSecondary"
-id="btnResetAnggota">
+        <p id="migStatus">
 
-🔄 Reset Filter
+            Belum ada proses.
 
-</button>
+        </p>
 
-</div>
+    </div>
 
-<!-- ================= TABEL ================= -->
+</section>
 
-<div id="panelDaftarAnggota">
+</main>
 
-<div class="tableCard">
 
-<div class="tableTitle">
+        <!-- ================================
+             FOOTER
+        ================================= -->
 
-Daftar Anggota
+        <footer>
 
-</div>
+            Bank Sampah Sumber Rejeki
 
-<div class="tableResponsive">
+        </footer>
 
-<table id="tabelAnggota">
+    </div>
 
-<thead>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
 
-<tr>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
-<th>No</th>
+<script src="js/config.js"></script>
 
-<th>ID</th>
+<script src="js/constants.js"></script>
 
-<th>RW</th>
+<script src="js/utilis.js"></script>
 
-<th>Nama</th>
+<script src="js/navigation.js"></script>
 
-<th>Saldo</th>
+<script src="js/anggota.firebase.js"></script>
+<script src="js/anggota.ui.js"></script>
+<script src="js/anggota.js"></script>
 
-<th>Aksi</th>
+<script src="js/harga.firebase.js"></script>
+<script src="js/harga.ui.js"></script>
+<script src="js/harga.js"></script>
 
-</tr>
+<script src="js/setoran.firebase.js"></script>
+<script src="js/setoran.ui.js"></script>
+<script src="js/setoran.js"></script>
 
-</thead>
+<script src="js/penjualan.firebase.js"></script>
+<script src="js/penjualan.ui.js"></script>
+<script src="js/penjualan.js"></script>
 
-<tbody>
+<script src="js/penarikan.firebase.js"></script>
+<script src="js/penarikan.ui.js"></script>
+<script src="js/penarikan.js"></script>
 
-<tr>
+<script src="js/Laporan.ui.js"></script>
+<script src="js/Laporan.js"></script>
 
-<td colspan="4">
+<script src="js/operasional.firebase.js"></script>
+<script src="js/operasional.ui.js"></script>
+<script src="js/operasional.js"></script>
 
-Belum ada data.
+<script src="js/Pengaturan.js"></script>
 
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= DETAIL ANGGOTA ================= -->
-
-<div id="panelDetailAnggota" style="display:none;">
-
-<div class="card">
-
-<button class="btnSecondary" onclick="kembaliDaftarAnggota()">
-⬅️ Kembali
-</button>
-
-<h3>👤 Detail Anggota</h3>
-
-<label>Nama Anggota</label>
-<input type="text" id="detailNamaAnggota" readonly>
-
-<label>RW</label>
-<input type="text" id="detailRWAnggota" readonly>
-
-</div>
-
-<div class="card">
-
-<h3>Ringkasan</h3>
-
-<div class="row">
-
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>Total Setoran</div>
-<h2 id="detailTotalSetoran">0</h2>
-</div>
-</div>
-
-<div class="col">
-<div class="card" style="padding:10px;text-align:center;">
-<div>Total Berat</div>
-<h2 id="detailTotalBerat">0 Kg</h2>
-</div>
-</div>
-
-</div>
-
-<div class="card" style="padding:10px;text-align:center;">
-<div>Total Uang</div>
-<h2 id="detailTotalUang">Rp 0</h2>
-</div>
-
-</div>
-
-<div class="card" style="padding:10px;text-align:center;background:#E3F2FD;">
-
-<div>💳 Saldo Saat Ini</div>
-
-<h2 id="detailSaldoAnggota">
-
-Rp 0
-
-</h2>
-
-</div>
-
-<div class="tableCard">
-
-<div class="tableTitle">
-Riwayat Setoran
-</div>
-
-<div class="tableResponsive">
-
-<table id="tabelRiwayatAnggota">
-
-<thead>
-
-<tr>
-<th>Tanggal</th>
-<th>Keterangan</th>
-<th>Masuk</th>
-<th>Keluar</th>
-<th>Saldo</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td colspan="5">Belum ada data</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= halaman harga ================= -->
-<div id="halamanHarga" class="card" style="display:none;">
-<button
-class="btnSecondary"
-onclick="kembaliMenu()">
-
-⬅ Kembali
-
-</button>
-<h2>💰 Master Harga</h2>
-
-<div class="card">
-
-<h3>➕ Tambah Jenis Barang</h3>
-
-<label>Nama Barang</label>
-
-<input
-type="text"
-id="barangBaru"
-placeholder="Contoh : Plastik PET">
-
-<label>Harga / Kg</label>
-
-<input
-type="number"
-id="hargaBaru"
-placeholder="Contoh : 5000">
-
-<button
-class="btnPrimary"
-onclick="tambahJenisBarang()">
-
-➕ Tambah Barang
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h3>Daftar Harga</h3>
-
-<div id="listHarga"></div>
-
-</div>
-
-<button
-class="btnSuccess"
-onclick="simpanMasterHarga()">
-
-💾 Simpan Harga
-
-</button>
-
-
-
-</div>
-
-
-
-<!-- ================= laporan ================= -->
-
-<div id="halamanLaporan" style="display:none;">
-
-<div class="card">
-
-<button class="btnSecondary" onclick="kembaliMenu()">
-⬅ Kembali
-</button>
-
-<h2>📊 Laporan Setoran</h2>
-
-<label>Tanggal</label>
-
-<input type="date" id="lapTanggal">
-
-<label>Bulan</label>
-
-<input type="month" id="lapBulan">
-
-<label>RW</label>
-
-<select id="lapRW">
-
-<option value="">Semua RW</option>
-
-<option>RW 1</option>
-<option>RW 2</option>
-<option>RW 3</option>
-<option>RW 4</option>
-<option>RW 5</option>
-
-</select>
-
-<label>Nama Anggota</label>
-
-<select id="lapAnggota">
-
-<option value="">Semua Anggota</option>
-
-</select>
-
-<button class="btnPrimary" id="btnTampilkanLaporan">
-
-🔍 Tampilkan
-
-</button>
-
-<button class="btnSecondary" id="btnResetLaporan">
-
-🔄 Reset
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h3>Ringkasan</h3>
-
-<div class="row">
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div>Total Setoran</div>
-
-<h2 id="lapTotalSetoran">0</h2>
-
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div>Total Berat</div>
-
-<h2 id="lapTotalBerat">0 Kg</h2>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card" style="padding:10px;text-align:center;">
-
-<div>Total Uang</div>
-
-<h2 id="lapTotalUang">
-
-Rp 0
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="tableCard">
-
-<div class="tableTitle">
-
-Data Laporan
-
-</div>
-
-<div class="tableResponsive">
-
-<table id="tabelLaporan">
-
-<thead>
-
-<tr>
-
-<th>No</th>
-<th>Tanggal</th>
-<th>Hari</th>
-<th>RW</th>
-<th>ID</th>
-<th>Nama</th>
-<th>Barang</th>
-<th>Berat</th>
-<th>Harga/Kg</th>
-<th>Total</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td colspan="10">
-Tidak ada data.
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div style="margin-top:15px;">
-
-<button class="btnSuccess" id="btnExportLaporan">
-
-📥 Export Excel
-
-</button>
-
-<button class="btnPrimary" id="btnShareLaporan">
-
-📋 Salin Laporan
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= KAS ================= -->
-
-<div id="halamanKas" style="display:none;">
-
-<h2>💰 Kas Bank Sampah</h2>
-
-<button class="btnSecondary"
-onclick="kembaliMenu()">
-
-⬅️ Kembali ke Menu
-
-</button>
-
-<div class="row">
-
-<div class="col">
-
-<div class="card">
-<div>📦 Total Setoran</div>
-<h2 id="kasSetoran">Rp 0</h2>
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card">
-<div>🛒 Total Penjualan</div>
-<h2 id="kasPenjualan">Rp 0</h2>
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card">
-<div>📈 Total Laba</div>
-<h2 id="kasLaba">Rp 0</h2>
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card">
-<div>🏢 Saldo Kas BUMDES</div>
-<h2 id="kasBUMDES">Rp 0</h2>
-</div>
-
-</div>
-
-<div class="col">
-
-<div class="card">
-<div>👷 Hak Petugas Collecting</div>
-<h2 id="kasCollecting">Rp 0</h2>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<script src="js/migrasi.firebase.js"></script>
+<script src="js/migrasi.ui.js"></script>
+<script src="js/migrasi.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-<script type="module">
+<script src="js/dashboard.ui.js"></script>
+<script src="js/dashboard.js"></script>
 
-/* ===========================
-   IMPORT FIREBASE
-=========================== */
+<script src="js/app.js"></script>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 
-import{
-getFirestore,
-collection,
-addDoc,
-getDocs,
-getDoc,
-setDoc,
-doc,
-updateDoc,
-deleteDoc,
-query,
-orderBy,
-writeBatch,
-serverTimestamp
-}from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-
-/* ===========================
-   KONFIGURASI FIREBASE
-=========================== */
-
-const firebaseConfig={
-
-apiKey:"AIzaSyDeqyuN45uor7P7-RwkEcydjQzUoJcmY5g",
-
-authDomain:"bank-sampah-sumber.firebaseapp.com",
-
-projectId:"bank-sampah-sumber",
-
-storageBucket:"bank-sampah-sumber.firebasestorage.app",
-
-messagingSenderId:"1011731089090",
-
-appId:"1:1011731089090:web:3af05e635b787742905d5b"
-
-};
-
-
-/* ===========================
-   INISIALISASI
-=========================== */
-
-const app=initializeApp(firebaseConfig);
-
-const db=getFirestore(app);
-
-
-/* ===========================
-   COLLECTION
-=========================== */
-
-const colSetoran = collection(db,"setoran");
-
-const colAnggota = collection(db,"anggota");
-
-const colPenjualan = collection(db,"penjualan");
-
-const colPenarikan =
-collection(db,"penarikan");
-
-const docHarga = doc(db,"harga","daftar");
-
-/* ===========================
-   VARIABEL GLOBAL
-=========================== */
-
-let daftarAnggota=[];
-
-let dataSetoran=[];
-
-let dataPenjualan = [];
-
-let editId=null;
-
-let dataPenarikan = [];
-
-let editPenarikanId = null;
-
-let daftarHarga = {};
-
-let editAnggotaId = null;
-
-let nomorAnggota = 1;
-
-
-/* ===========================
-   HARI DAN TANGGAL
-=========================== */
-
-const hariList=[
-"Minggu",
-"Senin",
-"Selasa",
-"Rabu",
-"Kamis",
-"Jumat",
-"Sabtu"
-];
-
-const sekarang=new Date();
-
-document.getElementById("hari").value=
-hariList[sekarang.getDay()];
-
-document.getElementById("tanggal").value=
-sekarang.toISOString().substring(0,10);
-
-
-/* ===========================
-   HITUNG TOTAL
-=========================== */
-
-const jenisBarang=
-document.getElementById("jenisBarang");
-
-const berat=
-document.getElementById("berat");
-
-jenisBarang.addEventListener("change",hitungTotal);
-
-berat.addEventListener("input",hitungTotal);
-
-function hitungTotal(){
-
-const jenis=jenisBarang.value;
-
-const b=parseFloat(berat.value)||0;
-
-const harga=daftarHarga[jenis]||0;
-
-document.getElementById("harga").value=
-"Rp "+
-harga.toLocaleString("id-ID");
-
-document.getElementById("total").value=
-"Rp "+
-(harga*b).toLocaleString("id-ID");
-
-}
-/* =====================================================
-   DATA ANGGOTA FIREBASE
-===================================================== */
-
-async function loadAnggota(){
-
-const snap=await getDocs(colAnggota);
-
-daftarAnggota=[];
-
-snap.forEach(docItem=>{
-
-daftarAnggota.push({
-
-id:docItem.id,
-
-...docItem.data()
-
-});
-
-});
-
-isiDropdownAnggota();
-
-tampilAnggota();
-
-generateIdAnggota();
-
-isiDropdownLaporanAnggota();
-
-
-
-hitungTotalSaldo();
-
-updateDashboard();
-
-}
-
-/* =====================================================
-   ISI DROPDOWN ANGGOTA UMUM
-===================================================== */
-
-function isiDropdownAnggotaUmum(idRW,idSelect,semua=false){
-
-const rw =
-document.getElementById(idRW)?.value || "";
-
-const select =
-document.getElementById(idSelect);
-
-if(!select) return;
-
-select.innerHTML =
-semua
-? "<option value=''>Semua Anggota</option>"
-: "<option value=''>-- Pilih Anggota --</option>";
-
-daftarAnggota
-.filter(item=>rw==="" || item.rw===rw)
-.sort((a,b)=>a.nama.localeCompare(b.nama,"id"))
-.forEach(item=>{
-
-const option=document.createElement("option");
-
-option.value=item.idAnggota;
-
-option.textContent=
-item.idAnggota+" - "+item.nama;
-
-select.appendChild(option);
-
-});
-
-}
-
-/* =====================================================
-   ISI DROPDOWN ANGGOTA
-===================================================== */
-
-function isiDropdownAnggota(){
-
-    isiDropdownAnggotaUmum(
-        "rw",
-        "anggota"
-    );
-
-}
-
-/* =====================================================
-   ISI DROPDOWN LAPORAN ANGGOTA
-===================================================== */
-
-function isiDropdownLaporanAnggota(){
-
-const rw =
-document.getElementById("lapRW").value;
-
-const select =
-document.getElementById("lapAnggota");
-
-if(!select) return;
-
-select.innerHTML =
-"<option value=''>Semua Anggota</option>";
-
-daftarAnggota
-.filter(item => rw==="" || item.rw===rw)
-.sort((a,b)=>a.nama.localeCompare(b.nama,"id"))
-.forEach(item=>{
-
-const option=document.createElement("option");
-
-option.value=item.idAnggota;
-
-option.textContent=
-item.idAnggota+" - "+item.nama;
-
-select.appendChild(option);
-
-});
-
-}
-
-/*************************************************
-   ISI DROPDOWN FILTER PENARIKAN
-*************************************************/
-
-function isiDropdownFilterPenarikan(){
-
-    isiDropdownAnggotaUmum(
-        "filterTarikRW",
-        "filterTarikNama",
-        true
-    );
-
-}
-
-/* =====================================================
-   ISI DROPDOWN FILTER SETORAN
-===================================================== */
-
-function isiDropdownFilterSetoran(){
-
-    isiDropdownAnggotaUmum(
-        "filterRW",
-        "filterNama",
-        true
-    );
-
-}
-
-/* =====================================================
-   ISI DROPDOWN FILTER DATA ANGGOTA
-===================================================== */
-
-function isiDropdownFilterAnggota(){
-
-    isiDropdownAnggotaUmum(
-        "filterAnggotaRW",
-        "filterAnggotaNama",
-        true
-    );
-
-}
-
-/* =====================================================
-   PILIH RW PENARIKAN
-===================================================== */
-
-function isiDropdownPenarikan(){
-
-    isiDropdownAnggotaUmum(
-        "tarikRW",
-        "tarikAnggota"
-    );
-
-}
-
-document
-.getElementById("tarikRW")
-.addEventListener("change",function(){
-
-    isiDropdownPenarikan();
-
-});
-
-/* =====================================================
-   PILIH ANGGOTA PENARIKAN
-===================================================== */
-
-document.getElementById("tarikAnggota").addEventListener("change", function(){
-
-const id = this.value;
-
-const anggota = daftarAnggota.find(item => item.idAnggota === id);
-
-if(!anggota){
-
-document.getElementById("tarikNama").value = "";
-
-
-document.getElementById("tarikSaldo").value = "";
-
-return;
-
-}
-
-document.getElementById("tarikNama").value = anggota.nama;
-
-document.getElementById("tarikRW").value = anggota.rw;
-
-const saldo = hitungSaldoAnggota(id);
-
-document.getElementById("tarikSaldo").value =
-"Rp " + saldo.toLocaleString("id-ID");
-
-});
-
-/* =====================================================
-   TAMPILKAN DATA ANGGOTA
-===================================================== */
-
-function tampilAnggota(){
-
-const tbody =
-document.querySelector("#tabelAnggota tbody");
-
-tbody.innerHTML = "";
-
-let filterRW =
-document.getElementById("filterAnggotaRW").value;
-
-let filterNama =
-document.getElementById("filterAnggotaNama").value;
-
-let hasil = daftarAnggota.filter(item=>{
-
-let cocokRW = true;
-
-let cocokNama = true;
-
-if(filterRW!=""){
-
-cocokRW = item.rw===filterRW;
-
-}
-
-if(filterNama!=""){
-
-cocokNama = item.idAnggota===filterNama;
-
-}
-
-return cocokRW && cocokNama;
-
-});
-
-if(hasil.length==0){
-
-tbody.innerHTML=`
-<tr>
-<td colspan="6">
-Belum ada data.
-</td>
-</tr>
-`;
-
-const dashMenu = document.getElementById("dashTotalAnggota");
-if (dashMenu) dashMenu.textContent = 0;
-
-const dashAnggota = document.getElementById("dashTotalAnggotaAnggota");
-if (dashAnggota) dashAnggota.textContent = 0;
-
-return;
-
-}
-
-hasil.sort((a,b)=>{
-
-if(a.rw===b.rw){
-
-return a.nama.localeCompare(b.nama,"id");
-
-}
-
-return a.rw.localeCompare(b.rw);
-
-});
-
-hasil.forEach((item,index)=>{
-
-tbody.innerHTML+=`
-
-<tr>
-
-<td>${index + 1}</td>
-
-<td>${item.idAnggota}</td>
-
-<td>${item.rw}</td>
-
-<td>${item.nama}</td>
-
-<td style="text-align:right;font-weight:bold;color:green;">
-
-Rp ${hitungSaldoAnggota(item.idAnggota).toLocaleString("id-ID")}
-
-</td>
-
-<td>
-
-<button class="btnInfo"
-onclick="lihatAnggota('${item.id}')">
-
-👁️
-
-</button>
-
-<button class="btnWarning"
-onclick="editAnggota('${item.id}')">
-
-✏️
-
-</button>
-
-<button class="btnDanger"
-onclick="hapusAnggota('${item.id}')">
-
-🗑️
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-const dashMenu = document.getElementById("dashTotalAnggota");
-if (dashMenu) dashMenu.textContent = hasil.length;
-
-const dashAnggota = document.getElementById("dashTotalAnggotaAnggota");
-if (dashAnggota) dashAnggota.textContent = hasil.length;
-
-}
-
-/* =====================================================
-   EDIT ANGGOTA
-===================================================== */
-
-window.editAnggota = function(id){
-
-const data =
-daftarAnggota.find(item=>item.id===id);
-
-if(!data) return;
-
-editAnggotaId = id;
-
-document.getElementById("anggotaId").value =
-data.idAnggota || "";
-
-document.getElementById("anggotaRW").value =
-data.rw;
-
-document.getElementById("anggotaNama").value =
-data.nama;
-
-document.getElementById("judulFormAnggota").innerHTML =
-"✏️ Edit Anggota";
-
-document.getElementById("btnSimpanAnggota").innerHTML =
-"💾 Update Anggota";
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
-
-/* =====================================================
-   SAAT RW BERUBAH
-===================================================== */
-
-document
-.getElementById("rw")
-.addEventListener("change",isiDropdownAnggota);
-
-
-
-
-
-/* =====================================================
-   TAMBAH ANGGOTA BARU
-===================================================== */
-
-document
-.getElementById("btnTambahAnggota")
-.addEventListener("click",async()=>{
-
-const rw=document.getElementById("rw").value;
-
-const nama=document
-.getElementById("namaBaru")
-.value
-.trim();
-
-if(rw===""){
-
-alert("Pilih RW terlebih dahulu");
-
-return;
-
-}
-
-if(nama===""){
-
-alert("Masukkan nama anggota");
-
-return;
-
-}
-
-
-/* cek apakah sudah ada */
-
-const ada=daftarAnggota.find(item=>
-
-item.rw===rw &&
-item.nama.toLowerCase()===nama.toLowerCase()
-
-);
-
-if(ada){
-
-alert("Nama sudah terdaftar");
-
-return;
-
-}
-
-
-/* simpan */
-
-const idAnggota = generateIdAnggota();
-
-await addDoc(colAnggota,{
-    idAnggota,
-    rw,
-    nama,
-    dibuat:serverTimestamp()
-});
-
-
-document
-.getElementById("namaBaru")
-.value="";
-
-await loadAnggota();
-
-alert("Anggota berhasil ditambahkan.");
-
-});
-
-/* =====================================================
-   LOAD HARGA
-===================================================== */
-
-async function loadHarga(){
-
-try{
-
-const snap = await getDoc(docHarga);
-
-if(snap.exists()){
-
-daftarHarga = snap.data();
-
-let html = "";
-
-Object.keys(daftarHarga).forEach(nama=>{
-
-html += `
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-
-<div style="flex:1;">
-${nama}
-</div>
-
-<input
-type="number"
-id="harga_${nama}"
-value="${daftarHarga[nama]}"
-style="width:120px;">
-
-</div>
-`;
-
-});
-
-tampilHarga();
-
-isiDropdownBarang();
-
-}
-
-}catch(err){
-
-console.log(err);
-
-alert(err.message);
-
-}
-
-}
-
-/* =====================================================
-   TAMPILKAN LIST HARGA
-===================================================== */
-
-function tampilHarga(){
-
-let html="";
-
-Object.keys(daftarHarga)
-.sort()
-.forEach(nama=>{
-
-html+=`
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-
-<div style="flex:1;">
-${nama}
-</div>
-
-<input
-type="number"
-id="harga_${nama}"
-value="${daftarHarga[nama]}"
-style="width:120px;">
-
-</div>
-`;
-
-});
-
-document.getElementById("listHarga").innerHTML=html;
-
-}
-
-/* =====================================================
-   ISI DROPDOWN JENIS BARANG
-===================================================== */
-
-function isiDropdownBarang(){
-
-const select = document.getElementById("jenisBarang");
-
-select.innerHTML =
-"<option value=''>-- Pilih Barang --</option>";
-
-Object.keys(daftarHarga)
-.sort()
-.forEach(nama=>{
-
-select.innerHTML +=
-`<option value="${nama}">
-${nama}
-</option>`;
-
-});
-
-}
-
-/* =====================================================
-   SIMPAN DATA SETORAN
-===================================================== */
-
-document.getElementById("btnSimpan").addEventListener("click", async () => {
-
-    if (editId) {
-        await updateData();
-    } else {
-        await simpanData();
-    }
-
-});
-
-async function simpanData(){
-
-const tanggal=document.getElementById("tanggal").value;
-
-const hari=document.getElementById("hari").value;
-
-const rw = document.getElementById("rw").value;
-
-const idAnggota = document.getElementById("anggota").value;
-
-const dataAnggota = daftarAnggota.find(item => item.idAnggota === idAnggota);
-
-if(!dataAnggota){
-
-alert("Anggota tidak ditemukan.");
-
-return;
-
-}
-
-const nama = dataAnggota.nama;
-
-const barang = document.getElementById("jenisBarang").value;
-
-const berat=parseFloat(document.getElementById("berat").value)||0;
-
-const harga = Number(daftarHarga[barang] || 0);
-
-const total=berat*harga;
-
-
-/* ===========================
-   VALIDASI
-=========================== */
-
-if(rw==""){
-
-alert("Pilih RW");
-
-return;
-
-}
-
-if(nama==""){
-
-alert("Pilih Anggota");
-
-return;
-
-}
-
-if(barang==""){
-
-alert("Pilih Jenis Barang");
-
-return;
-
-}
-
-if(berat<=0){
-
-alert("Masukkan Berat");
-
-return;
-
-}
-
-
-/* ===========================
-   LOADING
-=========================== */
-
-document.getElementById("loading").classList.add("show");
-
-
-try{
-
-await addDoc(colSetoran,{
-
-idAnggota,
-
-tanggal,
-
-hari,
-
-rw,
-
-nama,
-
-barang,
-
-berat,
-
-harga,
-
-total,
-
-dibuat:serverTimestamp()
-
-});
-
-alert("Data berhasil disimpan.");
-
-
-/* reset form */
-
-document.getElementById("jenisBarang").value="";
-
-document.getElementById("berat").value="";
-
-document.getElementById("harga").value="";
-
-document.getElementById("total").value="";
-
-document.getElementById("anggota").selectedIndex=0;
-
-
-/* refresh tabel */
-
-await loadSetoran();
-
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menyimpan data");
-
-}
-
-document.getElementById("loading").classList.remove("show");
-
-}
-/* =====================================================
-   LOAD DATA SETORAN DARI FIREBASE
-===================================================== */
-
-async function loadSetoran(){
-
-document.getElementById("loading").classList.add("show");
-
-try{
-
-const q=query(colSetoran,orderBy("tanggal","desc"));
-
-const snap=await getDocs(q);
-
-dataSetoran=[];
-
-snap.forEach(docItem=>{
-
-dataSetoran.push({
-
-id:docItem.id,
-
-...docItem.data()
-
-});
-
-});
-
-tampilData();
-
-hitungTotalSaldo();
-
-hitungTotalSetoran();
-
-updateDashboard();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal mengambil data.");
-
-}
-
-document.getElementById("loading").classList.remove("show");
-
-}
-
-
-/* =====================================================
-   TAMPILKAN LAPORAN
-===================================================== */
-
-window.tampilkanLaporan = function(){
-
-const filterTanggal =
-document.getElementById("lapTanggal").value;
-
-const filterBulan =
-document.getElementById("lapBulan").value;
-
-const filterRW =
-document.getElementById("lapRW").value;
-
-const filterAnggota =
-document.getElementById("lapAnggota").value;
-
-let data = [...dataSetoran];
-
-/* Filter tanggal */
-
-if(filterTanggal){
-
-data = data.filter(item =>
-item.tanggal === filterTanggal
-);
-
-}
-
-/* Filter bulan */
-
-if(filterBulan){
-
-data = data.filter(item =>
-item.tanggal.startsWith(filterBulan)
-);
-
-}
-
-/* Filter RW */
-
-if(filterRW){
-
-data = data.filter(item =>
-item.rw === filterRW
-);
-
-}
-
-/* Filter Anggota */
-
-if(filterAnggota){
-
-data = data.filter(item =>
-item.idAnggota === filterAnggota
-);
-
-}
-
-const tbody =
-document.querySelector("#tabelLaporan tbody");
-
-tbody.innerHTML = "";
-
-let totalSetoran = 0;
-let totalBerat = 0;
-let totalUang = 0;
-
-if(data.length==0){
-
-tbody.innerHTML=`
-<tr>
-<td colspan="10">
-Tidak ada data.
-</td>
-</tr>
-`;
-
-}else{
-
-data.sort((a,b)=>{
-
-if(a.tanggal===b.tanggal){
-
-return (a.idAnggota || "")
-.localeCompare(b.idAnggota || "");
-
-}
-
-return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-data.forEach((item,index)=>{
-
-totalSetoran++;
-
-totalBerat += Number(item.berat||0);
-
-totalUang += Number(item.total||0);
-
-tbody.innerHTML += `
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${item.tanggal}</td>
-
-<td>${item.hari}</td>
-
-<td>${item.rw}</td>
-
-<td>${item.idAnggota || "-"}</td>
-
-<td>${item.nama}</td>
-
-<td>${item.barang}</td>
-
-<td>${Number(item.berat).toFixed(2)} Kg</td>
-
-<td>Rp ${Number(item.harga).toLocaleString("id-ID")}</td>
-
-<td>Rp ${Number(item.total).toLocaleString("id-ID")}</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-document.getElementById("lapTotalSetoran").textContent =
-totalSetoran;
-
-document.getElementById("lapTotalBerat").textContent =
-totalBerat.toFixed(2)+" Kg";
-
-document.getElementById("lapTotalUang").textContent =
-"Rp "+totalUang.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   TAMPILKAN DATA KE TABEL
-===================================================== */
-
-function tampilData(){
-
-const tbody=document.querySelector("#tabelData tbody");
-
-tbody.innerHTML="";
-
-let filterTanggal=document.getElementById("filterTanggal").value;
-
-let filterRW=document.getElementById("filterRW").value;
-let filterNama =
-document.getElementById("filterNama").value;
-
-let hasil=dataSetoran.filter(item=>{
-
-let cocokTanggal=true;
-let cocokRW=true;
-let cocokNama=true;
-
-if(filterTanggal!=""){
-
-cocokTanggal=item.tanggal===filterTanggal;
-
-}
-
-if(filterRW!=""){
-
-cocokRW=item.rw===filterRW;
-
-}
-if(filterNama!=""){
-
-cocokNama =
-item.idAnggota===filterNama;
-
-}
-
-return cocokTanggal && cocokRW && cocokNama;
-
-});
-
-
-if(hasil.length==0){
-
-tbody.innerHTML=`
-
-<tr>
-
-<td colspan="9">
-
-Belum ada data.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-hasil.sort((a,b)=>{
-
-    if(a.tanggal===b.tanggal){
-
-        return (a.idAnggota || "")
-        .localeCompare(b.idAnggota || "");
-
-    }
-
-    return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-hasil.forEach((item,index)=>{
-
-tbody.innerHTML+=`
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${item.tanggal}</td>
-
-<td>${item.rw}</td>
-
-<td>${item.nama}</td>
-
-<td>${item.barang}</td>
-
-<td>${item.berat}</td>
-
-<td>
-
-Rp ${Number(item.harga).toLocaleString("id-ID")}
-
-</td>
-
-<td>
-
-Rp ${Number(item.total).toLocaleString("id-ID")}
-
-</td>
-
-<td>
-
-<button
-class="btnWarning"
-onclick="editData('${item.id}')">
-
-✏️
-
-</button>
-
-<button
-class="btnDanger"
-onclick="hapusData('${item.id}')">
-
-🗑️
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-// ================= Dashboard =================
-
-document.getElementById("jmlSetoran").textContent = hasil.length;
-
-document.getElementById("jmlAnggota").textContent = daftarAnggota.length;
-
-let totalBerat = 0;
-let totalUang = 0;
-
-hasil.forEach(item => {
-
-    totalBerat += Number(item.berat || 0);
-
-    totalUang += Number(item.total || 0);
-
-});
-
-document.getElementById("totalBerat").textContent =
-totalBerat.toFixed(2) + " Kg";
-
-document.getElementById("totalUang").textContent =
-"Rp " + totalUang.toLocaleString("id-ID");
-}
-
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-document
-.getElementById("filterTanggal")
-.addEventListener("change",tampilData);
-
-document
-.getElementById("filterRW")
-.addEventListener("change",function(){
-
-    isiDropdownFilterSetoran();
-
-    tampilData();
-
-});
-
-document
-.getElementById("filterNama")
-.addEventListener("change",tampilData);
-
-document
-.getElementById("btnTampilkanLaporan")
-.addEventListener("click", tampilkanLaporan);
-
-document.getElementById("lapRW")
-.addEventListener("change", isiDropdownLaporanAnggota);
-
-/* =====================================================
-   RESET FILTER LAPORAN
-===================================================== */
-
-document
-.getElementById("btnResetLaporan")
-.addEventListener("click",()=>{
-
-    document.getElementById("lapTanggal").value="";
-
-    document.getElementById("lapBulan").value="";
-
-    document.getElementById("lapRW").value="";
-
-    isiDropdownLaporanAnggota();
-
-    document.getElementById("lapAnggota").value="";
-
-    tampilkanLaporan();
-
-});
-
-/* =====================================================
-   RESET FILTER
-===================================================== */
-
-document
-.getElementById("btnReset")
-.addEventListener("click",()=>{
-
-document.getElementById("filterTanggal").value="";
-
-document.getElementById("filterRW").value="";
-
-document.getElementById("filterNama").value="";
-
-tampilData();
-
-});
-
-
-/* =====================================================
-   EDIT DATA
-===================================================== */
-
-window.editData = async function(id){
-
-const data=dataSetoran.find(item=>item.id===id);
-
-if(!data) return;
-
-editId=id;
-
-document.getElementById("tanggal").value=data.tanggal;
-
-document.getElementById("hari").value=data.hari;
-
-document.getElementById("rw").value=data.rw;
-
-isiDropdownAnggota();
-
-setTimeout(()=>{
-
-document.getElementById("anggota").value=data.idAnggota;
-
-},200);
-
-document.getElementById("jenisBarang").value=data.barang;
-
-document.getElementById("berat").value=data.berat;
-
-hitungTotal();
-
-document.getElementById("btnSimpan").innerHTML="💾 Update Data";
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
-
-
-/* =====================================================
-   UPDATE DATA
-===================================================== */
-
-async function updateData(){
-
-const tanggal = document.getElementById("tanggal").value;
-const hari = document.getElementById("hari").value;
-const rw = document.getElementById("rw").value;
-
-const idAnggota = document.getElementById("anggota").value;
-
-const dataAnggota = daftarAnggota.find(item => item.idAnggota === idAnggota);
-
-if(!dataAnggota){
-
-alert("Anggota tidak ditemukan.");
-
-return;
-
-}
-
-const nama = dataAnggota.nama;
-
-const barang = document.getElementById("jenisBarang").value;
-const berat = parseFloat(document.getElementById("berat").value) || 0;
-
-const harga = Number(daftarHarga[barang] || 0);
-const total = berat * harga;
-
-await updateDoc(doc(db, "setoran", editId), {
-    tanggal,
-    hari,
-    rw,
-    nama,
-    barang,
-    berat,
-    harga,
-    total
-});
-
-alert("Data berhasil diperbarui.");
-
-editId = null;
-
-document.getElementById("btnSimpan").innerHTML = "💾 Simpan Data";
-
-bersihkanForm();
-
-await loadSetoran();
-
-}
-function bersihkanForm(){
-
-document.getElementById("rw").selectedIndex=0;
-
-document.getElementById("anggota").innerHTML="<option value=''>-- Pilih Anggota --</option>";
-
-document.getElementById("jenisBarang").selectedIndex=0;
-
-document.getElementById("berat").value="";
-
-document.getElementById("harga").value="";
-
-document.getElementById("total").value="";
-
-}
-/* =====================================================
-   HAPUS DATA
-===================================================== */
-
-window.hapusData = async function(id){
-
-const yakin = confirm("Yakin ingin menghapus data ini?");
-
-if(!yakin) return;
-
-try{
-
-await deleteDoc(doc(db,"setoran",id));
-
-alert("Data berhasil dihapus.");
-
-await loadSetoran();
-
-}catch(err){
-
-console.error(err);
-
-alert("Gagal menghapus data.");
-
-}
-
-}
-
-
-
-window.simpanMasterHarga = async function(){
-
-Object.keys(daftarHarga).forEach(nama=>{
-
-daftarHarga[nama] =
-Number(document.getElementById("harga_"+nama).value);
-
-});
-
-await setDoc(docHarga, daftarHarga);
-
-alert("Master harga berhasil disimpan.");
-
-await loadHarga();
-
-}
-
-/* =====================================================
-   TAMBAH JENIS BARANG
-===================================================== */
-
-window.tambahJenisBarang = function(){
-
-const nama = document
-.getElementById("barangBaru")
-.value
-.trim();
-
-const harga = Number(
-document.getElementById("hargaBaru").value
-);
-
-if(nama===""){
-
-alert("Nama barang belum diisi.");
-
-return;
-
-}
-
-if(harga<=0){
-
-alert("Harga belum diisi.");
-
-return;
-
-}
-
-/* Cek apakah sudah ada */
-
-if(daftarHarga[nama]){
-
-alert("Jenis barang sudah ada.");
-
-return;
-
-}
-
-/* Tambahkan ke object */
-
-daftarHarga[nama]=harga;
-
-/* Tampilkan ulang */
-
-tampilHarga();
-isiDropdownBarang();
-
-/* Kosongkan form */
-
-document.getElementById("barangBaru").value="";
-
-document.getElementById("hargaBaru").value="";
-
-}
-
-window.bukaHalaman = function(id){
-
-console.log("Membuka :", id);
-
-document.getElementById("menuUtama").style.display = "none";
-
-document.getElementById("halamanInput").style.display = "none";
-document.getElementById("halamanPenjualan").style.display = "none";
-document.getElementById("halamanPenarikan").style.display = "none"; // Tambahkan ini
-document.getElementById("halamanAnggota").style.display = "none";
-document.getElementById("halamanHarga").style.display = "none";
-document.getElementById("halamanLaporan").style.display = "none";
-document.getElementById("halamanKas").style.display="none";
-
-
-console.log(document.getElementById(id));
-
-document.getElementById(id).style.display = "block";
-if(id=="halamanPenarikan"){
-
-    isiDropdownPenarikan();
-
-}
-}
-
-window.kembaliMenu = function(){
-
-document.getElementById("menuUtama").style.display = "block";
-
-
-document.getElementById("halamanInput").style.display = "none";
-document.getElementById("halamanPenjualan").style.display = "none";
-document.getElementById("halamanPenarikan").style.display = "none"; // Tambahkan ini
-document.getElementById("halamanAnggota").style.display = "none";
-document.getElementById("halamanHarga").style.display = "none";
-document.getElementById("halamanLaporan").style.display = "none";
-document.getElementById("halamanKas").style.display="none";
-document.getElementById("dashboard").style.display = "none";
-}
-
-// =============================
-// Hari, Tanggal dan Total Penjualan
-// =============================
-
-document.getElementById("jualHari").value =
-hariList[new Date().getDay()];
-
-document.getElementById("jualTanggal").value =
-new Date().toISOString().substring(0,10);
-
-document.getElementById("jualBerat").addEventListener("input", hitungPenjualan);
-document.getElementById("jualHarga").addEventListener("input", hitungPenjualan);
-
-function hitungPenjualan(){
-
-let berat =
-parseFloat(document.getElementById("jualBerat").value) || 0;
-
-let harga =
-parseFloat(document.getElementById("jualHarga").value) || 0;
-
-let total = berat * harga;
-
-document.getElementById("jualTotal").value =
-"Rp " + total.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   SIMPAN PENJUALAN
-===================================================== */
-
-document
-.getElementById("btnSimpanPenjualan")
-.addEventListener("click", simpanPenjualan);
-
-async function simpanPenjualan(){
-
-if(editPenjualanId){
-
-await updatePenjualan();
-
-return;
-
-}
-const tanggal =
-document.getElementById("jualTanggal").value;
-
-const hari =
-document.getElementById("jualHari").value;
-
-const pembeli =
-document.getElementById("jualPembeli").value.trim();
-
-const barang =
-document.getElementById("jualBarang").value;
-
-const berat =
-parseFloat(document.getElementById("jualBerat").value) || 0;
-
-const harga =
-parseFloat(document.getElementById("jualHarga").value) || 0;
-
-const total = berat * harga;
-
-const keterangan =
-document.getElementById("jualKet").value.trim();
-
-if(pembeli==""){
-
-alert("Masukkan nama pembeli");
-
-return;
-
-}
-
-if(barang==""){
-
-alert("Pilih jenis barang");
-
-return;
-
-}
-
-if(berat<=0){
-
-alert("Masukkan berat");
-
-return;
-
-}
-
-if(harga<=0){
-
-alert("Masukkan harga jual");
-
-return;
-
-}
-
-try{
-
-await addDoc(colPenjualan,{
-
-tanggal,
-hari,
-pembeli,
-barang,
-berat,
-harga,
-total,
-keterangan,
-dibuat:serverTimestamp()
-
-});
-
-alert("Penjualan berhasil disimpan.");
-
-bersihkanPenjualan();
-
-await loadPenjualan();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menyimpan data.");
-
-}
-
-}
-
-function bersihkanPenjualan(){
-
-document.getElementById("jualPembeli").value="";
-
-document.getElementById("jualBarang").selectedIndex=0;
-
-document.getElementById("jualBerat").value="";
-
-document.getElementById("jualHarga").value="";
-
-document.getElementById("jualTotal").value="";
-
-document.getElementById("jualKet").value="";
-
-}
-
-/* =====================================================
-   UPDATE PENJUALAN
-===================================================== */
-
-async function updatePenjualan(){
-
-const tanggal =
-document.getElementById("jualTanggal").value;
-
-const hari =
-document.getElementById("jualHari").value;
-
-const pembeli =
-document.getElementById("jualPembeli").value.trim();
-
-const barang =
-document.getElementById("jualBarang").value;
-
-const berat =
-parseFloat(document.getElementById("jualBerat").value) || 0;
-
-const harga =
-parseFloat(document.getElementById("jualHarga").value) || 0;
-
-const total = berat * harga;
-
-const keterangan =
-document.getElementById("jualKet").value.trim();
-
-await updateDoc(doc(db,"penjualan",editPenjualanId),{
-
-tanggal,
-hari,
-pembeli,
-barang,
-berat,
-harga,
-total,
-keterangan
-
-});
-
-alert("Data berhasil diperbarui.");
-
-editPenjualanId = null;
-
-document.getElementById("btnSimpanPenjualan").innerHTML =
-"💾 Simpan Penjualan";
-
-bersihkanPenjualan();
-
-await loadPenjualan();
-
-}
-
-/* =====================================================
-   HAPUS PENJUALAN
-===================================================== */
-
-window.hapusPenjualan = async function(id){
-
-const yakin =
-confirm("Yakin ingin menghapus data ini?");
-
-if(!yakin) return;
-
-try{
-
-await deleteDoc(doc(db,"penjualan",id));
-
-alert("Data berhasil dihapus.");
-
-await loadPenjualan();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menghapus data.");
-
-}
-
-}
-
-/* =====================================================
-   LOAD DATA PENJUALAN
-===================================================== */
-
-async function loadPenjualan(){
-
-try{
-
-const q = query(colPenjualan, orderBy("tanggal","desc"));
-
-const snap = await getDocs(q);
-
-dataPenjualan = [];
-
-snap.forEach(docItem=>{
-
-dataPenjualan.push({
-
-id:docItem.id,
-
-...docItem.data()
-
-});
-
-});
-
-tampilPenjualan();
-
-hitungKas();
-
-hitungTotalPenjualan();
-
-loadPenjualan()
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal mengambil data penjualan.");
-
-}
-
-}
-
-/* =====================================================
-   TAMPILKAN DATA PENJUALAN
-===================================================== */
-
-function tampilPenjualan(){
-
-const tbody =
-document.querySelector("#tabelPenjualan tbody");
-
-tbody.innerHTML = "";
-
-let filterTanggal =
-document.getElementById("filterJualTanggal").value;
-
-let filterBulan =
-document.getElementById("filterJualBulan").value;
-
-
-let filterPembeli =
-document.getElementById("filterJualPembeli")
-.value
-.toLowerCase();
-
-let filterBarang =
-document.getElementById("filterJualBarang").value;
-
-let hasil = dataPenjualan.filter(item=>{
-
-let cocokBulan = true;
-let cocokTanggal = true;
-let cocokPembeli = true;
-let cocokBarang = true;
-
-if(filterBulan!=""){
-
-cocokBulan =
-item.tanggal.startsWith(filterBulan);
-
-}
-
-if(filterTanggal!=""){
-cocokTanggal = item.tanggal===filterTanggal;
-}
-
-if(filterPembeli!=""){
-cocokPembeli = item.pembeli
-.toLowerCase()
-.includes(filterPembeli);
-}
-
-if(filterBarang!=""){
-cocokBarang = item.barang===filterBarang;
-}
-
-return cocokBulan &&
-cocokTanggal &&
-cocokPembeli &&
-cocokBarang;
-
-});
-
-if(hasil.length==0){
-
-tbody.innerHTML=`
-<tr>
-<td colspan="8">
-Belum ada data.
-</td>
-</tr>
-`;
-
-document.getElementById("jumlahPenjualan").textContent=0;
-document.getElementById("beratTerjual").textContent="0 Kg";
-document.getElementById("totalPenjualan").textContent="Rp 0";
-document.getElementById("totalSetoranPenjualan").textContent="Rp 0";
-document.getElementById("totalLaba").textContent="Rp 0";
-
-return;
-
-}
-
-hasil.sort((a,b)=>{
-
-if(a.tanggal===b.tanggal){
-
-return a.pembeli.localeCompare(b.pembeli,"id");
-
-}
-
-return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-let totalBerat = 0;
-let totalJual = 0;
-let totalSetoran = 0;
-
-hasil.forEach((item,index)=>{
-
-tbody.innerHTML+=`
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${item.tanggal}</td>
-
-<td>${item.pembeli}</td>
-
-<td>${item.barang}</td>
-
-<td>${item.berat}</td>
-
-<td>Rp ${Number(item.harga).toLocaleString("id-ID")}</td>
-
-<td>Rp ${Number(item.total).toLocaleString("id-ID")}</td>
-
-<td>
-
-<button
-class="btnWarning"
-onclick="editPenjualan('${item.id}')">
-
-✏️
-
-</button>
-
-<button
-class="btnDanger"
-onclick="hapusPenjualan('${item.id}')">
-
-🗑️
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-totalBerat+=Number(item.berat||0);
-
-totalJual+=Number(item.total||0);
-
-});
-
-dataSetoran.forEach(item=>{
-
-totalSetoran += Number(item.total || 0);
-
-});
-
-let laba = totalJual - totalSetoran;
-
-document.getElementById("jumlahPenjualan").textContent =
-hasil.length;
-
-document.getElementById("beratTerjual").textContent =
-totalBerat.toFixed(2)+" Kg";
-
-document.getElementById("totalPenjualan").textContent =
-"Rp "+totalJual.toLocaleString("id-ID");
-
-document.getElementById("totalSetoranPenjualan").textContent =
-"Rp " + totalSetoran.toLocaleString("id-ID");
-
-document.getElementById("totalLaba").textContent =
-"Rp " + laba.toLocaleString("id-ID");
-
-document.getElementById("dashLaba").textContent =
-"Rp " + laba.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   EDIT PENJUALAN
-===================================================== */
-
-let editPenjualanId = null;
-
-window.editPenjualan = function(id){
-
-const data = dataPenjualan.find(item => item.id === id);
-
-if(!data) return;
-
-editPenjualanId = id;
-
-document.getElementById("jualTanggal").value = data.tanggal;
-
-document.getElementById("jualHari").value = data.hari;
-
-document.getElementById("jualPembeli").value = data.pembeli;
-
-document.getElementById("jualBarang").value = data.barang;
-
-document.getElementById("jualBerat").value = data.berat;
-
-document.getElementById("jualHarga").value = data.harga;
-
-document.getElementById("jualKet").value = data.keterangan || "";
-
-hitungPenjualan();
-
-document.getElementById("btnSimpanPenjualan").innerHTML =
-"💾 Update Penjualan";
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
-
-document.getElementById("filterJualBulan").addEventListener("change", tampilPenjualan);
-
-document
-.getElementById("filterJualTanggal")
-.addEventListener("change",tampilPenjualan);
-
-document
-.getElementById("filterJualPembeli")
-.addEventListener("input",tampilPenjualan);
-
-document
-.getElementById("filterJualBarang")
-.addEventListener("change",tampilPenjualan);
-
-document
-.getElementById("btnResetPenjualan")
-.addEventListener("click",()=>{
-
-document.getElementById("filterJualTanggal").value="";
-
-document.getElementById("filterJualPembeli").value="";
-
-document.getElementById("filterJualBarang").selectedIndex=0;
-
-tampilPenjualan();
-
-});
-
-document
-.getElementById("btnExportPenjualan")
-.addEventListener("click", exportPenjualanExcel);
-
-function exportPenjualanExcel(){
-
-let filterBulan =
-document.getElementById("filterJualBulan").value;
-
-let filterTanggal =
-document.getElementById("filterJualTanggal").value;
-
-let filterPembeli =
-document.getElementById("filterJualPembeli").value.toLowerCase();
-
-let filterBarang =
-document.getElementById("filterJualBarang").value;
-
-let hasil = dataPenjualan.filter(item=>{
-
-let cocokBulan = true;
-let cocokTanggal = true;
-let cocokPembeli = true;
-let cocokBarang = true;
-
-if(filterBulan!=""){
-cocokBulan = item.tanggal.startsWith(filterBulan);
-}
-
-if(filterTanggal!=""){
-cocokTanggal = item.tanggal===filterTanggal;
-}
-
-if(filterPembeli!=""){
-cocokPembeli = item.pembeli.toLowerCase().includes(filterPembeli);
-}
-
-if(filterBarang!=""){
-cocokBarang = item.barang===filterBarang;
-}
-
-return cocokBulan &&
-       cocokTanggal &&
-       cocokPembeli &&
-       cocokBarang;
-
-});
-
-if(hasil.length==0){
-
-alert("Tidak ada data untuk diexport.");
-
-return;
-
-}
-
-hasil.sort((a,b)=>{
-
-if(a.tanggal===b.tanggal){
-
-return a.pembeli.localeCompare(b.pembeli,"id");
-
-}
-
-return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-let totalBerat = 0;
-let totalJual = 0;
-
-const excelData = [];
-
-excelData.push([
-"No",
-"Tanggal",
-"Hari",
-"Pembeli",
-"Barang",
-"Berat (Kg)",
-"Harga/Kg",
-"Total",
-"Keterangan"
-]);
-
-hasil.forEach((item,index)=>{
-
-excelData.push([
-
-index+1,
-item.tanggal,
-item.hari,
-item.pembeli,
-item.barang,
-Number(item.berat),
-Number(item.harga),
-Number(item.total),
-item.keterangan || ""
-
-]);
-
-totalBerat += Number(item.berat||0);
-totalJual += Number(item.total||0);
-
-});
-
-excelData.push([]);
-
-excelData.push(["Jumlah Transaksi",hasil.length]);
-excelData.push(["Total Berat",totalBerat.toFixed(2)+" Kg"]);
-excelData.push(["Total Penjualan","Rp "+totalJual.toLocaleString("id-ID")]);
-
-const wb = XLSX.utils.book_new();
-
-const ws = XLSX.utils.aoa_to_sheet(excelData);
-
-XLSX.utils.book_append_sheet(
-wb,
-ws,
-"Penjualan"
-);
-
-const tanggal =
-new Date().toISOString().substring(0,10);
-
-XLSX.writeFile(
-wb,
-`Penjualan_Bank_Sampah_${tanggal}.xlsx`
-);
-
-}
-
-document
-.getElementById("filterAnggotaRW")
-.addEventListener("change",function(){
-
-    isiDropdownFilterAnggota();
-
-    tampilAnggota();
-
-});
-
-document
-.getElementById("filterAnggotaNama")
-.addEventListener("change",tampilAnggota);
-
-document
-.getElementById("btnResetAnggota")
-.addEventListener("click",()=>{
-
-document.getElementById("filterAnggotaRW").selectedIndex=0;
-
-document.getElementById("filterAnggotaNama").value="";
-
-tampilAnggota();
-
-});
-
-/* =====================================================
-   LOAD DATA PENARIKAN
-===================================================== */
-
-async function loadPenarikan(){
-
-try{
-
-const snap = await getDocs(colPenarikan);
-
-dataPenarikan = [];
-
-snap.forEach(docItem=>{
-
-dataPenarikan.push({
-
-id:docItem.id,
-
-...docItem.data()
-
-});
-
-});
-
-tampilPenarikan();
-
-tampilAnggota();
-
-hitungKas();
-
-hitungTotalSaldo();
-
-hitungTotalPenarikan();
-
-updateDashboard();
-
-console.log(
-"Data Penarikan :",
-dataPenarikan.length
-);
-
-}catch(err){
-
-console.error(
-"Gagal load penarikan",
-err
-);
-
-}
-
-}
-/* =====================================================
-   HITUNG SALDO ANGGOTA
-===================================================== */
-
-function hitungSaldoAnggota(idAnggota){
-
-let totalSetoran = 0;
-let totalPenarikan = 0;
-
-// Total setoran
-dataSetoran.forEach(item=>{
-
-    if(item.idAnggota === idAnggota){
-
-        totalSetoran += Number(item.total || 0);
-
-    }
-
-});
-
-// Total penarikan
-dataPenarikan.forEach(item=>{
-
-    if(item.idAnggota === idAnggota){
-
-        totalPenarikan += Number(item.nominal || 0);
-
-    }
-
-});
-
-return totalSetoran - totalPenarikan;
-
-}
-
-/* =====================================================
-   SIMPAN PENARIKAN
-===================================================== */
-
-document
-.getElementById("btnSimpanPenarikan")
-.addEventListener("click",()=>{
-
-if(editPenarikanId){
-
-updatePenarikan();
-
-}else{
-
-simpanPenarikan();
-
-}
-
-});
-
-async function simpanPenarikan(){
-
-const tanggal =
-document.getElementById("tarikTanggal").value;
-
-const hari =
-document.getElementById("tarikHari").value;
-
-const idAnggota =
-document.getElementById("tarikAnggota").value;
-
-const nama =
-document.getElementById("tarikNama").value;
-
-const rw =
-document.getElementById("tarikRW").value;
-
-const nominal =
-parseFloat(
-document.getElementById("tarikNominal").value
-) || 0;
-
-const keterangan =
-document.getElementById("tarikKeterangan").value.trim();
-
-if(idAnggota==""){
-
-alert("Pilih anggota.");
-
-return;
-
-}
-
-if(nominal<=0){
-
-alert("Masukkan nominal penarikan.");
-
-return;
-
-}
-
-const saldo =
-hitungSaldoAnggota(idAnggota);
-
-if(nominal>saldo){
-
-alert("Saldo anggota tidak mencukupi.");
-
-return;
-
-}
-
-try{
-
-await addDoc(colPenarikan,{
-
-tanggal,
-hari,
-idAnggota,
-nama,
-rw,
-nominal,
-keterangan,
-dibuat:serverTimestamp()
-
-});
-
-alert("Penarikan berhasil disimpan.");
-
-await loadPenarikan();
-
-bersihkanPenarikan();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menyimpan penarikan.");
-
-}
-
-}
-
-function bersihkanPenarikan(){
-
-document.getElementById("tarikAnggota").selectedIndex=0;
-
-document.getElementById("tarikNama").value="";
-
-document.getElementById("tarikRW").value="";
-
-document.getElementById("tarikSaldo").value="";
-
-document.getElementById("tarikNominal").value="";
-
-document.getElementById("tarikKeterangan").value="";
-
-}
-
-/* =====================================================
-   UPDATE PENARIKAN
-===================================================== */
-
-async function updatePenarikan(){
-
-const tanggal =
-document.getElementById("tarikTanggal").value;
-
-const hari =
-document.getElementById("tarikHari").value;
-
-const idAnggota =
-document.getElementById("tarikAnggota").value;
-
-const nama =
-document.getElementById("tarikNama").value;
-
-const rw =
-document.getElementById("tarikRW").value;
-
-const nominal =
-parseFloat(document.getElementById("tarikNominal").value)||0;
-
-const keterangan =
-document.getElementById("tarikKeterangan").value;
-
-await updateDoc(
-doc(db,"penarikan",editPenarikanId),
-{
-
-tanggal,
-hari,
-idAnggota,
-nama,
-rw,
-nominal,
-keterangan
-
-}
-);
-
-alert("Penarikan berhasil diperbarui.");
-
-editPenarikanId = null;
-
-document.getElementById("btnSimpanPenarikan").innerHTML =
-"💾 Simpan Penarikan";
-
-bersihkanPenarikan();
-
-await loadPenarikan();
-
-}
-
-/* =====================================================
-   HAPUS PENARIKAN
-===================================================== */
-
-window.hapusPenarikan = async function(id){
-
-const yakin =
-confirm("Yakin ingin menghapus penarikan ini?");
-
-if(!yakin) return;
-
-try{
-
-await deleteDoc(
-doc(db,"penarikan",id)
-);
-
-alert("Data berhasil dihapus.");
-
-await loadPenarikan();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menghapus data.");
-
-}
-
-}
-
-/* =====================================================
-   TAMPILKAN PENARIKAN
-===================================================== */
-
-function tampilPenarikan(){
-
-const tbody =
-document.querySelector("#tabelPenarikan tbody");
-
-tbody.innerHTML="";
-
-let filterTanggal =
-document.getElementById("filterTarikTanggal").value;
-
-let filterRW =
-document.getElementById("filterTarikRW").value;
-
-let filterNama =
-document.getElementById("filterTarikNama").value;
-
-let hasil = dataPenarikan.filter(item=>{
-
-let cocokTanggal = true;
-let cocokRW = true;
-let cocokNama = true;
-
-if(filterTanggal!=""){
-
-cocokTanggal =
-item.tanggal===filterTanggal;
-
-}
-
-if(filterRW!=""){
-
-cocokRW =
-item.rw===filterRW;
-
-}
-
-if(filterNama!=""){
-
-cocokNama =
-item.idAnggota===filterNama;
-
-}
-
-return cocokTanggal &&
-       cocokRW &&
-       cocokNama;
-
-});
-
-if(hasil.length==0){
-
-tbody.innerHTML=`
-<tr>
-<td colspan="8">
-Belum ada data.
-</td>
-</tr>
-`;
-
-document.getElementById("dashTotalPenarikan").textContent="Rp 0";
-document.getElementById("dashJumlahPenarikan").textContent="0";
-
-return;
-
-}
-
-let total=0;
-
-hasil.sort((a,b)=>
-b.tanggal.localeCompare(a.tanggal)
-);
-
-hasil.forEach((item,index)=>{
-
-total+=Number(item.nominal||0);
-
-tbody.innerHTML+=`
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${item.tanggal}</td>
-
-<td>${item.idAnggota}</td>
-
-<td>${item.nama}</td>
-
-<td>${item.rw}</td>
-
-<td>
-Rp ${Number(item.nominal).toLocaleString("id-ID")}
-</td>
-
-<td>${item.keterangan||"-"}</td>
-
-<td>
-
-<button
-class="btnWarning"
-onclick="editPenarikan('${item.id}')">
-
-✏️
-
-</button>
-
-<button
-class="btnDanger"
-onclick="hapusPenarikan('${item.id}')">
-
-🗑️
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-document.getElementById("dashTotalPenarikan").textContent=
-"Rp "+total.toLocaleString("id-ID");
-
-document.getElementById("dashJumlahPenarikan").textContent =
-hasil.length;
-
-}
-
-document
-.getElementById("filterTarikTanggal")
-.addEventListener("change", tampilPenarikan);
-
-document
-.getElementById("filterTarikRW")
-.addEventListener("change", function(){
-
-    isiDropdownFilterPenarikan();
-
-    tampilPenarikan();
-
-});	
-
-document
-.getElementById("filterTarikNama")
-.addEventListener("change", tampilPenarikan);
-
-document
-.getElementById("btnResetPenarikan")
-.addEventListener("click",()=>{
-
-document.getElementById("filterTarikTanggal").value="";
-
-document.getElementById("filterTarikRW").selectedIndex=0;
-
-document.getElementById("filterTarikNama").value="";
-
-tampilPenarikan();
-
-});
-
-/* =====================================================
-   EDIT PENARIKAN
-===================================================== */
-
-window.editPenarikan = function(id){
-
-const data =
-dataPenarikan.find(item=>item.id===id);
-
-if(!data) return;
-
-editPenarikanId = id;
-
-document.getElementById("tarikTanggal").value =
-data.tanggal;
-
-document.getElementById("tarikHari").value =
-data.hari;
-
-document.getElementById("tarikAnggota").value =
-data.idAnggota;
-
-document.getElementById("tarikNama").value =
-data.nama;
-
-document.getElementById("tarikRW").value =
-data.rw;
-
-const saldo =
-hitungSaldoAnggota(data.idAnggota);
-
-document.getElementById("tarikSaldo").value =
-"Rp "+saldo.toLocaleString("id-ID");
-
-document.getElementById("tarikNominal").value =
-data.nominal;
-
-document.getElementById("tarikKeterangan").value =
-data.keterangan || "";
-
-document.getElementById("btnSimpanPenarikan").innerHTML =
-"💾 Update Penarikan";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-/* =====================================================
-   simpan anggota master
-===================================================== */
-document
-.getElementById("btnSimpanAnggota")
-.addEventListener("click", simpanAnggotaMaster);
-
-async function simpanAnggotaMaster(){
-
-if(editAnggotaId){
-
-await updateAnggota();
-
-return;
-
-}
-
-const rw =
-document.getElementById("anggotaRW").value;
-
-const nama =
-document.getElementById("anggotaNama")
-.value
-.trim();
-
-if(rw==""){
-
-alert("Pilih RW");
-
-return;
-
-}
-
-if(nama==""){
-
-alert("Masukkan nama anggota");
-
-return;
-
-}
-
-const idAnggota =
-document.getElementById("anggotaId").value;
-
-await addDoc(colAnggota,{
-
-idAnggota,
-
-rw,
-
-nama,
-
-dibuat:serverTimestamp()
-
-});
-
-alert("Anggota berhasil ditambahkan.");
-
-bersihkanFormAnggota();
-
-await loadAnggota();
-
-}
-
-/* =====================================================
-   UPDATE ANGGOTA
-===================================================== */
-
-async function updateAnggota(){
-
-const rw =
-document.getElementById("anggotaRW").value;
-
-const nama =
-document.getElementById("anggotaNama")
-.value
-.trim();
-
-if(rw==""){
-
-alert("Pilih RW");
-
-return;
-
-}
-
-if(nama==""){
-
-alert("Masukkan nama anggota");
-
-return;
-
-}
-
-const idAnggota =
-document.getElementById("anggotaId").value;
-
-await updateDoc(
-
-doc(db,"anggota",editAnggotaId),
-
-{
-
-idAnggota,
-
-rw,
-
-nama
-
-}
-
-);
-
-alert("Data anggota berhasil diperbarui.");
-
-bersihkanFormAnggota();
-
-await loadAnggota();
-
-
-}
-
-
-
-/* =====================================================
-   HAPUS ANGGOTA
-===================================================== */
-
-window.hapusAnggota = async function(id){
-
-const yakin =
-confirm("Yakin ingin menghapus anggota ini?");
-
-if(!yakin) return;
-
-try{
-
-await deleteDoc(
-
-doc(db,"anggota",id)
-
-);
-
-alert("Anggota berhasil dihapus.");
-
-await loadAnggota();
-
-}catch(err){
-
-console.log(err);
-
-alert("Gagal menghapus anggota.");
-
-}
-
-}
-
-function bersihkanFormAnggota(){
-
-editAnggotaId = null;
-
-document.getElementById("anggotaRW").selectedIndex = 0;
-
-document.getElementById("anggotaNama").value = "";
-
-document.getElementById("judulFormAnggota").innerHTML =
-"➕ Tambah Anggota";
-
-document.getElementById("btnSimpanAnggota").innerHTML =
-"💾 Simpan Anggota";
-
-generateIdAnggota();
-}
-
-/* =====================================================
-   GENERATE ID ANGGOTA
-===================================================== */
-
-function generateIdAnggota(){
-
-let nomorTerbesar = 0;
-
-daftarAnggota.forEach(item=>{
-
-    if(item.idAnggota){
-
-        const angka = parseInt(item.idAnggota.replace("BS",""));
-
-        if(angka > nomorTerbesar){
-
-            nomorTerbesar = angka;
-
-        }
-
-    }
-
-});
-
-const idBaru = "BS" + String(nomorTerbesar + 1).padStart(4,"0");
-
-// Jika form anggota sedang terbuka, isi inputnya
-const inputId = document.getElementById("anggotaId");
-
-if(inputId){
-
-    inputId.value = idBaru;
-
-}
-
-return idBaru;
-
-}
-
-/* =====================================================
-   LIHAT DETAIL ANGGOTA
-===================================================== */
-
-window.lihatAnggota = function(id){
-
-const anggota = daftarAnggota.find(a => a.id === id);
-
-if(!anggota) return;
-
-document.getElementById("detailNamaAnggota").value = anggota.nama;
-document.getElementById("detailRWAnggota").value = anggota.rw;
-
-document.getElementById("panelDaftarAnggota").style.display="none";
-
-document.getElementById("panelDetailAnggota").style.display="block";
-
-const tbody =
-document.querySelector("#tabelRiwayatAnggota tbody");
-
-tbody.innerHTML="";
-
-let riwayat = [];
-
-// ================= SETORAN =================
-
-dataSetoran.forEach(item=>{
-
-if(item.idAnggota===anggota.idAnggota){
-
-riwayat.push({
-
-tanggal:item.tanggal,
-
-jenis:item.barang,
-
-berat:item.berat,
-
-masuk:Number(item.total||0),
-
-keluar:0
-
-});
-
-}
-
-});
-
-// ================= PENARIKAN =================
-
-dataPenarikan.forEach(item=>{
-
-if(item.idAnggota===anggota.idAnggota){
-
-riwayat.push({
-
-tanggal:item.tanggal,
-
-jenis:"Penarikan Saldo",
-
-berat:"-",
-
-masuk:0,
-
-keluar:Number(item.nominal||0)
-
-});
-
-}
-
-});
-
-let totalSetoran=0;
-let totalBerat=0;
-let totalUang=0;
-let totalPenarikan = 0;
-
-if(riwayat.length==0){
-
-tbody.innerHTML=`
-<tr>
-<td colspan="4">
-Belum ada riwayat setoran
-</td>
-</tr>
-`;
-
-}else{
-
-riwayat.sort((a,b)=>a.tanggal.localeCompare(b.tanggal));
-
-let saldoBerjalan = 0;
-
-riwayat.forEach(item=>{
-
-if(item.masuk>0){
-
-totalSetoran++;
-
-totalUang += item.masuk;
-
-if(item.berat!="-"){
-
-totalBerat += Number(item.berat||0);
-
-}
-
-}
-
-saldoBerjalan += item.masuk;
-saldoBerjalan -= item.keluar;
-
-tbody.innerHTML +=`
-
-<tr>
-
-<td>${item.tanggal}</td>
-
-<td>${item.jenis}</td>
-
-<td>
-
-${item.masuk==0 ? "-" :
-
-"Rp "+item.masuk.toLocaleString("id-ID")}
-
-</td>
-
-<td>
-
-${item.keluar==0 ? "-" :
-
-"Rp "+item.keluar.toLocaleString("id-ID")}
-
-</td>
-
-<td>
-
-<b>
-
-Rp ${saldoBerjalan.toLocaleString("id-ID")}
-
-</b>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-dataPenarikan.forEach(item=>{
-
-if(item.idAnggota===anggota.idAnggota){
-
-totalPenarikan += Number(item.nominal || 0);
-
-}
-
-});
-
-document.getElementById("detailTotalSetoran").textContent =
-totalSetoran;
-
-document.getElementById("detailTotalBerat").textContent =
-totalBerat.toFixed(2)+" Kg";
-
-document.getElementById("detailTotalUang").textContent =
-"Rp "+totalUang.toLocaleString("id-ID");
-
-const saldo = totalUang - totalPenarikan;
-
-document.getElementById("detailSaldoAnggota").textContent =
-"Rp " + saldo.toLocaleString("id-ID");
-
-}
-
-
-/* =====================================================
-   KEMBALI KE DAFTAR ANGGOTA
-===================================================== */
-
-window.kembaliDaftarAnggota = function(){
-
-document.getElementById("panelDetailAnggota").style.display = "none";
-
-document.getElementById("panelDaftarAnggota").style.display = "block";
-
-}
-/* =====================================================
-   SALIN LAPORAN
-===================================================== */
-document
-.getElementById("btnShareLaporan")
-.addEventListener("click", salinLaporan);
-/* =====================================================
-   SHARE LAPORAN WHATSAPP
-===================================================== */
-
-async function salinLaporan(){
-
-let filterTanggal =
-document.getElementById("lapTanggal").value;
-
-let filterBulan =
-document.getElementById("lapBulan").value;
-
-let filterRW =
-document.getElementById("lapRW").value;
-
-let filterAnggota =
-document.getElementById("lapAnggota").value;
-
-let data=[...dataSetoran];
-
-if(filterTanggal){
-data=data.filter(item=>item.tanggal===filterTanggal);
-}
-
-if(filterBulan){
-data=data.filter(item=>item.tanggal.startsWith(filterBulan));
-}
-
-if(filterRW){
-data=data.filter(item=>item.rw===filterRW);
-}
-
-if(filterAnggota){
-data=data.filter(item=>item.idAnggota===filterAnggota);
-}
-
-if(data.length===0){
-
-alert("Tidak ada data untuk disalin.");
-
-return;
-
-}
-
-data.sort((a,b)=>{
-
-if(a.tanggal===b.tanggal){
-
-return (a.idAnggota || "")
-.localeCompare(b.idAnggota || "");
-
-}
-
-return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-let totalBerat=0;
-let totalUang=0;
-
-let pesan="📊 LAPORAN BANK SAMPAH SUMBER REJEKI\n\n";
-
-pesan+="Tanggal : "+(filterTanggal||"Semua")+"\n";
-pesan+="Bulan   : "+(filterBulan||"Semua")+"\n";
-pesan+="RW      : "+(filterRW||"Semua")+"\n";
-pesan+="Anggota : "+(filterAnggota||"Semua")+"\n";
-
-pesan+="\n==============================\n\n";
-
-data.forEach((item,index)=>{
-
-pesan+=
-(index+1)+". "+item.tanggal+"\n";
-
-pesan+=
-item.idAnggota+" - "+item.nama+"\n";
-
-pesan+=
-item.barang+
-" | "+
-Number(item.berat).toFixed(2)+" Kg\n";
-
-pesan+=
-"Rp "+
-Number(item.total).toLocaleString("id-ID")+"\n\n";
-
-totalBerat+=Number(item.berat||0);
-totalUang+=Number(item.total||0);
-
-});
-
-pesan+="==============================\n";
-pesan+="Jumlah Setoran : "+data.length+"\n";
-pesan+="Total Berat    : "+totalBerat.toFixed(2)+" Kg\n";
-pesan+="Total Uang     : Rp "+totalUang.toLocaleString("id-ID");
-
-try{
-
-await navigator.clipboard.writeText(pesan);
-
-alert("✅ Laporan berhasil disalin.\n\nSilakan buka WhatsApp Business lalu Tempel (Paste).");
-
-}catch(err){
-
-const textarea=document.createElement("textarea");
-
-textarea.value=pesan;
-
-document.body.appendChild(textarea);
-
-textarea.select();
-
-document.execCommand("copy");
-
-document.body.removeChild(textarea);
-
-alert("✅ Laporan berhasil disalin.\n\nSilakan buka WhatsApp Business lalu Tempel (Paste).");
-
-}
-
-}
-
-/* =====================================================
-   EXPORT LAPORAN KE EXCEL
-===================================================== */
-
-document
-.getElementById("btnExportLaporan")
-.addEventListener("click", exportLaporanExcel);
-
-function exportLaporanExcel(){
-
-let filterTanggal =
-document.getElementById("lapTanggal").value;
-
-let filterBulan =
-document.getElementById("lapBulan").value;
-
-let filterRW =
-document.getElementById("lapRW").value;
-
-let filterAnggota =
-document.getElementById("lapAnggota").value;
-
-let data = [...dataSetoran];
-
-if(filterTanggal){
-
-data = data.filter(item =>
-item.tanggal === filterTanggal);
-
-}
-
-if(filterBulan){
-
-data = data.filter(item =>
-item.tanggal.startsWith(filterBulan));
-
-}
-
-if(filterRW){
-
-data = data.filter(item =>
-item.rw === filterRW);
-
-}
-
-if(filterAnggota){
-
-data = data.filter(item =>
-item.idAnggota === filterAnggota);
-
-}
-
-if(data.length==0){
-
-alert("Tidak ada data untuk diexport.");
-
-return;
-
-}
-
-data.sort((a,b)=>{
-
-if(a.tanggal===b.tanggal){
-
-return (a.idAnggota || "")
-.localeCompare(b.idAnggota || "");
-
-}
-
-return b.tanggal.localeCompare(a.tanggal);
-
-});
-
-let totalBerat = 0;
-let totalUang = 0;
-
-const excelData = [];
-
-excelData.push([
-"No",
-"Tanggal",
-"Hari",
-"RW",
-"ID Anggota",
-"Nama",
-"Barang",
-"Berat (Kg)",
-"Harga/Kg",
-"Total"
-]);
-
-data.forEach((item,index)=>{
-
-excelData.push([
-
-index+1,
-item.tanggal,
-item.hari,
-item.rw,
-item.idAnggota,
-item.nama,
-item.barang,
-Number(item.berat),
-Number(item.harga),
-Number(item.total)
-
-]);
-
-totalBerat += Number(item.berat||0);
-totalUang += Number(item.total||0);
-
-});
-
-excelData.push([]);
-
-excelData.push(["Jumlah Setoran",data.length]);
-excelData.push(["Total Berat",totalBerat.toFixed(2)+" Kg"]);
-excelData.push(["Total Uang","Rp "+totalUang.toLocaleString("id-ID")]);
-
-const wb = XLSX.utils.book_new();
-
-const ws = XLSX.utils.aoa_to_sheet(excelData);
-
-XLSX.utils.book_append_sheet(
-wb,
-ws,
-"Laporan"
-);
-
-const tanggal =
-new Date().toISOString().substring(0,10);
-
-XLSX.writeFile(
-wb,
-`Laporan_Bank_Sampah_${tanggal}.xlsx`
-);
-
-}
-
-/* =====================================================
-   HITUNG KAS BANK SAMPAH
-===================================================== */
-
-function hitungKas(){
-
-let totalSetoran = 0;
-let totalPenjualan = 0;
-
-// Total nilai setoran anggota
-dataSetoran.forEach(item=>{
-
-    totalSetoran += Number(item.total || 0);
-
-});
-
-// Total penjualan
-dataPenjualan.forEach(item=>{
-
-    totalPenjualan += Number(item.total || 0);
-
-});
-
-// Hitung laba
-let laba = totalPenjualan - totalSetoran;
-	
-if(laba < 0){
-    laba = 0;
-}
-
-// Pembagian laba
-let saldoBUMDES = laba / 2;
-let hakCollecting = laba / 2;
-
-// Tampilkan pada menu Kas
-document.getElementById("kasSetoran").textContent =
-"Rp " + totalSetoran.toLocaleString("id-ID");
-
-document.getElementById("kasPenjualan").textContent =
-"Rp " + totalPenjualan.toLocaleString("id-ID");
-
-document.getElementById("kasLaba").textContent =
-"Rp " + laba.toLocaleString("id-ID");
-
-document.getElementById("kasBUMDES").textContent =
-"Rp " + saldoBUMDES.toLocaleString("id-ID");
-
-document.getElementById("kasCollecting").textContent =
-"Rp " + hakCollecting.toLocaleString("id-ID");
-
-// Dashboard
-document.getElementById("dashSaldoKas").textContent =
-"Rp " + saldoBUMDES.toLocaleString("id-ID");
-
-}
-/* =====================================================
-   HITUNG TOTAL SALDO ANGGOTA
-===================================================== */
-
-function hitungTotalSaldo(){
-
-let totalSaldo = 0;
-
-daftarAnggota.forEach(item=>{
-
-totalSaldo += hitungSaldoAnggota(item.idAnggota);
-
-});
-
-document.getElementById("dashTotalSaldo").textContent =
-"Rp " + totalSaldo.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   HITUNG TOTAL SETORAN
-===================================================== */
-
-function hitungTotalSetoran(){
-
-let total = 0;
-
-dataSetoran.forEach(item=>{
-
-total += Number(item.total || 0);
-
-});
-
-document.getElementById("dashTotalSetoran").textContent =
-"Rp " + total.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   HITUNG TOTAL PENJUALAN
-===================================================== */
-
-function hitungTotalPenjualan(){
-
-let total = 0;
-
-dataPenjualan.forEach(item=>{
-
-total += Number(item.total || 0);
-
-});
-
-document.getElementById("dashTotalPenjualan").textContent =
-"Rp " + total.toLocaleString("id-ID");
-
-}
-
-/* =====================================================
-   HITUNG TOTAL PENARIKAN
-===================================================== */
-
-function hitungTotalPenarikan(){
-
-let total = 0;
-
-dataPenarikan.forEach(item=>{
-
-total += Number(item.nominal || 0);
-
-});
-
-document.getElementById("dashTotalPenarikan").textContent =
-"Rp " + total.toLocaleString("id-ID");
-
-}
-
-function updateDashboard(){
-
-    const totalAnggota = daftarAnggota.length;
-
-    let totalSetoran = dataSetoran.reduce((a,b)=>a+b.total,0);
-
-    let totalPenjualan = dataPenjualan.reduce((a,b)=>a+b.total,0);
-
-    let totalPenarikan = dataPenarikan.reduce((a,b)=>a+b.nominal,0);
-
-    let totalSaldo = 0;
-
-    daftarAnggota.forEach(item=>{
-        totalSaldo += hitungSaldoAnggota(item.idAnggota);
-    });
-
-    let laba = totalPenjualan - totalSetoran;
-    if(laba<0) laba=0;
-
-    let saldoKas = laba/2;
-
-    const isi=(id,nilai)=>{
-        const el=document.getElementById(id);
-        if(el) el.textContent=nilai;
-    };
-
-    isi("dashTotalAnggota",totalAnggota);
-    isi("dashTotalAnggotaHalaman",totalAnggota);
-
-    isi("dashTotalSaldo","Rp "+totalSaldo.toLocaleString("id-ID"));
-    isi("dashTotalSetoran","Rp "+totalSetoran.toLocaleString("id-ID"));
-    isi("dashTotalPenjualan","Rp "+totalPenjualan.toLocaleString("id-ID"));
-    isi("dashTotalPenarikan","Rp "+totalPenarikan.toLocaleString("id-ID"));
-    isi("dashLaba","Rp "+laba.toLocaleString("id-ID"));
-    isi("dashSaldoKas","Rp "+saldoKas.toLocaleString("id-ID"));
-}
-
-
-
-loadHarga();
-loadAnggota();
-loadSetoran();
-loadPenjualan();
-loadPenarikan();
-
-
-
-</script>
 
 </body>
+	
 </html>
