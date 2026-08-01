@@ -19,8 +19,8 @@ const HALAMAN = [
     "halPenarikan",
     "halLaporan",
 	"halOperasional",
-    "halPengaturan",
-	"halMigrasi"
+    "halPengaturan"
+	
 
 ];	
 
@@ -147,11 +147,5 @@ function eventNavigation(){
 
 });
 
-el("btnMigrasi")
-.addEventListener("click",()=>{
-
-    bukaHalaman("halMigrasi");
-
-});
 
 }

@@ -27,8 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 		
     await initPengaturan();
 	
-	await initMigrasi();
-	
 	await initDashboard();
 
     /* Tampilkan halaman awal */

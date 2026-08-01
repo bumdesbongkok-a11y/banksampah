@@ -30,9 +30,7 @@ async function loadOperasionalFirebase(){
         .orderBy("tanggal","desc")
         .get();
 
-
         DATA.operasional = [];
-
 
         snapshot.forEach(doc=>{
 
@@ -46,7 +44,6 @@ async function loadOperasionalFirebase(){
 
         });
 
-
         console.log(
 
             "Operasional Firebase :",
@@ -55,9 +52,13 @@ async function loadOperasionalFirebase(){
 
         );
 
+        if(typeof tampilOperasional === "function"){
+
+            tampilOperasional();
+
+        }
 
         return DATA.operasional;
-
 
     }catch(error){
 
