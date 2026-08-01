@@ -170,15 +170,25 @@ body{
 
 }
 
+.dashboard>.card:first-child{
 
+    grid-column:1/-1;
 
-.cardDashboard{
+}
 
-    background:var(--white);
+.dashboard>.card:nth-child(2){
 
-    border-radius:var(--radius);
+    grid-column:1/-1;
 
-    box-shadow:var(--shadow);
+}
+
+.dashboard>.card:nth-child(8){
+
+    grid-column:1/-1;
+
+}
+
+.dashboardCard{
 
     text-align:center;
 
@@ -186,31 +196,27 @@ body{
 
 }
 
+.dashboardCard h3{
 
+    margin:0;
 
-.cardDashboard h3{
-
-    font-size:30px;
+    font-size:28px;
 
 }
 
+.dashboardCard p{
 
-
-.cardDashboard p{
-
-    margin-top:8px;
+    margin:8px 0 0;
 
     font-size:14px;
 
 }
 
-
-
-.cardDashboard span{
+.dashboardCard span{
 
     display:block;
 
-    margin-top:10px;
+    margin-top:8px;
 
     font-size:18px;
 

@@ -99,7 +99,30 @@ const DATA = {
     penjualan: [],
 
     penarikan: [],
-	
-	operasional : []
+
+    operasional: [],
+
+    tutupBuku: []
 
 };
+
+/* =====================================================
+   PERIODE AKTIF
+===================================================== */
+
+const PERIODE = {
+
+    bulan :
+    new Date().getMonth() + 1,
+
+    tahun :
+    new Date().getFullYear()
+
+};
+
+/* =====================================================
+   COLLECTION KEUANGAN
+===================================================== */
+
+const COL_TUTUP_BUKU =
+"colTutupBuku";

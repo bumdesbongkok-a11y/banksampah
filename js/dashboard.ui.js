@@ -4,93 +4,39 @@
 
 function updateDashboard(){
 
+    const data =
+
+    hitungKeuangan();
+
+setText(
+
+    "lblPeriodeDashboard",
+
+    "Periode : " +
+
+    namaBulan(
+        data.bulan
+    ) +
+
+    " " +
+
+    data.tahun
+
+);
+
     const totalAnggota =
 
     DATA.anggota.length;
 
-    const totalSetoran =
 
-    DATA.setoran.reduce(
-
-        (t,item)=>
-
-        t +
-
-        Number(item.total||0),
-
-        0
-
-    );
-
-    const totalPenjualan =
-
-    DATA.penjualan.reduce(
-
-        (t,item)=>
-
-        t +
-
-        Number(item.total||0),
-
-        0
-
-    );
-
-    const totalOperasional =
-
-    DATA.operasional.reduce(
-
-        (t,item)=>
-
-        t +
-
-        Number(item.nominal||0),
-
-        0
-
-    );
-
-    const totalPenarikan =
-
-    DATA.penarikan.reduce(
-
-        (t,item)=>
-
-        t +
-
-        Number(item.nominal||0),
-
-        0
-
-    );
 
     const saldoAnggota =
 
-    totalSetoran -
+    data.totalSetoran -
 
-    totalPenarikan;
+    data.totalPenarikan;
 
-    let laba =
 
-    totalPenjualan -
-
-    totalSetoran -
-
-    totalOperasional;
-
-    if(laba < 0){
-
-        laba = 0;
-
-    }
-
-    const kas =
-
-    laba / 2;
-
-    const collecting =
-
-    laba / 2;
 
     setText(
 
@@ -100,67 +46,115 @@ function updateDashboard(){
 
     );
 
+
+
     setText(
 
         "dashSetoran",
 
-        formatRupiah(totalSetoran)
+        formatRupiah(
+
+            data.totalSetoran
+
+        )
 
     );
+
+
 
     setText(
 
         "dashPenjualan",
 
-        formatRupiah(totalPenjualan)
+        formatRupiah(
+
+            data.totalPenjualan
+
+        )
 
     );
+
+
 
     setText(
 
         "dashOperasional",
 
-        formatRupiah(totalOperasional)
+        formatRupiah(
+
+            data.totalOperasional
+
+        )
 
     );
+
+
 
     setText(
 
         "dashLaba",
 
-        formatRupiah(laba)
+        formatRupiah(
+
+            data.laba
+
+        )
 
     );
+
+
 
     setText(
 
         "dashSaldo",
 
-        formatRupiah(saldoAnggota)
+        formatRupiah(
+
+            saldoAnggota
+
+        )
 
     );
+
+
 
     setText(
 
         "dashKas",
 
-        formatRupiah(kas)
+        formatRupiah(
+
+            data.hakBUMDES
+
+        )
 
     );
+
+
 
     setText(
 
         "dashBUMDes",
 
-        formatRupiah(kas)
+        formatRupiah(
+
+            data.hakBUMDES
+
+        )
 
     );
+
+
 
     setText(
 
         "dashCollecting",
 
-        formatRupiah(collecting)
+        formatRupiah(
+
+            data.hakCollecting
+
+        )
 
     );
 

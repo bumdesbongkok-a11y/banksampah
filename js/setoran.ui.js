@@ -436,7 +436,23 @@ function tampilSetoran(){
     getValue("cmbFilterAnggotaSetoran");
 
     const dataFilter =
-    DATA.setoran.filter(item=>{
+DATA.setoran.filter(item=>{
+
+    const tgl =
+
+    new Date(item.tanggal);
+
+    if(
+
+        tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+        tgl.getFullYear() !== PERIODE.tahun
+
+    ){
+
+        return false;
+
+    }
 
         if(
             tanggal &&

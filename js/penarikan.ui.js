@@ -232,67 +232,77 @@ function tampilSaldoTarik(){
 
 }
 
-/* =====================================================
-   FILTER
-===================================================== */
-
 function filterPenarikan(){
 
     const tanggal =
-
-    getValue(
-
-        "txtFilterTarik"
-
-    );
+    getValue("txtFilterTarik");
 
     const rw =
-
-    getValue(
-
-        "cmbRWFilterTarik"
-
-    );
+    getValue("cmbRWFilterTarik");
 
     const anggota =
-
-    getValue(
-
-        "cmbFilterAnggotaTarik"
-
-    );
+    getValue("cmbFilterAnggotaTarik");
 
     return DATA.penarikan.filter(item=>{
 
+        // =====================================================
+        // FILTER BULAN AKTIF
+        // =====================================================
+
+        const tgl =
+
+        new Date(item.tanggal);
+
         if(
 
+            tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+            tgl.getFullYear() !== PERIODE.tahun
+
+        ){
+
+            return false;
+
+        }
+
+        // =====================================================
+        // FILTER TANGGAL
+        // =====================================================
+
+        if(
             tanggal &&
+            item.tanggal !== tanggal
+        ){
 
-            item.tanggal!==tanggal
+            return false;
 
-        )
+        }
 
-        return false;
+        // =====================================================
+        // FILTER RW
+        // =====================================================
 
         if(
-
             rw &&
+            item.rw !== rw
+        ){
 
-            item.rw!==rw
+            return false;
 
-        )
+        }
 
-        return false;
+        // =====================================================
+        // FILTER ANGGOTA
+        // =====================================================
 
         if(
-
             anggota &&
+            item.idAnggota !== anggota
+        ){
 
-            item.idAnggota!==anggota
+            return false;
 
-        )
-
-        return false;
+        }
 
         return true;
 

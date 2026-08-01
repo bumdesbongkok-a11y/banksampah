@@ -317,3 +317,118 @@ function getAnggota(firestoreId){
 
 }
 
+/* =====================================================
+   BULAN AKTIF
+===================================================== */
+
+function getBulanAktif(){
+
+    const sekarang =
+    new Date();
+
+    return{
+
+        bulan :
+
+        sekarang.getMonth() + 1,
+
+        tahun :
+
+        sekarang.getFullYear()
+
+    };
+
+}
+
+/* =====================================================
+   FILTER PERIODE
+===================================================== */
+
+function filterPeriode(data){
+
+    return data.filter(item=>{
+
+        if(!item.tanggal)
+
+            return false;
+
+        const tgl =
+        new Date(item.tanggal);
+
+        return(
+
+            tgl.getMonth()+1 ===
+            PERIODE.bulan &&
+
+            tgl.getFullYear() ===
+            PERIODE.tahun
+
+        );
+
+    });
+
+}
+
+/* =====================================================
+   DATA BULAN AKTIF
+===================================================== */
+
+function getSetoranPeriode(){
+
+    return filterPeriode(
+        DATA.setoran
+    );
+
+}
+
+function getPenjualanPeriode(){
+
+    return filterPeriode(
+        DATA.penjualan
+    );
+
+}
+
+function getOperasionalPeriode(){
+
+    return filterPeriode(
+        DATA.operasional
+    );
+
+}
+
+function getPenarikanPeriode(){
+
+    return filterPeriode(
+        DATA.penarikan
+    );
+
+}
+
+/* =====================================================
+   NAMA BULAN
+===================================================== */
+
+function namaBulan(bulan){
+
+    const daftar = [
+
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember"
+
+    ];
+
+    return daftar[bulan - 1];
+
+}
+

@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     await initLaporan();
 	
 	await initOperasional();
+	
+	await initKeuangan();
 		
     await initPengaturan();
 	

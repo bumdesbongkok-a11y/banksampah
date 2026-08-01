@@ -35,7 +35,13 @@ function tampilOperasional(){
 
 
 
-    if(DATA.operasional.length===0){
+    const dataOperasional =
+
+    getOperasionalPeriode();
+
+
+
+    if(dataOperasional.length === 0){
 
 
         tbody.innerHTML = `
@@ -62,12 +68,13 @@ function tampilOperasional(){
 
 
 
-    DATA.operasional.forEach(item=>{
+    dataOperasional.forEach(item=>{
 
 
         tbody.innerHTML += `
 
         <tr>
+
 
             <td>
 
@@ -111,6 +118,7 @@ function tampilOperasional(){
                 </button>
 
 
+
                 <button
 
                 class="btn"
@@ -152,7 +160,7 @@ function updateDashboardOperasional(){
 
     const total =
 
-    DATA.operasional.reduce(
+getOperasionalPeriode().reduce(
 
         (jumlah,item)=>{
 

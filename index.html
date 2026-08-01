@@ -74,13 +74,47 @@
 
 </header>
 
-<!-- ================================
+<!-- =====================================================
      DASHBOARD
-================================= -->
+===================================================== -->
 
 <div
 id="dashboardHome"
 class="dashboard">
+
+    <div class="card">
+
+        <h2>
+
+            📊 Dashboard Bank Sampah
+
+        </h2>
+
+        <p
+        id="lblPeriodeDashboard">
+
+            Periode :
+            -
+
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         AKTIVITAS BULAN INI
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            📈 Aktivitas Bulan Ini
+
+        </h3>
+
+    </div>
 
     <div class="card dashboardCard">
 
@@ -88,11 +122,7 @@ class="dashboard">
 
         <p>Total Anggota</p>
 
-        <span id="dashAnggota">
-
-            0
-
-        </span>
+        <span id="dashAnggota">0</span>
 
     </div>
 
@@ -102,11 +132,7 @@ class="dashboard">
 
         <p>Total Setoran</p>
 
-        <span id="dashSetoran">
-
-            Rp0
-
-        </span>
+        <span id="dashSetoran">Rp0</span>
 
     </div>
 
@@ -116,39 +142,43 @@ class="dashboard">
 
         <p>Total Penjualan</p>
 
-        <span id="dashPenjualan">
-
-            Rp0
-
-        </span>
+        <span id="dashPenjualan">Rp0</span>
 
     </div>
-	
-	<div class="card dashboardCard">
 
-    <h3>💸</h3>
+    <div class="card dashboardCard">
 
-    <p>Operasional</p>
+        <h3>💸</h3>
 
-    <span id="dashOperasional">
+        <p>Operasional</p>
 
-        Rp0
+        <span id="dashOperasional">Rp0</span>
 
-    </span>
-
-</div>
+    </div>
 
     <div class="card dashboardCard">
 
         <h3>📈</h3>
 
-        <p>Total Laba</p>
+        <p>Laba Bersih</p>
 
-        <span id="dashLaba">
+        <span id="dashLaba">Rp0</span>
 
-            Rp0
+    </div>
 
-        </span>
+
+
+    <!-- =====================================================
+         POSISI KEUANGAN
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            💰 Posisi Keuangan
+
+        </h3>
 
     </div>
 
@@ -158,11 +188,7 @@ class="dashboard">
 
         <p>Saldo Anggota</p>
 
-        <span id="dashSaldo">
-
-            Rp0
-
-        </span>
+        <span id="dashSaldo">Rp0</span>
 
     </div>
 
@@ -172,41 +198,29 @@ class="dashboard">
 
         <p>Kas Bank Sampah</p>
 
-        <span id="dashKas">
-
-            Rp0
-
-        </span>
+        <span id="dashKas">Rp0</span>
 
     </div>
-	
-	<div class="card dashboardCard">
 
-    <h3>🏢</h3>
+    <div class="card dashboardCard">
 
-    <p>Hak BUMDes</p>
+        <h3>🏢</h3>
 
-    <span id="dashBUMDes">
+        <p>Hak BUMDes</p>
 
-        Rp0
+        <span id="dashBUMDes">Rp0</span>
 
-    </span>
+    </div>
 
-</div>
+    <div class="card dashboardCard">
 
-<div class="card dashboardCard">
+        <h3>👷</h3>
 
-    <h3>👷</h3>
+        <p>Hak Collecting</p>
 
-    <p>Hak Collecting</p>
+        <span id="dashCollecting">Rp0</span>
 
-    <span id="dashCollecting">
-
-        Rp0
-
-    </span>
-
-</div>
+    </div>
 
 </div>
 
@@ -282,7 +296,19 @@ class="dashboard">
                 <span>
                     Laporan
                 </span>
+</button>
 
+<button id="btnKeuangan">
+
+    💰
+
+    <span>
+
+        Keuangan
+
+    </span>
+
+</button>
             
 
             <button id="btnPengaturan">
@@ -293,6 +319,7 @@ class="dashboard">
                 </span>
 
             </button>
+			
 			
 			
 
@@ -2135,7 +2162,34 @@ disabled>
 
     </div>
 
+<div class="filter-box">
 
+    <label>
+        Bulan
+    </label>
+
+    <select id="opFilterBulan">
+
+        <option value="">
+            Pilih Bulan
+        </option>
+
+    </select>
+
+
+    <label>
+        Tahun
+    </label>
+
+    <select id="opFilterTahun">
+
+        <option value="">
+            Pilih Tahun
+        </option>
+
+    </select>
+
+</div>
 
     <!-- =====================================================
          DATA OPERASIONAL
@@ -2180,7 +2234,998 @@ disabled>
 
 </section>
 
+<!-- =====================================================
+     KEUANGAN
+===================================================== -->
 
+<section
+id="halKeuangan"
+class="halaman">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>💰 Keuangan</h2>
+
+            <p>
+
+                Kelola laporan dan
+                perhitungan keuangan
+                Bank Sampah.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MENU KEUANGAN
+    ====================================================== -->
+
+    <div class="menuGrid">
+
+        <button
+        id="btnRingkasanKeuangan"
+        class="menuCard">
+
+            📈
+
+            <span>
+
+                Ringkasan
+                Keuangan
+
+            </span>
+
+        </button>
+
+
+
+        <button
+        id="btnLabaRugi"
+        class="menuCard">
+
+            📊
+
+            <span>
+
+                Laba
+                Rugi
+
+            </span>
+
+        </button>
+
+
+
+        <button
+        id="btnPembagianLaba"
+        class="menuCard">
+
+            🤝
+
+            <span>
+
+                Pembagian
+                Laba
+
+            </span>
+
+        </button>
+
+
+
+        <button
+        id="btnTutupBuku"
+        class="menuCard">
+
+            📒
+
+            <span>
+
+                Tutup
+                Buku
+
+            </span>
+
+        </button>
+		
+		<button
+id="btnRiwayatKeuangan">
+
+    📚
+    <span>
+        Riwayat Keuangan
+    </span>
+
+</button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     RINGKASAN KEUANGAN
+===================================================== -->
+
+<section
+id="halRingkasanKeuangan"
+class="halaman">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="bukaHalaman('halKeuangan')">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>
+
+                📈 Ringkasan Keuangan
+
+            </h2>
+
+            <p>
+
+                Ringkasan keuangan bulan berjalan.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BULAN AKTIF
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Periode
+
+        </h3>
+
+        <h2
+        id="lblPeriodeKeuangan">
+
+            Agustus 2026
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOTAL SETORAN
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Total Setoran
+
+        </h3>
+
+        <h2
+        id="lblTotalSetoran">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOTAL PENJUALAN
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Total Penjualan
+
+        </h3>
+
+        <h2
+        id="lblTotalPenjualan">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOTAL OPERASIONAL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Total Operasional
+
+        </h3>
+
+        <h2
+        id="lblTotalOperasional">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LABA
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Laba Bersih
+
+        </h3>
+
+        <h2
+        id="lblLabaBersih">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PEMBAGIAN LABA
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Hak BUMDES
+
+        </h3>
+
+        <h2
+        id="lblHakBUMDES">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+
+            Hak Collecting
+
+        </h3>
+
+        <h2
+        id="lblHakCollecting">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+</section>
+
+<section
+id="halLabaRugi"
+class="halaman">
+
+<div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="bukaHalaman('halKeuangan')">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>
+
+            📊 Laporan Laba Rugi
+
+        </h2>
+
+        <p
+        id="lblPeriodeLabaRugi">
+
+            Periode
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+<table>
+
+<tr>
+
+<td>
+
+Penjualan Sampah
+
+</td>
+
+<td
+id="lrPenjualan">
+
+Rp0
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>
+
+Total Pendapatan
+
+</th>
+
+<th
+id="lrPendapatan">
+
+Rp0
+
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+Nilai Setoran Anggota
+
+</td>
+
+<td
+id="lrSetoran">
+
+Rp0
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+Operasional
+
+</td>
+
+<td
+id="lrOperasional">
+
+Rp0
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>
+
+Total Beban
+
+</th>
+
+<th
+id="lrBeban">
+
+Rp0
+
+</th>
+
+</tr>
+
+
+<tr>
+
+<th>
+
+LABA BERSIH
+
+</th>
+
+<th
+id="lrLaba">
+
+Rp0
+
+</th>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section
+id="halPembagianLaba"
+class="halaman">
+
+<div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="bukaHalaman('halKeuangan')">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>
+
+            🤝 Pembagian Laba
+
+        </h2>
+
+        <p
+        id="lblPeriodePembagian">
+
+            Periode
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<div class="card">
+
+<p>
+
+Laba Bersih
+
+</p>
+
+<h2
+id="pbLaba">
+
+Rp0
+
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<table>
+
+<tr>
+
+<td>
+
+Hak BUMDES (50%)
+
+</td>
+
+<td
+id="pbBUMDES">
+
+Rp0
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+
+Hak Collecting (50%)
+
+</td>
+
+<td
+id="pbCollecting">
+
+Rp0
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+
+<div class="card">
+
+<p>
+
+Pembagian laba dilakukan berdasarkan laba bersih setelah dikurangi seluruh biaya operasional.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     TUTUP BUKU
+===================================================== -->
+
+<section
+id="halTutupBuku"
+class="halaman">
+
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="bukaHalaman('halKeuangan')">
+
+            ⬅
+
+        </button>
+
+
+        <div>
+
+            <h2>
+                📒 Tutup Buku
+            </h2>
+
+            <p>
+                Simpan laporan keuangan periode aktif.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+            Periode
+        </h3>
+
+        <h2 id="tbPeriode">
+
+            -
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+            Laba Bersih
+        </h3>
+
+        <h2 id="tbLaba">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+            Hak BUMDES
+        </h3>
+
+        <h2 id="tbBUMDES">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+            Hak Collecting
+        </h3>
+
+        <h2 id="tbCollecting">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+<label for="cmbBulanTutup">
+
+    Bulan
+
+</label>
+
+<select
+id="cmbBulanTutup">
+
+    <option value="1">Januari</option>
+    <option value="2">Februari</option>
+    <option value="3">Maret</option>
+    <option value="4">April</option>
+    <option value="5">Mei</option>
+    <option value="6">Juni</option>
+    <option value="7">Juli</option>
+    <option value="8">Agustus</option>
+    <option value="9">September</option>
+    <option value="10">Oktober</option>
+    <option value="11">November</option>
+    <option value="12">Desember</option>
+
+</select>
+
+
+
+<label for="txtTahunTutup">
+
+    Tahun
+
+</label>
+
+<input
+type="number"
+id="txtTahunTutup">
+
+    <div class="buttonGroup">
+
+        <button
+        id="btnProsesTutupBuku"
+        class="btn">
+
+            📒 Proses Tutup Buku
+
+        </button>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <h3>
+            Riwayat Tutup Buku
+        </h3>
+
+
+        <table id="tblTutupBuku">
+
+            <thead>
+
+                <tr>
+
+                    <th>Periode</th>
+
+                    <th>Laba</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RIWAYAT KEUANGAN
+===================================================== -->
+
+<section
+id="halRiwayatKeuangan"
+class="halaman">
+
+<div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="bukaHalaman('halKeuangan')">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>
+            📚 Riwayat Keuangan
+        </h2>
+
+        <p>
+            Arsip laporan hasil tutup buku.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     FILTER
+===================================================== -->
+
+<div class="card">
+
+<h3>
+Filter Periode
+</h3>
+
+<label>
+Tahun
+</label>
+
+<select
+id="filterTahunKeuangan">
+
+<option value="">
+Semua Tahun
+</option>
+
+</select>
+
+<label>
+Bulan
+</label>
+
+<select
+id="filterBulanKeuangan">
+
+<option value="">
+Semua Bulan
+</option>
+
+<option value="1">Januari</option>
+<option value="2">Februari</option>
+<option value="3">Maret</option>
+<option value="4">April</option>
+<option value="5">Mei</option>
+<option value="6">Juni</option>
+<option value="7">Juli</option>
+<option value="8">Agustus</option>
+<option value="9">September</option>
+<option value="10">Oktober</option>
+<option value="11">November</option>
+<option value="12">Desember</option>
+
+</select>
+
+</div>
+
+<!-- =====================================================
+     TABEL RIWAYAT
+===================================================== -->
+
+<div class="card">
+
+<h3>
+Riwayat Tutup Buku
+</h3>
+
+<table
+id="tblArsipKeuangan">
+
+<thead>
+
+<tr>
+
+<th>Periode</th>
+<th>Laba</th>
+<th>Status</th>
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     DETAIL KEUANGAN
+===================================================== -->
+
+<section
+id="halDetailKeuangan"
+class="halaman">
+
+<div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="bukaHalaman('halRiwayatKeuangan')">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>
+            📄 Detail Keuangan
+        </h2>
+
+        <p>
+            Detail hasil tutup buku.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+<h3>
+Periode
+</h3>
+
+<h2 id="dtPeriode">
+-
+</h2>
+
+</div>
+
+<div class="card">
+
+<p>
+Total Penjualan
+</p>
+
+<h3 id="dtPenjualan">
+Rp0
+</h3>
+
+<p>
+Total Setoran
+</p>
+
+<h3 id="dtSetoran">
+Rp0
+</h3>
+
+<p>
+Total Operasional
+</p>
+
+<h3 id="dtOperasional">
+Rp0
+</h3>
+
+</div>
+
+<div class="card">
+
+<p>
+Laba Bersih
+</p>
+
+<h2 id="dtLaba">
+Rp0
+</h2>
+
+<p>
+Hak BUMDES
+</p>
+
+<h3 id="dtBUMDES">
+Rp0
+</h3>
+
+<p>
+Hak Collecting
+</p>
+
+<h3 id="dtCollecting">
+Rp0
+</h3>
+
+</div>
+
+</section>
 
  
 <!-- =====================================================
@@ -2460,6 +3505,10 @@ hidden>
 <script src="js/operasional.firebase.js"></script>
 <script src="js/operasional.ui.js"></script>
 <script src="js/operasional.js"></script>
+
+<script src="js/keuangan.firebase.js"></script>
+<script src="js/keuangan.ui.js"></script>
+<script src="js/keuangan.js"></script>
 
 <script src="js/pengaturan.js"></script>
 

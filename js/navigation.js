@@ -19,6 +19,13 @@ const HALAMAN = [
     "halPenarikan",
     "halLaporan",
 	"halOperasional",
+	"halKeuangan",
+	"halRingkasanKeuangan",
+    "halLabaRugi",
+    "halPembagianLaba",
+    "halTutupBuku",
+	"halRiwayatKeuangan",
+	"halDetailKeuangan",
     "halPengaturan"
 	
 
@@ -144,6 +151,13 @@ function eventNavigation(){
 .addEventListener("click",()=>{
 
     bukaHalaman("halPengaturan");
+
+});
+
+el("btnKeuangan")
+.addEventListener("click",()=>{
+
+    bukaHalaman("halKeuangan");
 
 });
 

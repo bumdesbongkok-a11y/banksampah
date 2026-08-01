@@ -132,8 +132,23 @@ function tampilPenjualan(){
 getValue("txtFilterTanggalJual");
 
 const dataFilter =
-
 DATA.penjualan.filter(item=>{
+
+    const tgl =
+
+    new Date(item.tanggal);
+
+    if(
+
+        tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+        tgl.getFullYear() !== PERIODE.tahun
+
+    ){
+
+        return false;
+
+    }
 
     if(
         tanggal &&
@@ -238,6 +253,7 @@ DATA.penjualan.filter(item=>{
 
 function updateDashboardPenjualan(data){
 
+
     setText(
 
         "dashTotalPenjualanTransaksi",
@@ -246,18 +262,23 @@ function updateDashboardPenjualan(data){
 
     );
 
+
+
     const totalPenjualan =
-data.reduce(
+
+    data.reduce(
 
         (jumlah,item)=>
 
-        jumlah+
+        jumlah +
 
-        Number(item.total||0),
+        Number(item.total || 0),
 
         0
 
     );
+
+
 
     setText(
 
@@ -269,61 +290,82 @@ data.reduce(
 
 
 
+
     const totalSetoran =
-    DATA.setoran.reduce(
+
+    getSetoranPeriode()
+
+    .reduce(
 
         (jumlah,item)=>
 
-        jumlah+
+        jumlah +
 
-        Number(item.total||0),
+        Number(item.total || 0),
 
         0
 
     );
-	
-	
-	setText(
-
-    "dashTotalSetoranPenjualan",
-
-    formatRupiah(totalSetoran)
-
-);
-	
-	const totalOperasional =
-DATA.operasional.reduce(
-
-    (jumlah,item)=>
-
-    jumlah +
-
-    Number(item.nominal||0),
-
-    0
-
-);
-
-setText(
-
-    "dashTotalOperasional",
-
-    formatRupiah(totalOperasional)
-
-);
 
 
-   let laba =
 
-totalPenjualan -
-totalSetoran -
-totalOperasional;
+    setText(
 
-if(laba < 0){
+        "dashTotalSetoranPenjualan",
 
-    laba = 0;
+        formatRupiah(totalSetoran)
 
-}
+    );
+
+
+
+
+
+    const totalOperasional =
+
+    getOperasionalPeriode()
+
+    .reduce(
+
+        (jumlah,item)=>
+
+        jumlah +
+
+        Number(item.nominal || 0),
+
+        0
+
+    );
+
+
+
+    setText(
+
+        "dashTotalOperasional",
+
+        formatRupiah(totalOperasional)
+
+    );
+
+
+
+
+
+    let laba =
+
+    totalPenjualan -
+
+    totalSetoran -
+
+    totalOperasional;
+
+
+
+    if(laba < 0){
+
+        laba = 0;
+
+    }
 
 
 
@@ -335,8 +377,8 @@ if(laba < 0){
 
     );
 
-}
 
+}
 
 
 /* =====================================================

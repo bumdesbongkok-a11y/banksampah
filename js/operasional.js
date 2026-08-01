@@ -36,17 +36,53 @@ async function initOperasional(){
     await loadOperasionalFirebase();
 
 
+setFilterOperasionalDefault();
 
-    tampilOperasional();
 
-	updateDashboard();
+tampilOperasional();
 
-    eventOperasional();
+updateDashboard();
+
+eventOperasional();
 
 
 }
 
+/* =====================================================
+   DEFAULT FILTER BULAN AKTIF
+===================================================== */
 
+function setFilterOperasionalDefault(){
+
+
+    const bulan =
+
+    el("opFilterBulan");
+
+
+    const tahun =
+
+    el("opFilterTahun");
+
+
+
+    if(bulan){
+
+        bulan.value =
+        PERIODE.bulan;
+
+    }
+
+
+    if(tahun){
+
+        tahun.value =
+        PERIODE.tahun;
+
+    }
+
+
+}
 
 
 
@@ -152,7 +188,37 @@ function eventOperasional(){
 
     }
 
+const filterBulan =
 
+el("opFilterBulan");
+
+
+if(filterBulan){
+
+
+    filterBulan.onchange =
+
+    tampilOperasional;
+
+
+}
+
+
+
+const filterTahun =
+
+el("opFilterTahun");
+
+
+if(filterTahun){
+
+
+    filterTahun.onchange =
+
+    tampilOperasional;
+
+
+}
 }
 
 
