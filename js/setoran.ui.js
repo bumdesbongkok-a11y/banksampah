@@ -426,27 +426,119 @@ function tampilSetoran(){
 
     tbody.innerHTML = "";
 
-    const tanggal =
-    getValue("txtFilterTanggal");
+    const tanggalAwal =
+getValue(
+    "txtFilterTanggalAwalSetoran"
+);
 
-    const rw =
-    getValue("cmbRWSetoran");
+const tanggalAkhir =
+getValue(
+    "txtFilterTanggalAkhirSetoran"
+);
 
-    const anggota =
-    getValue("cmbFilterAnggotaSetoran");
+const rw =
+getValue(
+    "cmbRWSetoran"
+);
+
+const anggota =
+getValue(
+    "cmbFilterAnggotaSetoran"
+);
 
     const dataFilter =
 DATA.setoran.filter(item=>{
 
-    const tgl =
-
-    new Date(item.tanggal);
+    /* ==========================================
+       FILTER TANGGAL
+    ========================================== */
 
     if(
 
-        tgl.getMonth() + 1 !== PERIODE.bulan ||
+        tanggalAwal ||
 
-        tgl.getFullYear() !== PERIODE.tahun
+        tanggalAkhir
+
+    ){
+
+        if(
+
+            tanggalAwal &&
+
+            item.tanggal < tanggalAwal
+
+        ){
+
+            return false;
+
+        }
+
+        if(
+
+            tanggalAkhir &&
+
+            item.tanggal > tanggalAkhir
+
+        ){
+
+            return false;
+
+        }
+
+    }
+
+    else{
+
+        const tgl =
+        new Date(item.tanggal);
+
+        if(
+
+            tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+            tgl.getFullYear() !== PERIODE.tahun
+
+        ){
+
+            return false;
+
+        }
+
+    }
+
+    /* ==========================================
+       FILTER RW
+    ========================================== */
+
+    if(rw){
+
+        if(
+
+            String(item.rw)
+            .replace("RW ","")
+            .trim() !==
+
+            String(rw)
+            .replace("RW ","")
+            .trim()
+
+        ){
+
+            return false;
+
+        }
+
+    }
+
+    /* ==========================================
+       FILTER ANGGOTA
+    ========================================== */
+
+    if(
+
+        anggota &&
+
+        item.idAnggota !== anggota
 
     ){
 
@@ -454,44 +546,9 @@ DATA.setoran.filter(item=>{
 
     }
 
-        if(
-            tanggal &&
-            item.tanggal !== tanggal
-        ){
+    return true;
 
-            return false;
-
-        }
-
-        if(rw){
-
-            if(
-                String(item.rw)
-                .replace("RW ","")
-                .trim() !==
-                String(rw)
-                .replace("RW ","")
-                .trim()
-            ){
-
-                return false;
-
-            }
-
-        }
-
-        if(
-            anggota &&
-            item.idAnggota !== anggota
-        ){
-
-            return false;
-
-        }
-
-        return true;
-
-    });
+});
 
     if(dataFilter.length===0){
 
@@ -624,7 +681,37 @@ function updateDashboardSetoran(data){
 }
 
 
+/* =====================================================
+   RESET FILTER
+===================================================== */
 
+function resetFilterSetoran(){
+
+    setValue(
+        "txtFilterTanggalAwalSetoran",
+        ""
+    );
+
+    setValue(
+        "txtFilterTanggalAkhirSetoran",
+        ""
+    );
+
+    setValue(
+        "cmbRWSetoran",
+        ""
+    );
+
+    isiDropdownFilterAnggotaSetoran();
+
+    setValue(
+        "cmbFilterAnggotaSetoran",
+        ""
+    );
+
+    tampilSetoran();
+
+}
 
 
 /* =====================================================

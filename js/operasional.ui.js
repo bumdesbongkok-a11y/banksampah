@@ -8,7 +8,92 @@
    - Tampilan modul operasional
 ===================================================== */
 
+/* =====================================================
+   FILTER OPERASIONAL
+===================================================== */
 
+function filterOperasional(){
+
+    const tanggalAwal =
+    getValue(
+        "txtFilterTanggalAwalOperasional"
+    );
+
+    const tanggalAkhir =
+    getValue(
+        "txtFilterTanggalAkhirOperasional"
+    );
+
+    return DATA.operasional.filter(item=>{
+
+        /* ============================================
+           FILTER TANGGAL
+        ============================================ */
+
+        if(
+
+            tanggalAwal ||
+
+            tanggalAkhir
+
+        ){
+
+            if(
+
+                tanggalAwal &&
+
+                item.tanggal < tanggalAwal
+
+            ){
+
+                return false;
+
+            }
+
+            if(
+
+                tanggalAkhir &&
+
+                item.tanggal > tanggalAkhir
+
+            ){
+
+                return false;
+
+            }
+
+        }
+
+        /* ============================================
+           JIKA FILTER KOSONG
+           GUNAKAN PERIODE AKTIF
+        ============================================ */
+
+        else{
+
+            const tgl =
+
+            new Date(item.tanggal);
+
+            if(
+
+                tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+                tgl.getFullYear() !== PERIODE.tahun
+
+            ){
+
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    });
+
+}
 
 /* =====================================================
    TAMPIL OPERASIONAL
@@ -37,7 +122,7 @@ function tampilOperasional(){
 
     const dataOperasional =
 
-    getOperasionalPeriode();
+filterOperasional();
 
 
 
@@ -59,7 +144,7 @@ function tampilOperasional(){
         `;
 
 
-        updateDashboardOperasional();
+        updateDashboardOperasional([]);
 
         return;
 
@@ -142,25 +227,24 @@ function tampilOperasional(){
 
 
 
-    updateDashboardOperasional();
+    updateDashboardOperasional(
+    dataOperasional
+);
 
 
 }
-
-
-
 
 
 /* =====================================================
    DASHBOARD
 ===================================================== */
 
-function updateDashboardOperasional(){
+function updateDashboardOperasional(data){
 
 
     const total =
 
-getOperasionalPeriode().reduce(
+data.reduce(
 
         (jumlah,item)=>{
 
@@ -194,7 +278,25 @@ getOperasionalPeriode().reduce(
 }
 
 
+/* =====================================================
+   RESET FILTER
+===================================================== */
 
+function resetFilterOperasional(){
+
+    setValue(
+        "txtFilterTanggalAwalOperasional",
+        ""
+    );
+
+    setValue(
+        "txtFilterTanggalAkhirOperasional",
+        ""
+    );
+
+    tampilOperasional();
+
+}
 
 
 /* =====================================================

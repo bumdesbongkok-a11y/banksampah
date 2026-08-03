@@ -1053,15 +1053,25 @@ readonly>
 
     </h3>
 
-    <label for="txtFilterTanggal">
+    <label for="txtFilterTanggalAwalSetoran">
 
-        Tanggal
+    Dari Tanggal
 
-    </label>
+</label>
 
-    <input
-    type="date"
-    id="txtFilterTanggal">
+<input
+type="date"
+id="txtFilterTanggalAwalSetoran">
+
+<label for="txtFilterTanggalAkhirSetoran">
+
+    Sampai Tanggal
+
+</label>
+
+<input
+type="date"
+id="txtFilterTanggalAkhirSetoran">
 
     <label for="cmbRWSetoran">
 
@@ -1084,6 +1094,26 @@ readonly>
     id="cmbFilterAnggotaSetoran">
 
     </select>
+	
+	<div class="buttonGroup">
+
+    <button
+    id="btnFilterSetoran"
+    class="btn">
+
+        🔍 Filter
+
+    </button>
+
+    <button
+    id="btnResetFilterSetoran"
+    class="btn">
+
+        🔄 Reset
+
+    </button>
+
+</div>
 
 </div>
 
@@ -1213,10 +1243,6 @@ class="halaman">
         </label>
 
         <select id="cmbJenisBarangJual"></select>
-
-        </select>
-
-
 
         <label for="txtBeratJual">
 
@@ -1369,25 +1395,59 @@ class="halaman">
     </div>
 
 
-
     <!-- =====================================================
-         FILTER
-    ====================================================== -->
+     FILTER
+===================================================== -->
 
-    <div class="card">
+<div class="card">
 
-        <h3>
+    <h3>
 
-            Filter
+        Filter
 
-        </h3>
+    </h3>
 
-        <input
-        type="date"
-        id="txtFilterTanggalJual">
+    <label for="txtFilterTanggalAwalJual">
+
+        Dari Tanggal
+
+    </label>
+
+    <input
+    type="date"
+    id="txtFilterTanggalAwalJual">
+
+    <label for="txtFilterTanggalAkhirJual">
+
+        Sampai Tanggal
+
+    </label>
+
+    <input
+    type="date"
+    id="txtFilterTanggalAkhirJual">
+
+    <div class="buttonGroup">
+
+        <button
+        id="btnFilterJual"
+        class="btn">
+
+            🔍 Filter
+
+        </button>
+
+        <button
+        id="btnResetFilterJual"
+        class="btn">
+
+            🔄 Reset
+
+        </button>
 
     </div>
 
+</div>
 
 
     <!-- =====================================================
@@ -1654,15 +1714,25 @@ class="halaman">
 
         </h3>
 
-        <label for="txtFilterTarik">
+        <label for="txtFilterTanggalAwalTarik">
 
-            Tanggal
+    Dari Tanggal
 
-        </label>
+</label>
 
-        <input
-        type="date"
-        id="txtFilterTarik">
+<input
+type="date"
+id="txtFilterTanggalAwalTarik">
+
+<label for="txtFilterTanggalAkhirTarik">
+
+    Sampai Tanggal
+
+</label>
+
+<input
+type="date"
+id="txtFilterTanggalAkhirTarik">
 
         <label for="cmbRWFilterTarik">
 
@@ -1691,6 +1761,26 @@ class="halaman">
             </option>
 
         </select>
+
+<div class="buttonGroup">
+
+    <button
+    id="btnFilterTarik"
+    class="btn">
+
+        🔍 Filter
+
+    </button>
+
+    <button
+    id="btnResetFilterTarik"
+    class="btn">
+
+        🔄 Reset
+
+    </button>
+
+</div>
 
     </div>
 
@@ -1736,225 +1826,6 @@ class="halaman">
     </div>
 
 </section>
-
-
-
-    <!-- =====================================================
-         LAPORAN
-    ====================================================== -->
-
-    <section
-id="halLaporan"
-class="halaman">
-
-    <!-- =====================================================
-         JUDUL
-    ====================================================== -->
-
-    <div class="pageHeader">
-
-    <button
-    class="btnBack"
-    onclick="kembaliMenu()">
-
-        ⬅
-
-    </button>
-
-    <div>
-
-        <h2>📊 Laporan</h2>
-
-        <p>Laporan transaksi dan rekapitulasi.</p>
-
-    </div>
-
-</div>
-
-
-
-    <!-- =====================================================
-         FILTER
-    ====================================================== -->
-
-    <div class="card">
-
-        <h3>
-
-            Filter Laporan
-
-        </h3>
-
-
-
-        <label for="lapTanggalAwal">
-
-    Periode Awal
-
-</label>
-
-<input
-type="date"
-id="lapTanggalAwal">
-
-
-
-<label for="lapTanggalAkhir">
-
-    Periode Akhir
-
-</label>
-
-<input
-type="date"
-id="lapTanggalAkhir">
-
-
-
-        <label for="lapRW">
-
-            RW
-
-        </label>
-
-        <select
-        id="lapRW">
-
-        </select>
-
-
-
-        <label for="lapAnggota">
-
-            Anggota
-
-        </label>
-
-        <select
-        id="lapAnggota">
-
-        </select>
-
-<label for="cmbJenisLaporan">
-
-    Jenis Laporan
-
-</label>
-
-<select
-id="cmbJenisLaporan">
-
-    <option value="setoran">
-
-        Setoran
-
-    </option>
-
-    <option value="penjualan">
-
-        Penjualan
-
-    </option>
-
-    <option value="penarikan">
-
-        Penarikan
-
-    </option>
-
-    <option value="saldo">
-
-        Saldo Anggota
-
-    </option>
-
-    <option value="rw">
-
-        Rekap RW
-
-    </option>
-
-</select>
-
-    </div>
-	
-    <!-- =====================================================
-         TOMBOL
-    ====================================================== -->
-
-    <div class="card">
-
-        <div class="buttonGroup">
-		
-			<button
-id="btnTampilLaporan"
-class="btn">
-
-    🔍 Tampilkan
-
-</button>
-
-            <button
-            id="btnResetLaporan"
-            class="btn">
-
-                🔄 Reset
-
-            </button>
-
-            <button
-            id="btnExcelLaporan"
-            class="btn">
-
-                📄 Excel
-
-            </button>
-
-            <button
-id="btnSalinLaporan"
-class="btn">
-
-    📋 Salin
-
-</button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         TABEL
-    ====================================================== -->
-
-    <div class="card">
-
-        <h3>
-
-            Hasil Laporan
-
-        </h3>
-
-        <table
-        id="tblLaporan">
-
-            <thead>
-
-                
-
-            </thead>
-
-            <tbody>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</section>
-
 
 <!-- =====================================================
      OPERASIONAL
@@ -2162,32 +2033,57 @@ disabled>
 
     </div>
 
-<div class="filter-box">
+<!-- =====================================================
+     FILTER
+===================================================== -->
 
-    <label>
-        Bulan
+<div class="card">
+
+    <h3>
+
+        Filter
+
+    </h3>
+
+    <label for="txtFilterTanggalAwalOperasional">
+
+        Dari Tanggal
+
     </label>
 
-    <select id="opFilterBulan">
+    <input
+    type="date"
+    id="txtFilterTanggalAwalOperasional">
 
-        <option value="">
-            Pilih Bulan
-        </option>
+    <label for="txtFilterTanggalAkhirOperasional">
 
-    </select>
+        Sampai Tanggal
 
-
-    <label>
-        Tahun
     </label>
 
-    <select id="opFilterTahun">
+    <input
+    type="date"
+    id="txtFilterTanggalAkhirOperasional">
 
-        <option value="">
-            Pilih Tahun
-        </option>
+    <div class="buttonGroup">
 
-    </select>
+        <button
+        id="btnFilterOperasional"
+        class="btn">
+
+            🔍 Filter
+
+        </button>
+
+        <button
+        id="btnResetFilterOperasional"
+        class="btn">
+
+            🔄 Reset
+
+        </button>
+
+    </div>
 
 </div>
 
@@ -2229,6 +2125,224 @@ disabled>
             </tbody>
 
         </table>
+
+    </div>
+
+</section>
+
+    <!-- =====================================================
+         LAPORAN
+    ====================================================== -->
+
+    <section
+id="halLaporan"
+class="halaman">
+
+    <!-- =====================================================
+         JUDUL
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+    <button
+    class="btnBack"
+    onclick="kembaliMenu()">
+
+        ⬅
+
+    </button>
+
+    <div>
+
+        <h2>📊 Laporan</h2>
+
+        <p>Laporan transaksi dan rekapitulasi.</p>
+
+    </div>
+
+</div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Filter Laporan
+
+        </h3>
+
+
+
+        <label for="lapTanggalAwal">
+
+    Periode Awal
+
+</label>
+
+<input
+type="date"
+id="lapTanggalAwal">
+
+
+
+<label for="lapTanggalAkhir">
+
+    Periode Akhir
+
+</label>
+
+<input
+type="date"
+id="lapTanggalAkhir">
+
+
+
+        <label for="lapRW">
+
+            RW
+
+        </label>
+
+        <select
+        id="lapRW">
+
+        </select>
+
+
+
+        <label for="lapAnggota">
+
+            Anggota
+
+        </label>
+
+        <select
+        id="lapAnggota">
+
+        </select>
+
+<label for="cmbJenisLaporan">
+
+    Jenis Laporan
+
+</label>
+
+<select
+id="cmbJenisLaporan">
+
+    <option value="setoran">
+
+        Setoran
+
+    </option>
+
+    <option value="penjualan">
+
+        Penjualan
+
+    </option>
+
+    <option value="penarikan">
+
+        Penarikan
+
+    </option>
+
+    <option value="saldo">
+
+        Saldo Anggota
+
+    </option>
+
+    <option value="rw">
+
+        Rekap RW
+
+    </option>
+
+</select>
+
+    </div>
+	
+    <!-- =====================================================
+         TOMBOL
+    ====================================================== -->
+
+    <div class="card">
+
+        <div class="buttonGroup">
+		
+			<button
+id="btnTampilLaporan"
+class="btn">
+
+    🔍 Tampilkan
+
+</button>
+
+            <button
+            id="btnResetLaporan"
+            class="btn">
+
+                🔄 Reset
+
+            </button>
+
+            <button
+            id="btnExcelLaporan"
+            class="btn">
+
+                📄 Excel
+
+            </button>
+
+            <button
+id="btnSalinLaporan"
+class="btn">
+
+    📋 Salin
+
+</button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABEL
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Hasil Laporan
+
+        </h3>
+
+        <div class="table-scroll">
+
+    <table
+    id="tblLaporan">
+
+        <thead>
+            
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+</div>
 
     </div>
 

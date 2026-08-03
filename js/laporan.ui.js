@@ -1,250 +1,162 @@
 /* =====================================================
-   RESET FILTER
+   BANK SAMPAH SUMBER REJEKI V3
+
+   File : laporan.ui.js
+
+   BAGIAN 1
+   - FILTER LAPORAN
+   - HEADER SETORAN
+   - TAMPIL SETORAN
 ===================================================== */
 
-function resetFilterLaporan(){
-
-    setValue(
-
-        "lapTanggalAwal",
-
-        ""
-
-    );
-
-    setValue(
-
-        "lapTanggalAkhir",
-
-        ""
-
-    );
-
-    setValue(
-
-        "lapRW",
-
-        ""
-
-    );
-
-    setValue(
-
-        "lapAnggota",
-
-        ""
-
-    );
-
-    setValue(
-
-        "cmbJenisLaporan",
-
-        "setoran"
-
-    );
-
-}
 
 /* =====================================================
-   DROPDOWN ANGGOTA LAPORAN
+   FILTER DATA TRANSAKSI
 ===================================================== */
 
-function isiDropdownLaporanAnggota(){
+function filterLaporan(data){
 
-    const select =
 
-    el("lapAnggota");
+    const tglAwal =
+    getValue(
+        "lapTanggalAwal"
+    );
 
-    if(!select) return;
 
-    select.innerHTML =
+    const tglAkhir =
+    getValue(
+        "lapTanggalAkhir"
+    );
 
-    `
-
-    <option value="">
-
-        Semua Anggota
-
-    </option>
-
-    `;
 
     const rw =
+    getValue(
+        "lapRW"
+    );
 
-    getValue("lapRW");
 
-    DATA.anggota
+    const anggotaFilter =
+    getValue(
+        "lapAnggota"
+    );
 
-    .filter(item=>{
 
-        if(!rw){
+
+    return data.filter(item=>{
+
+
+        // ============================
+        // FILTER TANGGAL
+        // ============================
+
+        if(
+            tglAwal &&
+            item.tanggal < tglAwal
+        ){
 
             return false;
 
         }
 
-        return String(item.rw)
-            .replace("RW ","")
-            .trim() ===
-            String(rw)
-            .replace("RW ","")
-            .trim();
-
-    })
-
-    .sort((a,b)=>
-
-        a.nama.localeCompare(b.nama)
-
-    )
-
-    .forEach(item=>{
-
-        select.innerHTML +=
-
-        `
-
-        <option value="${item.firestoreId}">
-
-            ${item.nama}
-
-        </option>
-
-        `;
-
-    });
-
-}
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-function filterLaporan(data){
-
-    const tglAwal =
-    getValue("lapTanggalAwal");
-
-    const tglAkhir =
-    getValue("lapTanggalAkhir");
-
-    const rw =
-    getValue("lapRW");
-
-    const anggota =
-    getValue("lapAnggota");
-
-    return data.filter(item=>{
 
         if(
-
-            tglAwal &&
-
-            item.tanggal < tglAwal
-
-        ) return false;
-
-        if(
-
             tglAkhir &&
-
             item.tanggal > tglAkhir
+        ){
 
-        ) return false;
+            return false;
+
+        }
+
+
+
+        // ============================
+        // FILTER RW
+        // ============================
 
         if(rw){
 
-    const anggota =
 
-    getAnggota(
+            const anggota =
 
-        item.idAnggota
+            getAnggota(
+                item.idAnggota
+            );
 
-    );
 
-    if(!anggota){
+            if(!anggota){
 
-        return false;
+                return false;
 
-    }
+            }
 
-    if(
 
-        String(anggota.rw)
-        .replace("RW ","")
-        .trim() !==
 
-        String(rw)
-        .replace("RW ","")
-        .trim()
+            const rwData =
 
-    ){
+            String(
+                anggota.rw
+            )
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim();
 
-        return false;
 
-    }
 
-}
+            const rwFilter =
+
+            String(
+                rw
+            )
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim();
+
+
+
+            if(
+                rwData !== rwFilter
+            ){
+
+                return false;
+
+            }
+
+
+        }
+
+
+
+        // ============================
+        // FILTER ANGGOTA
+        // ============================
 
         if(
+            anggotaFilter &&
+            item.idAnggota !== anggotaFilter
+        ){
 
-            anggota &&
+            return false;
 
-            item.idAnggota !== anggota
+        }
 
-        ) return false;
+
 
         return true;
 
+
     });
 
-}
-
-/* =====================================================
-   TAMPIL LAPORAN
-===================================================== */
-
-function tampilLaporan(){
-
-    const jenis =
-    getValue("cmbJenisLaporan");
-
-    switch(jenis){
-
-        case "setoran":
-
-            tampilLaporanSetoran();
-
-            break;
-
-        case "penjualan":
-
-            tampilLaporanPenjualan();
-
-            break;
-
-        case "penarikan":
-
-            tampilLaporanPenarikan();
-
-            break;
-
-        case "saldo":
-
-            tampilLaporanSaldo();
-
-            break;
-
-        case "rw":
-
-            tampilLaporanRW();
-
-            break;
-
-    }
 
 }
+
+
+
+
 
 /* =====================================================
    HEADER SETORAN
@@ -252,13 +164,18 @@ function tampilLaporan(){
 
 function headerLaporanSetoran(){
 
+
     const thead =
 
     document.querySelector(
-
         "#tblLaporan thead"
-
     );
+
+
+    if(!thead)
+    return;
+
+
 
     thead.innerHTML =
 
@@ -284,7 +201,12 @@ function headerLaporanSetoran(){
     </tr>
     `;
 
+
 }
+
+
+
+
 
 /* =====================================================
    LAPORAN SETORAN
@@ -292,117 +214,142 @@ function headerLaporanSetoran(){
 
 function tampilLaporanSetoran(){
 
+
     headerLaporanSetoran();
+
+
 
     const tbody =
 
     document.querySelector(
-
         "#tblLaporan tbody"
-
     );
 
-    tbody.innerHTML="";
+
+    if(!tbody)
+    return;
+
+
+
+    tbody.innerHTML = "";
+
+
 
     const data =
 
     filterLaporan(
-
         DATA.setoran
-
     );
+
+
 
     if(data.length===0){
 
-        tbody.innerHTML=
+
+        tbody.innerHTML =
 
         `
         <tr>
 
-        <td colspan="8">
+            <td colspan="8">
 
-        Tidak ada data.
+                Tidak ada data.
 
-        </td>
+            </td>
 
         </tr>
         `;
+
 
         return;
 
     }
 
+
+
+
+
     data.forEach(item=>{
-		
-		const anggota =
 
-getAnggota(
 
-    item.idAnggota
+        const anggota =
 
-);
+        getAnggota(
+            item.idAnggota
+        );
+
+
 
         tbody.innerHTML +=
+
 
         `
         <tr>
 
-        <td>${item.tanggal}</td>
+            <td>
+                ${item.tanggal || ""}
+            </td>
 
-        <td>
 
-${
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.rw
+                    :
+                    "-"
+                }
+            </td>
 
-anggota ?
 
-anggota.rw :
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.idAnggota
+                    :
+                    "-"
+                }
+            </td>
 
-"-"
 
-}
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.nama
+                    :
+                    "-"
+                }
+            </td>
 
-</td>
 
-        <td>
+            <td>
+                ${item.jenisBarang || ""}
+            </td>
 
-${
 
-anggota ?
+            <td>
+                ${item.berat || 0}
+            </td>
 
-anggota.idAnggota :
 
-"-"
+            <td>
+                ${formatRupiah(item.harga)}
+            </td>
 
-}
 
-</td>
+            <td>
+                ${formatRupiah(item.total)}
+            </td>
 
-        <td>
-
-${
-
-anggota ?
-
-anggota.nama :
-
-"-"
-
-}
-
-</td>
-
-        <td>${item.jenisBarang}</td>
-
-        <td>${item.berat}</td>
-
-        <td>${formatRupiah(item.harga)}</td>
-
-        <td>${formatRupiah(item.total)}</td>
 
         </tr>
         `;
 
+
     });
+
 
 }
 
@@ -412,10 +359,18 @@ anggota.nama :
 
 function headerLaporanPenjualan(){
 
+
     const thead =
+
     document.querySelector(
         "#tblLaporan thead"
     );
+
+
+    if(!thead)
+    return;
+
+
 
     thead.innerHTML =
 
@@ -435,7 +390,12 @@ function headerLaporanPenjualan(){
     </tr>
     `;
 
+
 }
+
+
+
+
 
 /* =====================================================
    LAPORAN PENJUALAN
@@ -443,63 +403,108 @@ function headerLaporanPenjualan(){
 
 function tampilLaporanPenjualan(){
 
+
     headerLaporanPenjualan();
 
+
+
     const tbody =
+
     document.querySelector(
         "#tblLaporan tbody"
     );
 
-    tbody.innerHTML="";
+
+    if(!tbody)
+    return;
+
+
+
+    tbody.innerHTML = "";
+
+
 
     const data =
+
     filterLaporan(
         DATA.penjualan
     );
 
+
+
     if(data.length===0){
 
-        tbody.innerHTML=
+
+        tbody.innerHTML =
 
         `
         <tr>
 
-        <td colspan="5">
+            <td colspan="5">
 
-        Tidak ada data.
+                Tidak ada data.
 
-        </td>
+            </td>
 
         </tr>
         `;
+
 
         return;
 
     }
 
+
+
+
+
     data.forEach(item=>{
 
+
         tbody.innerHTML +=
+
 
         `
         <tr>
 
-        <td>${item.tanggal}</td>
+            <td>
+                ${item.tanggal || ""}
+            </td>
 
-        <td>${item.jenisBarang}</td>
 
-        <td>${item.berat}</td>
+            <td>
+                ${item.jenisBarang || ""}
+            </td>
 
-        <td>${formatRupiah(item.harga)}</td>
 
-        <td>${formatRupiah(item.total)}</td>
+            <td>
+                ${item.berat || 0}
+            </td>
+
+
+            <td>
+                ${formatRupiah(item.harga)}
+            </td>
+
+
+            <td>
+                ${formatRupiah(item.total)}
+            </td>
+
 
         </tr>
         `;
 
+
     });
 
+
 }
+
+
+
+
+
 
 /* =====================================================
    HEADER PENARIKAN
@@ -507,10 +512,18 @@ function tampilLaporanPenjualan(){
 
 function headerLaporanPenarikan(){
 
+
     const thead =
+
     document.querySelector(
         "#tblLaporan thead"
     );
+
+
+    if(!thead)
+    return;
+
+
 
     thead.innerHTML =
 
@@ -530,7 +543,12 @@ function headerLaporanPenarikan(){
     </tr>
     `;
 
+
 }
+
+
+
+
 
 /* =====================================================
    LAPORAN PENARIKAN
@@ -538,21 +556,37 @@ function headerLaporanPenarikan(){
 
 function tampilLaporanPenarikan(){
 
+
     headerLaporanPenarikan();
 
+
+
     const tbody =
+
     document.querySelector(
         "#tblLaporan tbody"
     );
 
+
+    if(!tbody)
+    return;
+
+
+
     tbody.innerHTML = "";
 
+
+
     const data =
+
     filterLaporan(
         DATA.penarikan
     );
 
+
+
     if(data.length===0){
+
 
         tbody.innerHTML =
 
@@ -568,36 +602,81 @@ function tampilLaporanPenarikan(){
         </tr>
         `;
 
+
         return;
 
     }
 
+
+
+
+
     data.forEach(item=>{
 
+
         const anggota =
+
         getAnggota(
             item.idAnggota
         );
 
+
+
         tbody.innerHTML +=
+
 
         `
         <tr>
 
-            <td>${item.tanggal}</td>
+            <td>
+                ${item.tanggal || ""}
+            </td>
 
-            <td>${anggota ? anggota.rw : "-"}</td>
 
-            <td>${anggota ? anggota.idAnggota : "-"}</td>
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.rw
+                    :
+                    "-"
+                }
+            </td>
 
-            <td>${anggota ? anggota.nama : "-"}</td>
 
-            <td>${formatRupiah(item.nominal)}</td>
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.idAnggota
+                    :
+                    "-"
+                }
+            </td>
+
+
+            <td>
+                ${
+                    anggota
+                    ?
+                    anggota.nama
+                    :
+                    "-"
+                }
+            </td>
+
+
+            <td>
+                ${formatRupiah(item.nominal)}
+            </td>
+
 
         </tr>
         `;
 
+
     });
+
 
 }
 
@@ -607,10 +686,18 @@ function tampilLaporanPenarikan(){
 
 function headerLaporanSaldo(){
 
+
     const thead =
+
     document.querySelector(
         "#tblLaporan thead"
     );
+
+
+    if(!thead)
+    return;
+
+
 
     thead.innerHTML =
 
@@ -632,55 +719,117 @@ function headerLaporanSaldo(){
     </tr>
     `;
 
+
 }
+
+
+
+
 
 /* =====================================================
    LAPORAN SALDO ANGGOTA
+   HISTORI SEMUA WAKTU
 ===================================================== */
 
 function tampilLaporanSaldo(){
 
+
     headerLaporanSaldo();
 
+
+
     const tbody =
+
     document.querySelector(
         "#tblLaporan tbody"
     );
 
+
+    if(!tbody)
+    return;
+
+
+
     tbody.innerHTML = "";
 
+
+
     let data =
-DATA.anggota;
 
-const rw =
-getValue("lapRW");
+    DATA.anggota;
 
-const anggota =
-getValue("lapAnggota");
 
-if(rw){
 
-    data =
-    data.filter(item=>
+    const rw =
 
-        item.rw === rw
-
+    getValue(
+        "lapRW"
     );
 
-}
 
-if(anggota){
 
-    data =
-    data.filter(item=>
+    const anggotaFilter =
 
-        item.firestoreId === anggota
-
+    getValue(
+        "lapAnggota"
     );
 
-}
+
+
+    if(rw){
+
+
+        data =
+
+        data.filter(item=>{
+
+
+            return String(item.rw)
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim()
+
+            ===
+
+            String(rw)
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim();
+
+
+        });
+
+
+    }
+
+
+
+
+    if(anggotaFilter){
+
+
+        data =
+
+        data.filter(item=>
+
+            item.firestoreId ===
+            anggotaFilter
+
+        );
+
+
+    }
+
+
+
+
 
     if(data.length===0){
+
 
         tbody.innerHTML =
 
@@ -696,83 +845,168 @@ if(anggota){
         </tr>
         `;
 
+
         return;
 
     }
 
+
+
+
+
     data.forEach(item=>{
 
+
         const totalSetoran =
+
         hitungTotalSetoranAnggota(
             item.firestoreId
         );
 
+
+
         const totalPenarikan =
+
         hitungTotalPenarikanAnggota(
             item.firestoreId
         );
 
+
+
         const saldo =
+
         totalSetoran -
         totalPenarikan;
 
+
+
         tbody.innerHTML +=
+
 
         `
         <tr>
 
-            <td>${item.rw}</td>
+            <td>
+                ${item.rw}
+            </td>
 
-            <td>${item.idAnggota}</td>
 
-            <td>${item.nama}</td>
+            <td>
+                ${item.idAnggota}
+            </td>
 
-            <td>${formatRupiah(totalSetoran)}</td>
 
-            <td>${formatRupiah(totalPenarikan)}</td>
+            <td>
+                ${item.nama}
+            </td>
 
-            <td>${formatRupiah(saldo)}</td>
+
+            <td>
+                ${formatRupiah(totalSetoran)}
+            </td>
+
+
+            <td>
+                ${formatRupiah(totalPenarikan)}
+            </td>
+
+
+            <td>
+                ${formatRupiah(saldo)}
+            </td>
+
 
         </tr>
         `;
 
+
     });
 
+
 }
+
+
+
+
+
+/* =====================================================
+   HITUNG TOTAL SETORAN ANGGOTA
+===================================================== */
 
 function hitungTotalSetoranAnggota(
     firestoreId
 ){
 
+
     return DATA.setoran
-    .filter(item =>
+
+    .filter(item=>
+
         item.idAnggota ===
         firestoreId
+
     )
+
     .reduce(
+
         (total,item)=>
-        total + item.total,
+
+        total +
+
+        Number(
+            item.total || 0
+        ),
+
         0
+
     );
 
+
 }
+
+
+
+
+
+/* =====================================================
+   HITUNG TOTAL PENARIKAN ANGGOTA
+===================================================== */
 
 function hitungTotalPenarikanAnggota(
     firestoreId
 ){
 
+
     return DATA.penarikan
-    .filter(item =>
+
+    .filter(item=>
+
         item.idAnggota ===
         firestoreId
+
     )
+
     .reduce(
+
         (total,item)=>
-        total + item.nominal,
+
+        total +
+
+        Number(
+            item.nominal || 0
+        ),
+
         0
+
     );
 
+
 }
+
+
+
+
+
 
 /* =====================================================
    HEADER REKAP RW
@@ -780,10 +1014,18 @@ function hitungTotalPenarikanAnggota(
 
 function headerLaporanRW(){
 
+
     const thead =
+
     document.querySelector(
         "#tblLaporan thead"
     );
+
+
+    if(!thead)
+    return;
+
+
 
     thead.innerHTML =
 
@@ -803,62 +1045,105 @@ function headerLaporanRW(){
     </tr>
     `;
 
+
 }
+
+
+
+
 
 /* =====================================================
    LAPORAN REKAP RW
+   HISTORI SEMUA WAKTU
 ===================================================== */
 
 function tampilLaporanRW(){
 
+
     headerLaporanRW();
 
+
+
     const tbody =
+
     document.querySelector(
         "#tblLaporan tbody"
     );
 
+
+    if(!tbody)
+    return;
+
+
+
     tbody.innerHTML = "";
 
-    const daftarRW = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5"
-];
 
-    let grandAnggota = 0;
-    let grandSetoran = 0;
-    let grandPenarikan = 0;
-    let grandSaldo = 0;
+
+    const daftarRW = [
+
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+
+    ];
+
+
+
+    let totalAnggota = 0;
+
+    let totalSetoran = 0;
+
+    let totalPenarikan = 0;
+
+    let totalSaldo = 0;
+
+
+
+
 
     daftarRW.forEach(rw=>{
 
+
         const anggotaRW =
-DATA.anggota.filter(item=>{
 
-    return String(item.rw)
-    .replace("RW ","")
-    .trim() ===
-    String(rw)
-    .replace("RW ","")
-    .trim();
+        DATA.anggota.filter(item=>{
 
-});
 
-        const jumlahAnggota =
-        anggotaRW.length;
+            return String(item.rw)
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim()
+
+            ===
+
+            rw;
+
+
+        });
+
+
+
 
         const idAnggota =
+
         anggotaRW.map(item=>
 
             item.firestoreId
 
         );
 
-        const totalSetoran =
+
+
+
+        const setoran =
+
         DATA.setoran
+
         .filter(item=>
 
             idAnggota.includes(
@@ -866,16 +1151,28 @@ DATA.anggota.filter(item=>{
             )
 
         )
-        .reduce(
-            (t,item)=>
 
-            t + item.total,
+        .reduce(
+
+            (total,item)=>
+
+            total +
+
+            Number(
+                item.total || 0
+            ),
 
             0
+
         );
 
-        const totalPenarikan =
+
+
+
+        const penarikan =
+
         DATA.penarikan
+
         .filter(item=>
 
             idAnggota.includes(
@@ -883,59 +1180,116 @@ DATA.anggota.filter(item=>{
             )
 
         )
-        .reduce(
-            (t,item)=>
 
-            t + item.nominal,
+        .reduce(
+
+            (total,item)=>
+
+            total +
+
+            Number(
+                item.nominal || 0
+            ),
 
             0
+
         );
+
+
+
 
         const saldo =
-        totalSetoran -
-        totalPenarikan;
 
-        grandAnggota += jumlahAnggota;
-        grandSetoran += totalSetoran;
-        grandPenarikan += totalPenarikan;
-        grandSaldo += saldo;
+        setoran -
+        penarikan;
+
+
+
+        totalAnggota +=
+        anggotaRW.length;
+
+
+        totalSetoran +=
+        setoran;
+
+
+        totalPenarikan +=
+        penarikan;
+
+
+        totalSaldo +=
+        saldo;
+
+
+
 
         tbody.innerHTML +=
+
 
         `
         <tr>
 
-            <td>RW ${rw}</td>
+            <td>
+                RW ${rw}
+            </td>
 
-            <td>${jumlahAnggota}</td>
 
-            <td>${formatRupiah(totalSetoran)}</td>
+            <td>
+                ${anggotaRW.length}
+            </td>
 
-            <td>${formatRupiah(totalPenarikan)}</td>
 
-            <td>${formatRupiah(saldo)}</td>
+            <td>
+                ${formatRupiah(setoran)}
+            </td>
+
+
+            <td>
+                ${formatRupiah(penarikan)}
+            </td>
+
+
+            <td>
+                ${formatRupiah(saldo)}
+            </td>
+
 
         </tr>
         `;
 
+
     });
 
+
+
+
+
     tbody.innerHTML +=
+
 
     `
     <tr>
 
         <th>Total</th>
 
-        <th>${grandAnggota}</th>
+        <th>
+            ${totalAnggota}
+        </th>
 
-        <th>${formatRupiah(grandSetoran)}</th>
+        <th>
+            ${formatRupiah(totalSetoran)}
+        </th>
 
-        <th>${formatRupiah(grandPenarikan)}</th>
+        <th>
+            ${formatRupiah(totalPenarikan)}
+        </th>
 
-        <th>${formatRupiah(grandSaldo)}</th>
+        <th>
+            ${formatRupiah(totalSaldo)}
+        </th>
 
     </tr>
     `;
 
-}	
+
+}

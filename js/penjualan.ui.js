@@ -128,34 +128,78 @@ function tampilPenjualan(){
 
     tbody.innerHTML="";
 	
-	const tanggal =
-getValue("txtFilterTanggalJual");
+	const tanggalAwal =
+getValue(
+    "txtFilterTanggalAwalJual"
+);
+
+const tanggalAkhir =
+getValue(
+    "txtFilterTanggalAkhirJual"
+);
 
 const dataFilter =
 DATA.penjualan.filter(item=>{
 
-    const tgl =
-
-    new Date(item.tanggal);
+    /* ==========================================
+       JIKA FILTER TANGGAL DIGUNAKAN
+    ========================================== */
 
     if(
 
-        tgl.getMonth() + 1 !== PERIODE.bulan ||
+        tanggalAwal ||
 
-        tgl.getFullYear() !== PERIODE.tahun
+        tanggalAkhir
 
     ){
 
-        return false;
+        if(
+
+            tanggalAwal &&
+
+            item.tanggal < tanggalAwal
+
+        ){
+
+            return false;
+
+        }
+
+        if(
+
+            tanggalAkhir &&
+
+            item.tanggal > tanggalAkhir
+
+        ){
+
+            return false;
+
+        }
 
     }
 
-    if(
-        tanggal &&
-        item.tanggal !== tanggal
-    ){
+    /* ==========================================
+       JIKA FILTER KOSONG
+       GUNAKAN PERIODE AKTIF
+    ========================================== */
 
-        return false;
+    else{
+
+        const tgl =
+        new Date(item.tanggal);
+
+        if(
+
+            tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+            tgl.getFullYear() !== PERIODE.tahun
+
+        ){
+
+            return false;
+
+        }
 
     }
 
@@ -380,6 +424,25 @@ function updateDashboardPenjualan(data){
 
 }
 
+/* =====================================================
+   RESET FILTER
+===================================================== */
+
+function resetFilterPenjualan(){
+
+    setValue(
+        "txtFilterTanggalAwalJual",
+        ""
+    );
+
+    setValue(
+        "txtFilterTanggalAkhirJual",
+        ""
+    );
+
+    tampilPenjualan();
+
+}
 
 /* =====================================================
    RESET FORM

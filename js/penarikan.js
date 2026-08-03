@@ -105,56 +105,20 @@ function eventPenarikan(){
 
 
 
-    el("txtFilterTarik")
-    .addEventListener(
-        "change",
-        tampilPenarikan
-    );
+    /* =====================================================
+   FILTER
+===================================================== */
 
+el("btnFilterTarik")
+.onclick = tampilPenarikan;
 
-
-    el("cmbRWFilterTarik")
-    .addEventListener(
-        "change",
-        tampilPenarikan
-    );
-
-
-
-    el("cmbFilterAnggotaTarik")
-    .addEventListener(
-        "change",
-        tampilPenarikan
-    );
-
-el("cmbRWTarik")
-.addEventListener(
-    "change",
-    isiDropdownAnggotaTarik
-);
+el("btnResetFilterTarik")
+.onclick = resetFilterPenarikan;
 
 el("cmbRWFilterTarik")
 .addEventListener(
     "change",
-    ()=>{
-
-        isiDropdownFilterAnggotaTarik();
-
-        tampilPenarikan();
-
-    }
-);
-
-el("cmbFilterAnggotaTarik")
-.addEventListener(
-    "change",
-    tampilPenarikan
-);
-
-el("txtFilterTarik")
-.addEventListener(
-    "change",
-    tampilPenarikan
+    isiDropdownFilterAnggotaTarik
 );
 
 }

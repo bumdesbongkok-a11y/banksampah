@@ -1,4 +1,128 @@
 /* =====================================================
+   TABEL PENARIKAN
+===================================================== */
+
+function tampilPenarikan(){
+
+    const tbody =
+
+    document.querySelector(
+
+        "#tblPenarikan tbody"
+
+    );
+
+    if(!tbody) return;
+
+    tbody.innerHTML = "";
+
+    const data =
+
+    filterPenarikan();
+
+    if(data.length===0){
+
+        tbody.innerHTML=
+
+        `
+
+        <tr>
+
+        <td colspan="4">
+
+        Belum ada data
+
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+    data.forEach((item,index)=>{
+
+        tbody.innerHTML +=
+
+        `
+
+        <tr>
+
+        <td>${item.tanggal}</td>
+
+        <td>${item.nama}</td>
+
+        <td>${formatRupiah(item.nominal)}</td>
+
+        <td>
+
+    <button
+
+    class="btn"
+
+    onclick="editPenarikan('${item.firestoreId}')">
+
+        ✏️
+
+    </button>
+
+    <button
+
+    class="btn"
+
+    onclick="hapusPenarikan('${item.firestoreId}')">
+
+        🗑️
+
+    </button>
+
+</td>
+
+        </tr>
+
+        `;
+
+    });
+
+    tampilDashboardPenarikan();
+
+}
+
+
+/* =====================================================
+   RESET FILTER
+===================================================== */
+
+function resetFilterPenarikan(){
+
+    setValue(
+        "txtFilterTanggalAwalTarik",
+        ""
+    );
+
+    setValue(
+        "txtFilterTanggalAkhirTarik",
+        ""
+    );
+
+    setValue(
+        "cmbRWFilterTarik",
+        ""
+    );
+
+    isiDropdownFilterAnggotaTarik();
+
+    setValue(
+        "cmbFilterAnggotaTarik",
+        ""
+    );
+
+    tampilPenarikan();
+
+}
+
+
+/* =====================================================
    RESET FORM
 ===================================================== */
 
@@ -234,49 +358,89 @@ function tampilSaldoTarik(){
 
 function filterPenarikan(){
 
-    const tanggal =
-    getValue("txtFilterTarik");
+    const tanggalAwal =
+getValue(
+    "txtFilterTanggalAwalTarik"
+);
 
-    const rw =
-    getValue("cmbRWFilterTarik");
+const tanggalAkhir =
+getValue(
+    "txtFilterTanggalAkhirTarik"
+);
 
-    const anggota =
-    getValue("cmbFilterAnggotaTarik");
+const rw =
+getValue(
+    "cmbRWFilterTarik"
+);
+
+const anggota =
+getValue(
+    "cmbFilterAnggotaTarik"
+);
 
     return DATA.penarikan.filter(item=>{
 
-        // =====================================================
-        // FILTER BULAN AKTIF
-        // =====================================================
+        /* =====================================================
+   FILTER TANGGAL
+===================================================== */
 
-        const tgl =
+if(
 
-        new Date(item.tanggal);
+    tanggalAwal ||
 
-        if(
+    tanggalAkhir
 
-            tgl.getMonth() + 1 !== PERIODE.bulan ||
+){
 
-            tgl.getFullYear() !== PERIODE.tahun
+    if(
 
-        ){
+        tanggalAwal &&
 
-            return false;
+        item.tanggal < tanggalAwal
 
-        }
+    ){
 
-        // =====================================================
-        // FILTER TANGGAL
-        // =====================================================
+        return false;
 
-        if(
-            tanggal &&
-            item.tanggal !== tanggal
-        ){
+    }
 
-            return false;
+    if(
 
-        }
+        tanggalAkhir &&
+
+        item.tanggal > tanggalAkhir
+
+    ){
+
+        return false;
+
+    }
+
+}
+
+/* =====================================================
+   JIKA FILTER TANGGAL KOSONG
+   GUNAKAN PERIODE AKTIF
+===================================================== */
+
+else{
+
+    const tgl =
+    new Date(item.tanggal);
+
+    if(
+
+        tgl.getMonth() + 1 !== PERIODE.bulan ||
+
+        tgl.getFullYear() !== PERIODE.tahun
+
+    ){
+
+        return false;
+
+    }
+
+}
 
         // =====================================================
         // FILTER RW
@@ -375,92 +539,3 @@ function isiDropdownFilterAnggotaTarik(){
 
 }
 
-/* =====================================================
-   TABEL PENARIKAN
-===================================================== */
-
-function tampilPenarikan(){
-
-    const tbody =
-
-    document.querySelector(
-
-        "#tblPenarikan tbody"
-
-    );
-
-    if(!tbody) return;
-
-    tbody.innerHTML = "";
-
-    const data =
-
-    filterPenarikan();
-
-    if(data.length===0){
-
-        tbody.innerHTML=
-
-        `
-
-        <tr>
-
-        <td colspan="4">
-
-        Belum ada data
-
-        </td>
-
-        </tr>
-
-        `;
-
-    }
-
-    data.forEach((item,index)=>{
-
-        tbody.innerHTML +=
-
-        `
-
-        <tr>
-
-        <td>${item.tanggal}</td>
-
-        <td>${item.nama}</td>
-
-        <td>${formatRupiah(item.nominal)}</td>
-
-        <td>
-
-    <button
-
-    class="btn"
-
-    onclick="editPenarikan('${item.firestoreId}')">
-
-        ✏️
-
-    </button>
-
-    <button
-
-    class="btn"
-
-    onclick="hapusPenarikan('${item.firestoreId}')">
-
-        🗑️
-
-    </button>
-
-</td>
-
-        </tr>
-
-        `;
-
-    });
-
-    tampilDashboardPenarikan();
-
-}

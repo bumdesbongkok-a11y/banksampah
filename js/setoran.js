@@ -225,11 +225,11 @@ function eventSetoran(){
     isiDropdownFilterAnggotaSetoran
 );
 
-el("txtFilterTanggal")
-.addEventListener(
-    "change",
-    tampilSetoran
-);
+el("btnFilterSetoran")
+.onclick = tampilSetoran;
+
+el("btnResetFilterSetoran")
+.onclick = resetFilterSetoran;
 
 el("cmbRWSetoran")
 .addEventListener(
@@ -238,15 +238,7 @@ el("cmbRWSetoran")
 
         isiDropdownFilterAnggotaSetoran();
 
-        tampilSetoran();
-
     }
-);
-
-el("cmbFilterAnggotaSetoran")
-.addEventListener(
-    "change",
-    tampilSetoran
 );
 
 

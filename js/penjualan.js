@@ -85,11 +85,15 @@ function eventPenjualan(){
         );
 
     };
-el("txtFilterTanggalJual")
-.addEventListener(
-    "change",
-    tampilPenjualan
-);
+/* =====================================================
+   FILTER
+===================================================== */
+
+el("btnFilterJual")
+.onclick = tampilPenjualan;
+
+el("btnResetFilterJual")
+.onclick = resetFilterPenjualan;
 }
 
 
