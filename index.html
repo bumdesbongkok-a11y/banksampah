@@ -78,29 +78,17 @@
      DASHBOARD
 ===================================================== -->
 
-<div
-id="dashboardHome"
-class="dashboard">
+<div id="dashboardHome" class="dashboard">
 
     <div class="card">
 
-        <h2>
+        <h2>📊 Dashboard Bank Sampah</h2>
 
-            📊 Dashboard Bank Sampah
-
-        </h2>
-
-        <p
-        id="lblPeriodeDashboard">
-
-            Periode :
-            -
-
+        <p id="lblPeriodeDashboard">
+            Periode : -
         </p>
 
     </div>
-
-
 
     <!-- =====================================================
          AKTIVITAS BULAN INI
@@ -108,65 +96,38 @@ class="dashboard">
 
     <div class="card">
 
-        <h3>
+        <h3>📈 Aktivitas Bulan Ini</h3>
 
-            📈 Aktivitas Bulan Ini
+        <table class="dashboardTable">
 
-        </h3>
+            <tr>
+                <td>👥 Total Anggota</td>
+                <td id="dashAnggota" align="right">0</td>
+            </tr>
 
-    </div>
+            <tr>
+                <td>♻️ Total Setoran</td>
+                <td id="dashSetoran" align="right">Rp0</td>
+            </tr>
 
-    <div class="card dashboardCard">
+            <tr>
+                <td>💰 Total Penjualan</td>
+                <td id="dashPenjualan" align="right">Rp0</td>
+            </tr>
 
-        <h3>👥</h3>
+            <tr>
+                <td>💸 Operasional</td>
+                <td id="dashOperasional" align="right">Rp0</td>
+            </tr>
 
-        <p>Total Anggota</p>
+            <tr>
+                <td><b>📈 Laba Bersih</b></td>
+                <td id="dashLaba" align="right"><b>Rp0</b></td>
+            </tr>
 
-        <span id="dashAnggota">0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>♻️</h3>
-
-        <p>Total Setoran</p>
-
-        <span id="dashSetoran">Rp0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>💰</h3>
-
-        <p>Total Penjualan</p>
-
-        <span id="dashPenjualan">Rp0</span>
+        </table>
 
     </div>
-
-    <div class="card dashboardCard">
-
-        <h3>💸</h3>
-
-        <p>Operasional</p>
-
-        <span id="dashOperasional">Rp0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>📈</h3>
-
-        <p>Laba Bersih</p>
-
-        <span id="dashLaba">Rp0</span>
-
-    </div>
-
-
 
     <!-- =====================================================
          POSISI KEUANGAN
@@ -174,51 +135,31 @@ class="dashboard">
 
     <div class="card">
 
-        <h3>
+        <h3>💰 Posisi Keuangan</h3>
 
-            💰 Posisi Keuangan
+        <table class="dashboardTable">
 
-        </h3>
+            <tr>
+                <td>💳 Saldo Anggota</td>
+                <td id="dashSaldo" align="right">Rp0</td>
+            </tr>
 
-    </div>
+            <tr>
+                <td>🏦 Kas Bank Sampah</td>
+                <td id="dashKas" align="right">Rp0</td>
+            </tr>
 
-    <div class="card dashboardCard">
+            <tr>
+                <td>🏢 Hak BUMDes</td>
+                <td id="dashBUMDes" align="right">Rp0</td>
+            </tr>
 
-        <h3>💳</h3>
+            <tr>
+                <td>👷 Hak Collecting</td>
+                <td id="dashCollecting" align="right">Rp0</td>
+            </tr>
 
-        <p>Saldo Anggota</p>
-
-        <span id="dashSaldo">Rp0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>🏦</h3>
-
-        <p>Kas Bank Sampah</p>
-
-        <span id="dashKas">Rp0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>🏢</h3>
-
-        <p>Hak BUMDes</p>
-
-        <span id="dashBUMDes">Rp0</span>
-
-    </div>
-
-    <div class="card dashboardCard">
-
-        <h3>👷</h3>
-
-        <p>Hak Collecting</p>
-
-        <span id="dashCollecting">Rp0</span>
+        </table>
 
     </div>
 
