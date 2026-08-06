@@ -160,74 +160,51 @@ body{
 
 .dashboard{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:repeat(2,1fr);
+    flex-direction:column;
 
-    gap:10px;
-
-    padding:15px;
-
-}
-
-.dashboard>.card:first-child{
-
-    grid-column:1/-1;
-
-}
-
-.dashboard>.card:nth-child(2){
-
-    grid-column:1/-1;
-
-}
-
-.dashboard>.card:nth-child(8){
-
-    grid-column:1/-1;
-
-}
-
-.dashboardCard{
-
-    text-align:center;
+    gap:15px;
 
     padding:15px;
 
 }
 
-.dashboardCard h3{
+.dashboardTable{
 
-    margin:0;
+    width:100%;
 
-    font-size:28px;
+    border-collapse:collapse;
 
-}
-
-.dashboardCard p{
-
-    margin:8px 0 0;
-
-    font-size:14px;
+    margin-top:10px;
 
 }
 
-.dashboardCard span{
+.dashboardTable td{
 
-    display:block;
+    padding:10px 6px;
 
-    margin-top:8px;
+    border-bottom:1px solid #e0e0e0;
 
-    font-size:18px;
+    font-size:15px;
+
+}
+
+.dashboardTable tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+.dashboardTable td:last-child{
+
+    text-align:right;
 
     font-weight:bold;
 
     color:var(--primary);
 
 }
-
-
-
 /* =====================================================
    MENU
 ===================================================== */
