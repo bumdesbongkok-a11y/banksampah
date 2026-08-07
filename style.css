@@ -607,3 +607,119 @@ grid-template-columns:1fr 1fr;
     min-width:700px;
 
 }
+
+/* =====================================================
+TABEL TRANSAKSI - RINGKAS
+SETORAN / PENJUALAN / PENARIKAN / OPERASIONAL
+===================================================== */
+
+/* Bungkus tabel tetap bisa scroll kanan-kiri */
+
+.table-scroll{
+
+
+width:100%;
+
+overflow-x:auto;
+
+-webkit-overflow-scrolling:touch;
+
+
+}
+
+/* Semua tabel transaksi */
+
+#tblSetoran,
+#tblPenjualan,
+#tblPenarikan,
+#tblOperasional{
+
+
+min-width:600px;
+
+border-collapse:collapse;
+
+
+}
+
+/* Header */
+
+#tblSetoran th,
+#tblSetoran td,
+
+#tblPenjualan th,
+#tblPenjualan td,
+
+#tblPenarikan th,
+#tblPenarikan td,
+
+#tblOperasional th,
+#tblOperasional td{
+
+
+padding:6px 7px;
+
+font-size:12px;
+
+white-space:nowrap;
+
+
+}
+
+/* Header sedikit lebih tegas */
+
+#tblSetoran th,
+#tblPenjualan th,
+#tblPenarikan th,
+#tblOperasional th{
+
+
+font-size:12px;
+
+padding:7px 6px;
+
+
+}
+
+/* Tombol Edit / Hapus */
+
+#tblSetoran .btn,
+#tblPenjualan .btn,
+#tblPenarikan .btn,
+#tblOperasional .btn{
+
+
+width:auto;
+
+padding:4px 6px;
+
+margin:1px;
+
+font-size:12px;
+
+border-radius:6px;
+
+
+}
+
+/* Kolom aksi */
+
+#tblSetoran th:last-child,
+#tblSetoran td:last-child,
+
+#tblPenjualan th:last-child,
+#tblPenjualan td:last-child,
+
+#tblPenarikan th:last-child,
+#tblPenarikan td:last-child,
+
+#tblOperasional th:last-child,
+#tblOperasional td:last-child{
+
+
+text-align:center;
+
+white-space:nowrap;
+
+
+}
