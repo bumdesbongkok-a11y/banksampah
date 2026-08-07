@@ -111,18 +111,28 @@
             </tr>
 
             <tr>
-                <td>💰 Total Penjualan</td>
+                <td>🛒 Total Penjualan</td>
                 <td id="dashPenjualan" align="right">Rp0</td>
             </tr>
 
             <tr>
-                <td>💸 Operasional</td>
+                <td>🧾 Operasional</td>
                 <td id="dashOperasional" align="right">Rp0</td>
             </tr>
 
             <tr>
                 <td><b>📈 Laba Bersih</b></td>
                 <td id="dashLaba" align="right"><b>Rp0</b></td>
+            </tr>
+
+            <tr>
+                <td>🏢 Hak BUMDes</td>
+                <td id="dashBUMDes" align="right">Rp0</td>
+            </tr>
+
+            <tr>
+                <td>👷 Hak Collecting</td>
+                <td id="dashCollecting" align="right">Rp0</td>
             </tr>
 
         </table>
@@ -145,18 +155,8 @@
             </tr>
 
             <tr>
-                <td>🏦 Kas Bank Sampah</td>
+                <td>💵 Kas Bank Sampah</td>
                 <td id="dashKas" align="right">Rp0</td>
-            </tr>
-
-            <tr>
-                <td>🏢 Hak BUMDes</td>
-                <td id="dashBUMDes" align="right">Rp0</td>
-            </tr>
-
-            <tr>
-                <td>👷 Hak Collecting</td>
-                <td id="dashCollecting" align="right">Rp0</td>
             </tr>
 
         </table>
@@ -212,6 +212,13 @@
 
         🧾
         <span>Operasional</span>
+
+    </button>
+
+    <button id="btnKas">
+
+        💵
+        <span>Kas</span>
 
     </button>
 
@@ -1040,6 +1047,8 @@ id="txtFilterTanggalAkhirSetoran">
 
         </h3>
 
+<div class="table-scroll">
+
         <table id="tblSetoran">
 
             <thead>
@@ -1067,6 +1076,7 @@ id="txtFilterTanggalAkhirSetoran">
         </table>
 
     </div>
+	 </div>
 
 </section>
 
@@ -1370,6 +1380,8 @@ class="halaman">
             Riwayat Penjualan
 
         </h3>
+		
+		<div class="table-scroll">
 
         <table
         id="tblPenjualan">
@@ -1399,6 +1411,7 @@ class="halaman">
         </table>
 
     </div>
+	</div>
 
 </section>
 
@@ -1706,6 +1719,8 @@ id="txtFilterTanggalAkhirTarik">
             Riwayat Penarikan
 
         </h3>
+		
+		<div class="table-scroll">
 
         <table
         id="tblPenarikan">
@@ -1733,6 +1748,7 @@ id="txtFilterTanggalAkhirTarik">
         </table>
 
     </div>
+	</div>
 
 </section>
 
@@ -2007,6 +2023,8 @@ disabled>
             Riwayat Operasional
 
         </h3>
+		
+		<div class="table-scroll">
 
         <table
         id="tblOperasional">
@@ -2036,6 +2054,329 @@ disabled>
         </table>
 
     </div>
+	</div>
+
+</section>
+
+<!-- =====================================================
+     KAS BANK SAMPAH
+===================================================== -->
+
+<section
+id="halKas"
+class="halaman">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="pageHeader">
+
+        <button
+        class="btnBack"
+        onclick="kembaliMenu()">
+
+            ⬅
+
+        </button>
+
+        <div>
+
+            <h2>🏦 Kas Bank Sampah</h2>
+
+            <p>Input transaksi kas Bank Sampah.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SALDO KAS
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Saldo Kas
+
+        </h3>
+
+        <h2
+        id="totalKas">
+
+            Rp0
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM INPUT
+    ====================================================== -->
+
+    <div class="card">
+
+        <label for="txtTanggalKas">
+
+            Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtTanggalKas">
+
+
+
+        <label for="txtHariKas">
+
+            Hari
+
+        </label>
+
+        <input
+        type="text"
+        id="txtHariKas"
+        readonly>
+
+
+
+        <label for="cmbJenisKas">
+
+            Jenis Transaksi
+
+        </label>
+
+        <select
+        id="cmbJenisKas">
+
+            <option value="Masuk">
+
+                Kas Masuk
+
+            </option>
+
+            <option value="Keluar">
+
+                Kas Keluar
+
+            </option>
+
+        </select>
+
+
+
+        <label for="cmbKategoriKas">
+
+            Kategori
+
+        </label>
+
+        <select
+        id="cmbKategoriKas">
+
+            <option value="">
+
+                -- Pilih Kategori --
+
+            </option>
+
+            <option value="Modal">
+
+                Modal
+
+            </option>
+
+            <option value="Operasional">
+
+                Operasional
+
+            </option>
+
+            <option value="Peralatan">
+
+                Peralatan
+
+            </option>
+
+            <option value="Inventaris">
+
+                Inventaris
+
+            </option>
+
+            <option value="Lainnya">
+
+                Lainnya
+
+            </option>
+
+        </select>
+
+
+
+        <label for="txtUraianKas">
+
+            Uraian
+
+        </label>
+
+        <textarea
+        id="txtUraianKas"
+        rows="3"></textarea>
+
+
+
+        <label for="txtNominalKas">
+
+            Nominal
+
+        </label>
+
+        <input
+        type="number"
+        id="txtNominalKas"
+        placeholder="Masukkan nominal">
+
+
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnSimpanKas"
+            class="btn">
+
+                💾 Simpan
+
+            </button>
+
+            <button
+            id="btnUpdateKas"
+            class="btn"
+            disabled>
+
+                ✏ Update
+
+            </button>
+
+            <button
+            id="btnBatalKas"
+            class="btn"
+            disabled>
+
+                ✖ Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTER
+    ====================================================== -->
+
+    <div class="card">
+
+        <h3>
+
+            Filter
+
+        </h3>
+
+        <label for="txtFilterTanggalAwalKas">
+
+            Dari Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtFilterTanggalAwalKas">
+
+        <label for="txtFilterTanggalAkhirKas">
+
+            Sampai Tanggal
+
+        </label>
+
+        <input
+        type="date"
+        id="txtFilterTanggalAkhirKas">
+
+        <div class="buttonGroup">
+
+            <button
+            id="btnFilterKas"
+            class="btn">
+
+                🔍 Filter
+
+            </button>
+
+            <button
+            id="btnResetFilterKas"
+            class="btn">
+
+                🔄 Reset
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DATA KAS
+    ====================================================== -->
+
+   <div class="card">
+
+    <h3>
+
+        Riwayat Kas
+
+    </h3>
+
+    <div class="table-scroll">
+
+        <table id="tblKas">
+
+            <thead>
+
+                <tr>
+
+                    <th>Tanggal</th>
+                    <th>Jenis</th>
+                    <th>Kategori</th>
+                    <th>Uraian</th>
+                    <th>Masuk</th>
+                    <th>Keluar</th>
+                    <th>Saldo</th>
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 </section>
 
@@ -2899,49 +3240,40 @@ class="halaman">
 
     <div class="card">
 
-        <h3>
-            Laba Bersih
-        </h3>
+    <h3>
+        Ringkasan Tutup Buku
+    </h3>
 
-        <h2 id="tbLaba">
+    <table class="dashboardTable">
 
-            Rp0
+        <tr>
+            <td>📈 Laba Bersih</td>
+            <td id="tbLaba" align="right">Rp0</td>
+        </tr>
 
-        </h2>
+        <tr>
+            <td>🏢 Hak BUMDes</td>
+            <td id="tbBUMDES" align="right">Rp0</td>
+        </tr>
 
-    </div>
+        <tr>
+            <td>👷 Hak Collecting</td>
+            <td id="tbCollecting" align="right">Rp0</td>
+        </tr>
 
+        <tr>
+            <td>💳 Saldo Anggota</td>
+            <td id="tbSaldoAnggota" align="right">Rp0</td>
+        </tr>
 
+        <tr>
+            <td>🏦 Saldo Kas</td>
+            <td id="tbSaldoKas" align="right">Rp0</td>
+        </tr>
 
-    <div class="card">
+    </table>
 
-        <h3>
-            Hak BUMDES
-        </h3>
-
-        <h2 id="tbBUMDES">
-
-            Rp0
-
-        </h2>
-
-    </div>
-
-
-
-    <div class="card">
-
-        <h3>
-            Hak Collecting
-        </h3>
-
-        <h2 id="tbCollecting">
-
-            Rp0
-
-        </h2>
-
-    </div>
+</div>
 
 <label for="cmbBulanTutup">
 
@@ -3528,6 +3860,10 @@ hidden>
 <script src="js/operasional.firebase.js"></script>
 <script src="js/operasional.ui.js"></script>
 <script src="js/operasional.js"></script>
+
+<script src="js/kas.firebase.js"></script>
+<script src="js/kas.ui.js"></script>
+<script src="js/kas.js"></script>
 
 <script src="js/keuangan.firebase.js"></script>
 <script src="js/keuangan.ui.js"></script>

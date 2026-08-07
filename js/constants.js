@@ -101,6 +101,8 @@ const DATA = {
     penarikan: [],
 
     operasional: [],
+	
+	kas : [],
 
     tutupBuku: []
 

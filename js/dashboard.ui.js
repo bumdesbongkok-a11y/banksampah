@@ -32,9 +32,7 @@ setText(
 
     const saldoAnggota =
 
-    data.totalSetoran -
-
-    data.totalPenarikan;
+hitungSaldoAnggota();
 
 
 
@@ -120,15 +118,15 @@ setText(
 
     setText(
 
-        "dashKas",
+    "dashKas",
 
-        formatRupiah(
+    formatRupiah(
 
-            data.hakBUMDES
+        hitungSaldoKas()
 
-        )
+    )
 
-    );
+);
 
 
 

@@ -44,6 +44,46 @@ hitungKeuanganPeriode(
 
 );
 
+const tanggalTutup =
+
+tanggalTerakhirBulan(
+
+    data.bulan,
+
+    data.tahun
+
+);
+
+const tanggalKas =
+
+formatTanggalDatabase(
+
+    tanggalTutup
+
+);
+
+const hariKas =
+
+new Date(
+
+    tanggalKas
+
+)
+.toLocaleDateString(
+    "id-ID",
+    {
+        weekday : "long"
+    }
+);
+
+const saldoAnggota =
+
+hitungSaldoAnggota();
+
+const saldoKas =
+
+hitungSaldoKas();
+
 
     try{
 
@@ -133,17 +173,84 @@ hitungKeuanganPeriode(
 
             hakCollecting :
 
-            data.hakCollecting,
+data.hakCollecting,
 
+saldoAnggota :
 
-            tanggalTutup :
+saldoAnggota,
 
-            new Date()
-            .toISOString()
+saldoKas :
+
+saldoKas,
+
+tanggalTutup :
+
+new Date()
+.toISOString()
 
         });
+		
+		/* =====================================================
+   TAMBAH KAS OTOMATIS
+===================================================== */
 
+await db
+.collection(
 
+    COLLECTION.kas
+
+)
+.add({
+
+    tanggal :
+
+    tanggalKas,
+
+    hari :
+
+    hariKas,
+
+    jenis :
+
+    "Masuk",
+
+    kategori :
+
+    "Hak BUMDes",
+
+    uraian :
+
+    "Hak BUMDes " +
+
+    namaBulan(
+
+        data.bulan
+
+    ) +
+
+    " " +
+
+    data.tahun,
+
+    nominal :
+
+    data.hakBUMDES,
+
+    sumber :
+
+    "TUTUP_BUKU",
+
+    bulan :
+
+    data.bulan,
+
+    tahun :
+
+    data.tahun
+
+});
+
+await loadKasFirebase();
 
         alert(
 
@@ -156,6 +263,9 @@ hitungKeuanganPeriode(
 
 
     }
+	
+	
+	
     catch(error){
 
 

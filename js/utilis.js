@@ -432,3 +432,39 @@ function namaBulan(bulan){
 
 }
 
+/* =====================================================
+   TANGGAL TERAKHIR BULAN
+===================================================== */
+
+function tanggalTerakhirBulan(bulan,tahun){
+
+    return new Date(
+
+        tahun,
+
+        bulan,
+
+        0
+
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL DATABASE
+===================================================== */
+
+function formatTanggalDatabase(tanggal){
+
+    if(tanggal instanceof Date){
+
+        return tanggal
+        .toISOString()
+        .substring(0,10);
+
+    }
+
+    return String(tanggal);
+
+}

@@ -113,6 +113,50 @@ setText(
 }
 
 /* =====================================================
+   HITUNG SALDO ANGGOTA
+===================================================== */
+
+function hitungSaldoAnggota(){
+
+    const totalSetoran =
+
+    DATA.setoran.reduce(
+
+        (total,item)=>
+
+        total +
+
+        Number(item.total || 0),
+
+        0
+
+    );
+
+    const totalPenarikan =
+
+    DATA.penarikan.reduce(
+
+        (total,item)=>
+
+        total +
+
+        Number(item.nominal || 0),
+
+        0
+
+    );
+
+    return(
+
+        totalSetoran -
+
+        totalPenarikan
+
+    );
+
+}
+
+/* =====================================================
    HITUNG KEUANGAN
 ===================================================== */
 
@@ -453,38 +497,37 @@ function tampilTutupBuku(){
 
     const bulan =
 
-Number(
+    Number(
 
-    getValue(
+        getValue(
 
-        "cmbBulanTutup"
+            "cmbBulanTutup"
 
-    )
+        )
 
-);
+    );
 
-const tahun =
+    const tahun =
 
-Number(
+    Number(
 
-    getValue(
+        getValue(
 
-        "txtTahunTutup"
+            "txtTahunTutup"
 
-    )
+        )
 
-);
+    );
 
-const data =
+    const data =
 
-hitungKeuanganPeriode(
+    hitungKeuanganPeriode(
 
-    bulan,
+        bulan,
 
-    tahun
+        tahun
 
-);
-
+    );
 
     setText(
 
@@ -498,7 +541,6 @@ hitungKeuanganPeriode(
 
     );
 
-
     setText(
 
         "tbLaba",
@@ -508,7 +550,6 @@ hitungKeuanganPeriode(
         )
 
     );
-
 
     setText(
 
@@ -520,7 +561,6 @@ hitungKeuanganPeriode(
 
     );
 
-
     setText(
 
         "tbCollecting",
@@ -531,8 +571,47 @@ hitungKeuanganPeriode(
 
     );
 
-}	
+    /* ==========================================
+       TAMBAHAN BARU
+    ========================================== */
 
+    setText(
+
+    "tbSaldoAnggota",
+
+    formatRupiah(
+
+        hitungSaldoAnggotaPeriode(
+
+            bulan,
+
+            tahun
+
+        )
+
+    )
+
+);
+
+setText(
+
+    "tbSaldoKas",
+
+    formatRupiah(
+
+        hitungSaldoKasPeriode(
+
+            bulan,
+
+            tahun
+
+        )
+
+    )
+
+);
+
+}
 /* =====================================================
    TAMPIL TABEL TUTUP BUKU
 ===================================================== */
@@ -1150,7 +1229,181 @@ function hitungKeuangan(){
 
 }
 
+/* =====================================================
+   AMBIL SALDO AWAL
+===================================================== */
 
+function getSaldoAwal(){
+
+    if(!DATA.tutupBuku){
+
+        return{
+
+            saldoAnggota : 0,
+
+            saldoKas : 0
+
+        };
+
+    }
+
+    return{
+
+        saldoAnggota :
+
+        Number(
+
+            DATA.tutupBuku.saldoAnggota ||
+
+            0
+
+        ),
+
+        saldoKas :
+
+        Number(
+
+            DATA.tutupBuku.saldoKas ||
+
+            0
+
+        )
+
+    };
+
+}
+
+/* =====================================================
+   HITUNG SALDO ANGGOTA PERIODE
+===================================================== */
+
+function hitungSaldoAnggotaPeriode(bulan,tahun){
+
+    let saldo = 0;
+
+    DATA.setoran.forEach(item=>{
+
+        const tgl = new Date(item.tanggal);
+
+        const b = tgl.getMonth() + 1;
+
+        const th = tgl.getFullYear();
+
+        if(
+
+            th < tahun ||
+
+            (
+
+                th == tahun &&
+
+                b <= bulan
+
+            )
+
+        ){
+
+            saldo += Number(
+
+                item.total || 0
+
+            );
+
+        }
+
+    });
+
+    DATA.penarikan.forEach(item=>{
+
+        const tgl = new Date(item.tanggal);
+
+        const b = tgl.getMonth() + 1;
+
+        const th = tgl.getFullYear();
+
+        if(
+
+            th < tahun ||
+
+            (
+
+                th == tahun &&
+
+                b <= bulan
+
+            )
+
+        ){
+
+            saldo -= Number(
+
+                item.nominal || 0
+
+            );
+
+        }
+
+    });
+
+    return saldo;
+
+}
+
+/* =====================================================
+   HITUNG SALDO KAS PERIODE
+===================================================== */
+
+function hitungSaldoKasPeriode(bulan,tahun){
+
+    let saldo = 0;
+
+    DATA.kas.forEach(item=>{
+
+        const tgl = new Date(item.tanggal);
+
+        const b = tgl.getMonth() + 1;
+
+        const th = tgl.getFullYear();
+
+        if(
+
+            th < tahun ||
+
+            (
+
+                th == tahun &&
+
+                b <= bulan
+
+            )
+
+        ){
+
+            if(item.jenis == "Masuk"){
+
+                saldo += Number(
+
+                    item.nominal || 0
+
+                );
+
+            }else{
+
+                saldo -= Number(
+
+                    item.nominal || 0
+
+                );
+
+            }
+
+        }
+
+    });
+
+    return saldo;
+
+}
 
 
 

@@ -26,6 +26,7 @@ const HALAMAN = [
     "halTutupBuku",
 	"halRiwayatKeuangan",
 	"halDetailKeuangan",
+	"halKas",
     "halPengaturan"
 	
 
@@ -161,5 +162,11 @@ el("btnKeuangan")
 
 });
 
+el("btnKas")
+.addEventListener("click",()=>{
+
+    bukaHalaman("halKas");
+
+});
 
 }

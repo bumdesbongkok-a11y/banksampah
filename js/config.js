@@ -44,7 +44,9 @@ const COLLECTION = {
 
     penarikan : "colPenarikan",
 	
-	operasional : "colOperasional"
+	operasional : "colOperasional",
+	
+	 kas : "colKas"
 
 };
 /* =====================================================
