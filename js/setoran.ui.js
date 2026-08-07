@@ -412,42 +412,55 @@ function isiDropdownFilterAnggotaSetoran(){
 
 
 /* =====================================================
-   TAMPIL SETORAN
+TAMPIL SETORAN
+URUT : TANGGAL → NAMA
 ===================================================== */
 
 function tampilSetoran(){
 
-    const tbody =
-    document.querySelector(
-        "#tblSetoran tbody"
-    );
 
-    if(!tbody) return;
+const tbody =
+document.querySelector(
+    "#tblSetoran tbody"
+);
 
-    tbody.innerHTML = "";
+if(!tbody) return;
 
-    const tanggalAwal =
+tbody.innerHTML = "";
+
+
+const tanggalAwal =
 getValue(
     "txtFilterTanggalAwalSetoran"
 );
+
 
 const tanggalAkhir =
 getValue(
     "txtFilterTanggalAkhirSetoran"
 );
 
+
 const rw =
 getValue(
     "cmbRWSetoran"
 );
+
 
 const anggota =
 getValue(
     "cmbFilterAnggotaSetoran"
 );
 
-    const dataFilter =
+
+/* =================================================
+   FILTER DATA
+================================================= */
+
+let dataFilter =
+
 DATA.setoran.filter(item=>{
+
 
     /* ==========================================
        FILTER TANGGAL
@@ -473,6 +486,7 @@ DATA.setoran.filter(item=>{
 
         }
 
+
         if(
 
             tanggalAkhir &&
@@ -490,13 +504,18 @@ DATA.setoran.filter(item=>{
     else{
 
         const tgl =
-        new Date(item.tanggal);
+        new Date(
+            item.tanggal
+        );
+
 
         if(
 
-            tgl.getMonth() + 1 !== PERIODE.bulan ||
+            tgl.getMonth() + 1 !==
+            PERIODE.bulan ||
 
-            tgl.getFullYear() !== PERIODE.tahun
+            tgl.getFullYear() !==
+            PERIODE.tahun
 
         ){
 
@@ -505,6 +524,7 @@ DATA.setoran.filter(item=>{
         }
 
     }
+
 
     /* ==========================================
        FILTER RW
@@ -515,11 +535,19 @@ DATA.setoran.filter(item=>{
         if(
 
             String(item.rw)
-            .replace("RW ","")
-            .trim() !==
+            .replace(
+                "RW ",
+                ""
+            )
+            .trim()
+
+            !==
 
             String(rw)
-            .replace("RW ","")
+            .replace(
+                "RW ",
+                ""
+            )
             .trim()
 
         ){
@@ -530,6 +558,7 @@ DATA.setoran.filter(item=>{
 
     }
 
+
     /* ==========================================
        FILTER ANGGOTA
     ========================================== */
@@ -538,7 +567,8 @@ DATA.setoran.filter(item=>{
 
         anggota &&
 
-        item.idAnggota !== anggota
+        item.idAnggota !==
+        anggota
 
     ){
 
@@ -546,91 +576,211 @@ DATA.setoran.filter(item=>{
 
     }
 
+
     return true;
 
 });
 
-    if(dataFilter.length===0){
 
-        tbody.innerHTML = `
+/* =================================================
+   URUTKAN
+   1. TANGGAL
+   2. NAMA
+   3. BARANG
+================================================= */
 
-        <tr>
+dataFilter.sort((a,b)=>{
 
-            <td colspan="5">
 
-                Belum ada data setoran
+    const tanggalA =
+    String(
+        a.tanggal || ""
+    );
 
-            </td>
 
-        </tr>
+    const tanggalB =
+    String(
+        b.tanggal || ""
+    );
 
-        `;
 
-        updateDashboardSetoran([]);
+    /* ==========================================
+       URUT TANGGAL
+    ========================================== */
 
-        return;
+    if(
+        tanggalA !==
+        tanggalB
+    ){
+
+        return tanggalA.localeCompare(
+            tanggalB
+        );
 
     }
 
-    dataFilter.forEach(item=>{
 
-        tbody.innerHTML += `
+    /* ==========================================
+       URUT NAMA
+    ========================================== */
 
-        <tr>
+    const namaA =
+    String(
+        a.namaAnggota || ""
+    )
+    .trim()
+    .toLowerCase();
 
-            <td>
 
-                ${item.tanggal || ""}
+    const namaB =
+    String(
+        b.namaAnggota || ""
+    )
+    .trim()
+    .toLowerCase();
 
-            </td>
 
-            <td>
+    if(
+        namaA !==
+        namaB
+    ){
 
-                ${item.namaAnggota || ""}
+        return namaA.localeCompare(
+            namaB,
+            "id"
+        );
 
-            </td>
+    }
 
-            <td>
 
-                ${item.jenisBarang || ""}
+    /* ==========================================
+       URUT BARANG
+    ========================================== */
 
-            </td>
+    return String(
+        a.jenisBarang || ""
+    )
+    .localeCompare(
+        String(
+            b.jenisBarang || ""
+        ),
+        "id"
+    );
 
-            <td>
+});
 
-                ${formatRupiah(item.total)}
 
-            </td>
+/* =================================================
+   TIDAK ADA DATA
+================================================= */
 
-            <td>
+if(
+    dataFilter.length === 0
+){
 
-                <button
-                class="btn"
-                onclick="editSetoran('${item.firestoreId}')">
+    tbody.innerHTML = `
 
-                    ✏️
+    <tr>
 
-                </button>
+        <td colspan="5">
 
-                <button
-                class="btn"
-                onclick="hapusSetoran('${item.firestoreId}')">
+            Belum ada data setoran
 
-                    🗑️
+        </td>
 
-                </button>
+    </tr>
 
-            </td>
+    `;
 
-        </tr>
 
-        `;
+    updateDashboardSetoran(
+        []
+    );
 
-    });
-
-    updateDashboardSetoran(dataFilter);
+    return;
 
 }
+
+
+/* =================================================
+   TAMPIL DATA
+================================================= */
+
+dataFilter.forEach(item=>{
+
+    tbody.innerHTML += `
+
+    <tr>
+
+        <td>
+
+            ${item.tanggal || ""}
+
+        </td>
+
+
+        <td>
+
+            ${item.namaAnggota || ""}
+
+        </td>
+
+
+        <td>
+
+            ${item.jenisBarang || ""}
+
+        </td>
+
+
+        <td>
+
+            ${formatRupiah(
+                item.total
+            )}
+
+        </td>
+
+
+        <td>
+
+            <button
+            class="btn btnAksiTabel"
+            onclick="editSetoran(
+                '${item.firestoreId}'
+            )">
+
+                ✏️
+
+            </button>
+
+
+            <button
+            class="btn btnAksiTabel"
+            onclick="hapusSetoran(
+                '${item.firestoreId}'
+            )">
+
+                🗑️
+
+            </button>
+
+        </td>
+
+    </tr>
+
+    `;
+
+});
+
+
+updateDashboardSetoran(
+    dataFilter
+);
+
+
+}
+
 
 /* =====================================================
    DASHBOARD

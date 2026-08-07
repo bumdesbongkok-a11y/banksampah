@@ -512,12 +512,13 @@ XLSX.writeFile(
 
 /* =====================================================
 SALIN LAPORAN SETORAN
+KELOMPOK BERDASARKAN ANGGOTA
 ===================================================== */
 
 function salinLaporanSetoran(){
 
 
-const data =
+let data =
 
 filterLaporan(
     DATA.setoran
@@ -535,16 +536,48 @@ if(data.length === 0){
 }
 
 
-let teks =
+const tanggalAwal =
 
-    "LAPORAN SETORAN BANK SAMPAH\n" +
+getValue(
+    "lapTanggalAwal"
+) || "-";
 
-    "==============================\n\n";
+
+const tanggalAkhir =
+
+getValue(
+    "lapTanggalAkhir"
+) || "-";
 
 
-teks +=
+const rwFilter =
 
-    "Tanggal | RW | ID | Nama | Barang | Berat | Harga | Total\n";
+getValue(
+    "lapRW"
+);
+
+
+const rwTampil =
+
+rwFilter
+?
+(
+    String(rwFilter)
+    .startsWith("RW ")
+    ?
+    rwFilter
+    :
+    "RW " + rwFilter
+)
+:
+"Semua RW";
+
+
+/* =================================================
+   KELOMPOKKAN BERDASARKAN ANGGOTA
+================================================= */
+
+const kelompok = {};
 
 
 data.forEach(item=>{
@@ -556,61 +589,349 @@ data.forEach(item=>{
     );
 
 
-    const rw =
+    const idAnggota =
 
-    anggota
-    ?
-    anggota.rw
-    :
-    "-";
+    item.idAnggota ||
+    "tanpa-anggota";
 
 
-    const id =
+    if(!kelompok[idAnggota]){
 
-    anggota
-    ?
-    anggota.idAnggota
-    :
-    "-";
+        kelompok[idAnggota] = {
 
+            anggota :
 
-    const nama =
+            anggota,
 
-    anggota
-    ?
-    anggota.nama
-    :
-    "-";
+            data : []
+
+        };
+
+    }
 
 
-    teks +=
-
-        (item.tanggal || "") +
-        " | " +
-        rw +
-        " | " +
-        id +
-        " | " +
-        nama +
-        " | " +
-        (item.jenisBarang || "") +
-        " | " +
-        (item.berat || 0) +
-        " | " +
-        formatRupiah(item.harga) +
-        " | " +
-        formatRupiah(item.total) +
-        "\n";
+    kelompok[idAnggota]
+    .data
+    .push(item);
 
 });
 
 
-navigator.clipboard.writeText(teks)
+/* =================================================
+   URUTKAN NAMA ANGGOTA
+================================================= */
+
+const daftarAnggota =
+
+Object.values(
+    kelompok
+)
+.sort((a,b)=>{
+
+    const namaA =
+
+    a.anggota
+    ?
+    String(a.anggota.nama || "")
+    :
+    "";
+
+
+    const namaB =
+
+    b.anggota
+    ?
+    String(b.anggota.nama || "")
+    :
+    "";
+
+
+    return namaA.localeCompare(
+        namaB,
+        "id"
+    );
+
+});
+
+
+let teks = "";
+
+
+teks +=
+"BANK SAMPAH SUMBER REJEKI\n\n";
+
+
+teks +=
+"LAPORAN SETORAN\n\n";
+
+
+teks +=
+"Periode : " +
+
+tanggalAwal +
+
+" s/d " +
+
+tanggalAkhir +
+
+"\n";
+
+
+teks +=
+"RW      : " +
+
+rwTampil +
+
+"\n\n";
+
+
+teks +=
+"---\n\n";
+
+
+let totalTransaksi = 0;
+
+let totalBerat = 0;
+
+let totalNilai = 0;
+
+
+/* =================================================
+   TAMPILKAN PER ANGGOTA
+================================================= */
+
+daftarAnggota.forEach(
+    (kelompokAnggota,index)=>{
+
+
+    const anggota =
+
+    kelompokAnggota.anggota;
+
+
+    const transaksi =
+
+    kelompokAnggota.data;
+
+
+    /* =============================================
+       URUTKAN TRANSAKSI BERDASARKAN TANGGAL
+    ============================================= */
+
+    transaksi.sort((a,b)=>{
+
+        return String(
+            a.tanggal || ""
+        )
+        .localeCompare(
+            String(
+                b.tanggal || ""
+            )
+        );
+
+    });
+
+
+    let totalBeratAnggota = 0;
+
+    let totalNilaiAnggota = 0;
+
+
+    teks +=
+
+    (index + 1) +
+
+    ". " +
+
+    (
+        anggota
+        ?
+        anggota.nama
+        :
+        "-"
+    ) +
+
+    "\n\n";
+
+
+    /* =============================================
+       DATA TRANSAKSI ANGGOTA
+    ============================================= */
+
+    transaksi.forEach(item=>{
+
+
+        const berat =
+
+        Number(
+            item.berat || 0
+        );
+
+
+        const total =
+
+        Number(
+            item.total || 0
+        );
+
+
+        totalBeratAnggota +=
+        berat;
+
+
+        totalNilaiAnggota +=
+        total;
+
+
+        totalTransaksi++;
+
+
+        totalBerat +=
+        berat;
+
+
+        totalNilai +=
+        total;
+
+
+        teks +=
+
+        "   " +
+
+        (
+            item.tanggal ||
+            "-"
+        ) +
+
+        "\n";
+
+
+        teks +=
+
+        "   Barang : " +
+
+        (
+            item.jenisBarang ||
+            "-"
+        ) +
+
+        "\n";
+
+
+        teks +=
+
+        "   Berat  : " +
+
+        berat +
+
+        " Kg\n";
+
+
+        teks +=
+
+        "   Total  : " +
+
+        formatRupiah(
+            total
+        ) +
+
+        "\n\n";
+
+    });
+
+
+    /* =============================================
+       TOTAL PER ANGGOTA
+    ============================================= */
+
+    teks +=
+
+    "   Total Berat : " +
+
+    totalBeratAnggota +
+
+    " Kg\n";
+
+
+    teks +=
+
+    "   Total Nilai : " +
+
+    formatRupiah(
+        totalNilaiAnggota
+    ) +
+
+    "\n\n";
+
+
+    if(
+        index <
+        daftarAnggota.length - 1
+    ){
+
+        teks +=
+        "---\n\n";
+
+    }
+
+});
+
+
+/* =================================================
+   TOTAL KESELURUHAN
+================================================= */
+
+teks +=
+"---\n\n";
+
+
+teks +=
+
+"Total Anggota   : " +
+
+daftarAnggota.length +
+
+"\n";
+
+
+teks +=
+
+"Total Transaksi : " +
+
+totalTransaksi +
+
+"\n";
+
+
+teks +=
+
+"Total Berat     : " +
+
+totalBerat +
+
+" Kg\n";
+
+
+teks +=
+
+"Total Nilai     : " +
+
+formatRupiah(
+    totalNilai
+);
+
+
+/* =================================================
+   SALIN KE CLIPBOARD
+================================================= */
+
+navigator.clipboard
+.writeText(teks)
 
 .then(()=>{
 
     alert(
-        "Laporan Setoran berhasil disalin."
+        "Laporan setoran berhasil disalin."
     );
 
 })
@@ -618,12 +939,12 @@ navigator.clipboard.writeText(teks)
 .catch(error=>{
 
     console.error(
-        "Salin laporan setoran gagal :",
+        "Gagal menyalin laporan :",
         error
     );
 
     alert(
-        "Gagal menyalin laporan."
+        "Laporan gagal disalin."
     );
 
 });
@@ -917,42 +1238,167 @@ if(data.length === 0){
 }
 
 
-let teks =
+const tanggalAwal =
 
-    "LAPORAN PENJUALAN BANK SAMPAH\n" +
+getValue(
+    "lapTanggalAwal"
+) || "-";
 
-    "==============================\n\n";
+
+const tanggalAkhir =
+
+getValue(
+    "lapTanggalAkhir"
+) || "-";
+
+
+let teks = "";
 
 
 teks +=
+"BANK SAMPAH SUMBER REJEKI\n\n";
 
-    "Tanggal | Barang | Berat | Harga | Total\n";
+
+teks +=
+"LAPORAN PENJUALAN\n\n";
 
 
-data.forEach(item=>{
+teks +=
+"Periode : " +
+
+tanggalAwal +
+
+" s/d " +
+
+tanggalAkhir +
+
+"\n\n";
+
+
+teks +=
+"---\n\n";
+
+
+let totalBerat = 0;
+
+let totalNilai = 0;
+
+
+data.forEach((item,index)=>{
+
+    const berat =
+
+    Number(
+        item.berat || 0
+    );
+
+
+    const total =
+
+    Number(
+        item.total || 0
+    );
+
+
+    totalBerat +=
+    berat;
+
+
+    totalNilai +=
+    total;
+
 
     teks +=
 
-        (item.tanggal || "") +
-        " | " +
-        (item.jenisBarang || "") +
-        " | " +
-        (item.berat || 0) +
-        " | " +
-        formatRupiah(item.harga) +
-        " | " +
-        formatRupiah(item.total) +
-        "\n";
+    (index + 1) +
+
+    ". " +
+
+    (item.tanggal || "-") +
+
+    "\n\n";
+
+
+    teks +=
+
+    "Barang : " +
+
+    (
+        item.jenisBarang ||
+        "-"
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Berat  : " +
+
+    berat +
+
+    " Kg\n";
+
+
+    teks +=
+
+    "Harga  : " +
+
+    formatRupiah(
+        item.harga
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Total  : " +
+
+    formatRupiah(
+        total
+    ) +
+
+    "\n\n";
 
 });
 
 
-navigator.clipboard.writeText(teks)
+teks +=
+"---\n\n";
+
+
+teks +=
+"Total Transaksi : " +
+
+data.length +
+
+"\n";
+
+
+teks +=
+"Total Berat     : " +
+
+totalBerat +
+
+" Kg\n";
+
+
+teks +=
+"Total Nilai     : " +
+
+formatRupiah(
+    totalNilai
+);
+
+
+navigator.clipboard
+.writeText(teks)
 
 .then(()=>{
 
     alert(
-        "Laporan Penjualan berhasil disalin."
+        "Laporan penjualan berhasil disalin."
     );
 
 })
@@ -960,18 +1406,19 @@ navigator.clipboard.writeText(teks)
 .catch(error=>{
 
     console.error(
-        "Salin laporan penjualan gagal :",
+        "Gagal menyalin laporan :",
         error
     );
 
     alert(
-        "Gagal menyalin laporan."
+        "Laporan gagal disalin."
     );
 
 });
 
 
 }
+
 
 /* =====================================================
    HEADER PENARIKAN
@@ -1308,19 +1755,121 @@ if(data.length === 0){
 }
 
 
-let teks =
+const tanggalAwal =
 
-    "LAPORAN PENARIKAN BANK SAMPAH\n" +
+getValue(
+    "lapTanggalAwal"
+) || "-";
 
-    "==============================\n\n";
+
+const tanggalAkhir =
+
+getValue(
+    "lapTanggalAkhir"
+) || "-";
+
+
+const rwFilter =
+
+getValue(
+    "lapRW"
+);
+
+
+const anggotaFilter =
+
+getValue(
+    "lapAnggota"
+);
+
+
+const rwTampil =
+
+rwFilter
+?
+(
+    String(rwFilter)
+    .startsWith("RW ")
+    ?
+    rwFilter
+    :
+    "RW " + rwFilter
+)
+:
+"Semua RW";
+
+
+let anggotaTampil = "";
+
+
+if(anggotaFilter){
+
+    const anggota =
+
+    getAnggota(
+        anggotaFilter
+    );
+
+
+    if(anggota){
+
+        anggotaTampil =
+
+        "\nAnggota  : " +
+
+        anggota.nama;
+
+    }
+
+}
+
+
+let teks = "";
 
 
 teks +=
+"BANK SAMPAH SUMBER REJEKI\n\n";
 
-    "Tanggal | RW | ID | Nama | Nominal\n";
+
+teks +=
+"LAPORAN PENARIKAN\n\n";
 
 
-data.forEach(item=>{
+teks +=
+"Periode : " +
+
+tanggalAwal +
+
+" s/d " +
+
+tanggalAkhir +
+
+"\n";
+
+
+teks +=
+"RW      : " +
+
+rwTampil;
+
+
+teks +=
+anggotaTampil;
+
+
+teks +=
+"\n\n";
+
+
+teks +=
+"---\n\n";
+
+
+let totalNilai = 0;
+
+
+data.forEach((item,index)=>{
+
 
     const anggota =
 
@@ -1329,55 +1878,84 @@ data.forEach(item=>{
     );
 
 
-    const rw =
+    const nominal =
 
-    anggota
-    ?
-    anggota.rw
-    :
-    "-";
+    Number(
+        item.nominal || 0
+    );
 
 
-    const id =
-
-    anggota
-    ?
-    anggota.idAnggota
-    :
-    "-";
-
-
-    const nama =
-
-    anggota
-    ?
-    anggota.nama
-    :
-    "-";
+    totalNilai +=
+    nominal;
 
 
     teks +=
 
-        (item.tanggal || "") +
-        " | " +
-        rw +
-        " | " +
-        id +
-        " | " +
-        nama +
-        " | " +
-        formatRupiah(item.nominal) +
-        "\n";
+    (index + 1) +
+
+    ". " +
+
+    (item.tanggal || "-") +
+
+    "\n\n";
+
+
+    teks +=
+
+    "Nama    : " +
+
+    (
+        anggota
+        ?
+        anggota.nama
+        :
+        "-"
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Nominal : " +
+
+    formatRupiah(
+        nominal
+    ) +
+
+    "\n\n";
+
 
 });
 
 
-navigator.clipboard.writeText(teks)
+teks +=
+"---\n\n";
+
+
+teks +=
+"Total Transaksi : " +
+
+data.length +
+
+"\n";
+
+
+teks +=
+"Total Penarikan : " +
+
+formatRupiah(
+    totalNilai
+);
+
+
+navigator.clipboard
+.writeText(teks)
 
 .then(()=>{
 
     alert(
-        "Laporan Penarikan berhasil disalin."
+        "Laporan penarikan berhasil disalin."
     );
 
 })
@@ -1385,18 +1963,19 @@ navigator.clipboard.writeText(teks)
 .catch(error=>{
 
     console.error(
-        "Salin laporan penarikan gagal :",
+        "Gagal menyalin laporan :",
         error
     );
 
     alert(
-        "Gagal menyalin laporan."
+        "Laporan gagal disalin."
     );
 
 });
 
 
 }
+
 
 /* =====================================================
    HEADER SALDO ANGGOTA
@@ -2004,21 +2583,74 @@ if(data.length === 0){
 }
 
 
-let teks =
+const rwTampil =
 
-    "LAPORAN SALDO ANGGOTA\n" +
+rw
+?
+(
+    String(rw)
+    .startsWith("RW ")
+    ?
+    rw
+    :
+    "RW " + rw
+)
+:
+"Semua RW";
 
-    "BANK SAMPAH SUMBER REJEKI\n" +
 
-    "==============================\n\n";
+let teks = "";
 
 
 teks +=
+"BANK SAMPAH SUMBER REJEKI\n\n";
 
-    "RW | ID | Nama | Total Setoran | Total Penarikan | Saldo\n";
+
+teks +=
+"LAPORAN SALDO ANGGOTA\n\n";
 
 
-data.forEach(item=>{
+teks +=
+"RW : " +
+
+rwTampil;
+
+
+if(anggotaFilter){
+
+    const anggota =
+
+    data[0];
+
+
+    teks +=
+
+    "\nAnggota : " +
+
+    (
+        anggota.nama ||
+        "-"
+    );
+
+}
+
+
+teks +=
+"\n\n";
+
+
+teks +=
+"---\n\n";
+
+
+let totalSetoranSemua = 0;
+
+let totalPenarikanSemua = 0;
+
+let totalSaldoSemua = 0;
+
+
+data.forEach((item,index)=>{
 
 
     const totalSetoran =
@@ -2041,42 +2673,149 @@ data.forEach(item=>{
     totalPenarikan;
 
 
+    totalSetoranSemua +=
+    totalSetoran;
+
+
+    totalPenarikanSemua +=
+    totalPenarikan;
+
+
+    totalSaldoSemua +=
+    saldo;
+
+
+    const rwAnggota =
+
+    String(item.rw)
+    .startsWith("RW ")
+    ?
+    item.rw
+    :
+    "RW " + item.rw;
+
+
     teks +=
 
-        (item.rw || "-") +
-        " | " +
+    (index + 1) +
 
-        (item.idAnggota || "-") +
-        " | " +
+    ". " +
 
-        (item.nama || "-") +
-        " | " +
+    (
+        item.nama ||
+        "-"
+    ) +
 
-        formatRupiah(
-            totalSetoran
-        ) +
-        " | " +
+    "\n\n";
 
-        formatRupiah(
-            totalPenarikan
-        ) +
-        " | " +
 
-        formatRupiah(
-            saldo
-        ) +
+    teks +=
 
-        "\n";
+    "RW               : " +
+
+    rwAnggota +
+
+    "\n";
+
+
+    teks +=
+
+    "ID               : " +
+
+    (
+        item.idAnggota ||
+        "-"
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Total Setoran    : " +
+
+    formatRupiah(
+        totalSetoran
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Total Penarikan  : " +
+
+    formatRupiah(
+        totalPenarikan
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Saldo            : " +
+
+    formatRupiah(
+        saldo
+    ) +
+
+    "\n\n";
 
 });
 
 
-navigator.clipboard.writeText(teks)
+teks +=
+"---\n\n";
+
+
+teks +=
+
+"Total Anggota    : " +
+
+data.length +
+
+"\n";
+
+
+teks +=
+
+"Total Setoran    : " +
+
+formatRupiah(
+    totalSetoranSemua
+) +
+
+"\n";
+
+
+teks +=
+
+"Total Penarikan  : " +
+
+formatRupiah(
+    totalPenarikanSemua
+) +
+
+"\n";
+
+
+teks +=
+
+"Total Saldo      : " +
+
+formatRupiah(
+    totalSaldoSemua
+);
+
+
+navigator.clipboard
+.writeText(teks)
 
 .then(()=>{
 
     alert(
-        "Laporan Saldo Anggota berhasil disalin."
+        "Laporan saldo anggota berhasil disalin."
     );
 
 })
@@ -2084,18 +2823,19 @@ navigator.clipboard.writeText(teks)
 .catch(error=>{
 
     console.error(
-        "Salin laporan saldo gagal :",
+        "Gagal menyalin laporan :",
         error
     );
 
     alert(
-        "Gagal menyalin laporan."
+        "Laporan gagal disalin."
     );
 
 });
 
 
 }
+
 
 
 /* =====================================================
@@ -2385,6 +3125,25 @@ const daftarRW = [
 ];
 
 
+let teks = "";
+
+
+teks +=
+"BANK SAMPAH SUMBER REJEKI\n\n";
+
+
+teks +=
+"LAPORAN REKAP RW\n\n";
+
+
+teks +=
+"Histori : Semua Waktu\n\n";
+
+
+teks +=
+"---\n\n";
+
+
 let totalAnggota = 0;
 
 let totalSetoran = 0;
@@ -2394,21 +3153,7 @@ let totalPenarikan = 0;
 let totalSaldo = 0;
 
 
-let teks =
-
-    "LAPORAN REKAP RW\n" +
-
-    "BANK SAMPAH SUMBER REJEKI\n" +
-
-    "==============================\n\n";
-
-
-teks +=
-
-    "RW | Anggota | Total Setoran | Total Penarikan | Saldo\n";
-
-
-daftarRW.forEach(rw=>{
+daftarRW.forEach((rw,index)=>{
 
 
     const anggotaRW =
@@ -2516,60 +3261,120 @@ daftarRW.forEach(rw=>{
 
     teks +=
 
-        "RW " +
-        rw +
-        " | " +
+    "RW " +
 
-        anggotaRW.length +
-        " | " +
+    rw +
 
-        formatRupiah(
-            setoran
-        ) +
-        " | " +
+    "\n\n";
 
-        formatRupiah(
-            penarikan
-        ) +
-        " | " +
 
-        formatRupiah(
-            saldo
-        ) +
+    teks +=
 
-        "\n";
+    "Jumlah Anggota : " +
+
+    anggotaRW.length +
+
+    "\n";
+
+
+    teks +=
+
+    "Total Setoran  : " +
+
+    formatRupiah(
+        setoran
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Total Penarikan: " +
+
+    formatRupiah(
+        penarikan
+    ) +
+
+    "\n";
+
+
+    teks +=
+
+    "Saldo          : " +
+
+    formatRupiah(
+        saldo
+    ) +
+
+    "\n\n";
+
+
+    if(index < daftarRW.length - 1){
+
+        teks +=
+        "---\n\n";
+
+    }
 
 });
 
 
 teks +=
-
-    "\nTOTAL | " +
-
-    totalAnggota +
-    " | " +
-
-    formatRupiah(
-        totalSetoran
-    ) +
-    " | " +
-
-    formatRupiah(
-        totalPenarikan
-    ) +
-    " | " +
-
-    formatRupiah(
-        totalSaldo
-    );
+"---\n\n";
 
 
-navigator.clipboard.writeText(teks)
+teks +=
+"TOTAL KESELURUHAN\n\n";
+
+
+teks +=
+
+"Total Anggota    : " +
+
+totalAnggota +
+
+"\n";
+
+
+teks +=
+
+"Total Setoran    : " +
+
+formatRupiah(
+    totalSetoran
+) +
+
+"\n";
+
+
+teks +=
+
+"Total Penarikan  : " +
+
+formatRupiah(
+    totalPenarikan
+) +
+
+"\n";
+
+
+teks +=
+
+"Total Saldo      : " +
+
+formatRupiah(
+    totalSaldo
+);
+
+
+navigator.clipboard
+.writeText(teks)
 
 .then(()=>{
 
     alert(
-        "Laporan Rekap RW berhasil disalin."
+        "Laporan rekap RW berhasil disalin."
     );
 
 })
@@ -2577,22 +3382,18 @@ navigator.clipboard.writeText(teks)
 .catch(error=>{
 
     console.error(
-        "Salin laporan Rekap RW gagal :",
+        "Gagal menyalin laporan :",
         error
     );
 
     alert(
-        "Gagal menyalin laporan."
+        "Laporan gagal disalin."
     );
 
 });
 
 
 }
-
-
-
-
 
 
 /* =====================================================
