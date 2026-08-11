@@ -182,8 +182,6 @@ function getNomorRW(value){
         : "";
 }
 
-
-
 /* =====================================================
    DASHBOARD ANGGOTA
 ===================================================== */
@@ -199,12 +197,21 @@ function updateDashboardAnggota(){
     for(let i = 1; i <= 5; i++){
 
         const jumlah =
-        DATA.anggota.filter(item =>
+        DATA.anggota.filter(item => {
 
-            getNomorRW(item.rw)
-            === String(i)
+            const rw =
+            String(item.rw || "")
+            .trim()
+            .toUpperCase();
 
-        ).length;
+
+            return (
+                rw === String(i) ||
+                rw === "RW " + i ||
+                rw === "RW" + i
+            );
+
+        }).length;
 
 
         setText(
@@ -215,6 +222,7 @@ function updateDashboardAnggota(){
     }
 
 }
+
 
 /* =====================================================
    ISI FORM EDIT
