@@ -159,6 +159,32 @@ function tampilAnggota(){
 }
 
 /* =====================================================
+   NORMALISASI RW
+===================================================== */
+
+function getNomorRW(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+
+    const teks =
+    String(value).trim();
+
+
+    const hasil =
+    teks.match(/[1-5]/);
+
+
+    return hasil
+        ? hasil[0]
+        : "";
+}
+
+
+
+/* =====================================================
    DASHBOARD ANGGOTA
 ===================================================== */
 
@@ -175,7 +201,8 @@ function updateDashboardAnggota(){
         const jumlah =
         DATA.anggota.filter(item =>
 
-            String(item.rw) === String(i)
+            getNomorRW(item.rw)
+            === String(i)
 
         ).length;
 
