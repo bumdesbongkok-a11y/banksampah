@@ -188,75 +188,92 @@ function isiDropdownBarangSetoran(){
 
 }
 
-
-
-
-
 /* =====================================================
    AMBIL HARGA BARANG
 ===================================================== */
 
 function pilihHargaSetoran(){
 
-
     const idHarga =
-
     getValue(
-
         "cmbJenisBarang"
-
     );
-
 
 
     const harga =
-
-    DATA.harga.find(item=>
-
+    DATA.harga.find(item =>
 
         item.firestoreId === idHarga
 
-
     );
 
+
+    const inputHarga =
+    el("txtHargaSetoran");
 
 
     if(!harga){
 
+        setValue(
+            "txtHargaSetoran",
+            ""
+        );
+
+        if(inputHarga){
+            inputHarga.readOnly = true;
+        }
+
+        hitungTotalSetoran();
+
+        return;
+    }
+
+
+    /* =================================================
+       BARANG LAINNYA
+    ================================================= */
+
+    if(
+        String(harga.jenisBarang)
+        .trim()
+        .toLowerCase()
+        === "lainnya"
+    ){
 
         setValue(
-
             "txtHargaSetoran",
-
             ""
-
         );
 
 
-        return;
+        if(inputHarga){
+            inputHarga.readOnly = false;
+            inputHarga.focus();
+        }
+
+
+    }else{
+
+        /* =============================================
+           BARANG BIASA
+        ============================================= */
+
+        setValue(
+            "txtHargaSetoran",
+            harga.harga
+        );
+
+
+        if(inputHarga){
+            inputHarga.readOnly = true;
+        }
 
     }
 
 
-
-    setValue(
-
-        "txtHargaSetoran",
-
-        harga.harga
-
-    );
-
-
-
     hitungTotalSetoran();
 
-
 }
-
-
-
-
 
 /* =====================================================
    HITUNG TOTAL
