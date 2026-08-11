@@ -242,6 +242,18 @@ el("cmbRWSetoran")
 );
 
 
+const txtHarga =
+el("txtHargaSetoran");
+
+if(txtHarga){
+
+    txtHarga.addEventListener(
+        "input",
+        hitungTotalSetoran
+    );
+
+}
+
 }
 
 
