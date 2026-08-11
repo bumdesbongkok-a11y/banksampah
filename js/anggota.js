@@ -229,13 +229,12 @@ async function simpanAnggota(){
 
 
         DATA.anggota.push(
-            data
-        );
+    data
+);
 
+tampilAnggota();
 
-
-        tampilAnggota();
-
+updateDashboardAnggota();
 updateDashboard();
 
         resetFormAnggota();
