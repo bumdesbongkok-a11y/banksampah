@@ -109,11 +109,7 @@ function tampilAnggota(){
             </td>
 
 
-            <td>
-
-    ${item.rw}
-
-</td>
+           <td> RW ${getNomorRW(item.rw)} </td>
 
 
             <td>
