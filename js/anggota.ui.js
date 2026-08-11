@@ -158,10 +158,6 @@ function tampilAnggota(){
 
 }
 
-
-
-
-
 /* =====================================================
    DASHBOARD ANGGOTA
 ===================================================== */
@@ -169,38 +165,29 @@ function tampilAnggota(){
 function updateDashboardAnggota(){
 
     setText(
-
         "dashTotalAnggota",
-
         DATA.anggota.length
-
     );
+
 
     for(let i = 1; i <= 5; i++){
 
         const jumlah =
-
         DATA.anggota.filter(item =>
 
-            item.rw === "RW " + i
+            String(item.rw) === String(i)
 
         ).length;
 
+
         setText(
-
             "dashRW" + i,
-
             jumlah
-
         );
 
     }
 
 }
-
-
-
-
 
 /* =====================================================
    ISI FORM EDIT
