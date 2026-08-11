@@ -196,7 +196,7 @@ async function simpanAnggota(){
 
 
 
-        rw,
+        "RW " + rw,
 
 
 
@@ -326,11 +326,7 @@ async function updateAnggota(){
 
 
 
-        rw:
-
-        getValue(
-            "cmbRW"
-        )
+        rw: "RW " + getValue("cmbRW")
 
     };
 
