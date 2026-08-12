@@ -253,6 +253,8 @@ function isiFormAnggota(item){
 
     );
 
+	el("chkIkutRanking").checked =
+    item.ikutRanking !== false;
 
     disable(
         "btnSimpanAnggota"

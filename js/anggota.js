@@ -175,39 +175,24 @@ async function simpanAnggota(){
 
     const data = {
 
+    idAnggota:
+    getValue(
+        "txtIdAnggota"
+    ),
 
-        idAnggota:
+    nama:
+    nama,
 
-        getValue(
-            "txtIdAnggota"
-        ),
+    rw:
+    "RW " + rw,
 
+    ikutRanking:
+    el("chkIkutRanking").checked,
 
+    tanggalDaftar:
+    new Date()
 
-        nama:
-
-
-
-        nama,
-
-
-
-        rw:
-
-
-
-        "RW " + rw,
-
-
-
-        tanggalDaftar:
-
-
-
-        new Date()
-
-
-    };
+};
 
 
 
@@ -317,18 +302,20 @@ async function updateAnggota(){
 
     const data = {
 
+    nama:
+    getValue(
+        "txtNama"
+    ),
 
-        nama:
+    rw:
+    "RW " + getValue(
+        "cmbRW"
+    ),
 
-        getValue(
-            "txtNama"
-        ),
+    ikutRanking:
+    el("chkIkutRanking").checked
 
-
-
-        rw: "RW " + getValue("cmbRW")
-
-    };
+};
 
 
 
