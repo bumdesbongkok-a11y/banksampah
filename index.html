@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -138,6 +138,55 @@
         </table>
 
     </div>
+	
+<!-- =====================================================
+     RANKING SETORAN BULANAN
+====================================================== -->
+
+<div class="card">
+
+    <h3>🏆 Ranking Setoran Bulanan</h3>
+
+    <p id="lblPeriodeRanking">
+        Periode : -
+    </p>
+
+    <table class="dashboardTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Rank</th>
+
+                <th>Anggota</th>
+
+                <th>RW</th>
+
+                <th>Total Setoran</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tblRankingSetoran">
+
+            <tr>
+
+                <td colspan="4" align="center">
+
+                    Belum ada data ranking
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
 
     <!-- =====================================================
          POSISI KEUANGAN
@@ -342,7 +391,15 @@ class="halaman">
 
         </select>
 
-
+		<div class="formCheck"> 
+		<label> 
+		<input 
+		type="checkbox" 
+		id="chkIkutRanking" 
+		checked > 
+		<span>Ikut Ranking Setoran</span> 
+		</label> 
+		</div>
 
         <!-- Tombol -->
 

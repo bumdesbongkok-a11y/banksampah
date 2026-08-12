@@ -723,3 +723,17 @@ white-space:nowrap;
 
 
 }
+
+css
+.formCheck label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.formCheck input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
