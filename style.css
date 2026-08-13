@@ -472,6 +472,7 @@ grid-template-columns:1fr 1fr;
     gap:12px;
 
     margin-bottom:15px;
+	
 
 }
 
@@ -490,85 +491,132 @@ grid-template-columns:1fr 1fr;
 }
 
 /* =====================================================
-   HEADER MODERN
+   HEADER MODERN - BACKGROUND GAMBAR
 ===================================================== */
 
 .header{
 
-    background:linear-gradient(
-        135deg,
-        #2E7D32,
-        #43A047
-    );
+    position:relative;
+
+    min-height:220px;
+
+    background-image:url("banksampah.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
 
     color:white;
 
     text-align:center;
 
-    padding:30px 20px;
+    padding:35px 20px;
 
     border-radius:0 0 25px 25px;
+
+    overflow:hidden;
 
 }
 
 
+/* =====================================================
+   OVERLAY
+===================================================== */
 
-.logoCircle{
+.header::before{
 
-    width:80px;
+    content:"";
 
-    height:80px;
+    position:absolute;
 
-    margin:auto;
+    inset:0;
 
-    border-radius:50%;
+    background:linear-gradient(
 
-    background:white;
+        135deg,
 
-    color:#2E7D32;
+        rgba(20,90,35,.70),
+
+        rgba(0,0,0,.30)
+
+    );
+
+}
+
+/* =====================================================
+   HEADER CONTENT
+===================================================== */
+
+.headerOverlay{
+
+    position:relative;
+
+    z-index:1;
 
     display:flex;
+
+    flex-direction:column;
 
     align-items:center;
 
     justify-content:center;
 
-    font-size:42px;
+    min-height:150px;
 
-    margin-bottom:15px;
+    padding:15px;
 
 }
 
-
+/* =====================================================
+   JUDUL HEADER
+===================================================== */
 
 .header h1{
 
     margin:0;
 
-    font-size:28px;
+    font-size:30px;
 
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.6);
+ position: relative;
+ top: 50px;
 }
-
 
 
 .header h2{
 
-    margin-top:5px;
+    margin-top:4px;
 
-    font-size:20px;
+    font-size:22px;
 
-    font-weight:500;
+    font-weight:600;
 
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.6);
+position: relative;
+top: 50px;
 }
-
 
 
 .header p{
 
     margin-top:8px;
 
-    opacity:.9;
+    font-size:13px;
 
+    opacity:.95;
+
+    text-shadow:
+        0 1px 4px rgba(0,0,0,.6);
+position: relative;
+top: 50px;
 }
 
 /* =====================================================
