@@ -2180,7 +2180,9 @@ function tampilLaporanSaldo(){
         <tr>
 
             <td>
-                ${item.rw}
+                RW ${String(item.rw || "")
+				.replace(/^RW\s*/i, "")
+				.trim()}
             </td>
 
 
@@ -2322,24 +2324,19 @@ getValue(
 if(rw){
 
     data =
+    data.filter(item => {
 
-    data.filter(item=>{
+        const rwData =
+            String(item.rw || "")
+            .replace(/^RW\s*/i, "")
+            .trim();
 
-        return String(item.rw)
-        .replace(
-            "RW ",
-            ""
-        )
-        .trim()
+        const rwFilter =
+            String(rw || "")
+            .replace(/^RW\s*/i, "")
+            .trim();
 
-        ===
-
-        String(rw)
-        .replace(
-            "RW ",
-            ""
-        )
-        .trim();
+        return rwData === rwFilter;
 
     });
 
