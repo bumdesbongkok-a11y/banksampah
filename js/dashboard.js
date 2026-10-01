@@ -4,6 +4,9 @@
 
 function initDashboard(){
 
+initFilterRankingSetoran();
+
+
     updateDashboard();
 
 }

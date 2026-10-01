@@ -163,142 +163,233 @@ hitungSaldoAnggota();
 
 /* =====================================================
    RANKING SETORAN BULANAN - TOP 3
+   PERIODE AKTIF / SNAPSHOT TUTUP BUKU
 ===================================================== */
 
-function updateRankingSetoran(){
+async function updateRankingSetoran(){
 
     const tbody =
     el("tblRankingSetoran");
 
-
     if(!tbody) return;
-
 
     tbody.innerHTML = "";
 
 
     /* =================================================
-       AMBIL PERIODE AKTIF
+       AMBIL PERIODE DARI FILTER RANKING
     ================================================= */
 
-    const bulan =
-    PERIODE.bulan;
+    const cmbBulan =
+    el("cmbBulanRanking");
 
-    const tahun =
-    PERIODE.tahun;
+    const txtTahun =
+    el("txtTahunRanking");
+
+
+    let bulan =
+    cmbBulan
+        ? Number(cmbBulan.value)
+        : PERIODE.bulan;
+
+
+    let tahun =
+    txtTahun
+        ? Number(txtTahun.value)
+        : PERIODE.tahun;
 
 
     /* =================================================
-       FILTER SETORAN PERIODE AKTIF
+       VALIDASI PERIODE
     ================================================= */
 
-    const setoranPeriode =
-    DATA.setoran.filter(item => {
+    if(
+        !bulan ||
+        !tahun
+    ){
 
-        if(!item.tanggal)
-        return false;
+        bulan =
+        PERIODE.bulan;
 
+        tahun =
+        PERIODE.tahun;
 
-        const tanggal =
-        new Date(item.tanggal);
-
-
-        return (
-            tanggal.getMonth() + 1 === bulan &&
-            tanggal.getFullYear() === tahun
-        );
-
-    });
+    }
 
 
     /* =================================================
-       KELOMPOKKAN BERDASARKAN ANGGOTA
+       ISI FILTER JIKA MASIH KOSONG
     ================================================= */
 
-    const ranking = {};
+    if(cmbBulan){
+
+        cmbBulan.value =
+        String(bulan);
+
+    }
 
 
-    setoranPeriode.forEach(item => {
+    if(txtTahun){
 
-        const idAnggota =
-        item.idAnggota;
+        txtTahun.value =
+        tahun;
 
-
-        if(!idAnggota)
-        return;
+    }
 
 
-        /* ---------------------------------------------
-           CARI DATA ANGGOTA
-        --------------------------------------------- */
+    /* =================================================
+       CEK APAKAH PERIODE SUDAH TUTUP BUKU
+    ================================================= */
 
-        const anggota =
-        DATA.anggota.find(a =>
-            a.firestoreId === idAnggota
-        );
+    let top3 = null;
+
+    try{
+
+        const snapshot =
+
+        await db
+        .collection(COL_TUTUP_BUKU)
+        .where(
+            "bulan",
+            "==",
+            bulan
+        )
+        .where(
+            "tahun",
+            "==",
+            tahun
+        )
+        .limit(1)
+        .get();
 
 
-        if(!anggota)
-        return;
+        if(!snapshot.empty){
+
+            const data =
+            snapshot.docs[0].data();
 
 
-        /* ---------------------------------------------
-           CEK IKUT RANKING
-           
-           Anggota lama yang belum memiliki
-           ikutRanking dianggap ikut.
-        --------------------------------------------- */
+            if(
+                Array.isArray(data.top3Setoran)
+            ){
 
-        if(
-            anggota.ikutRanking === false
-        ){
-            return;
+                top3 =
+                data.top3Setoran;
+
+            }
+
         }
 
+    }
+    catch(error){
 
-        if(!ranking[idAnggota]){
+        console.error(
+            "Gagal memuat snapshot Top 3 :",
+            error
+        );
 
-            ranking[idAnggota] = {
-
-                nama:
-                anggota.nama,
-
-                rw:
-String(anggota.rw).startsWith("RW ")
-    ? anggota.rw
-    : "RW " + anggota.rw,
-
-                total:
-                0
-
-            };
-
-        }
-
-
-        ranking[idAnggota].total +=
-        Number(item.total) || 0;
-
-    });
+    }
 
 
     /* =================================================
-       URUTKAN TERBESAR
+       JIKA BELUM TUTUP BUKU
+       HITUNG REALTIME DARI DATA SETORAN
     ================================================= */
 
-    const hasil =
-    Object.values(ranking)
-    .sort((a,b) =>
-        b.total - a.total
-    )
-    .slice(0,3);
+    if(!top3){
+
+        const setoranPeriode =
+        DATA.setoran.filter(item => {
+
+            if(!item.tanggal)
+                return false;
+
+            const tanggal =
+            new Date(item.tanggal);
+
+            return (
+                tanggal.getMonth() + 1 === bulan &&
+                tanggal.getFullYear() === tahun
+            );
+
+        });
+
+
+        const ranking = {};
+
+
+        setoranPeriode.forEach(item => {
+
+            const idAnggota =
+            item.idAnggota;
+
+            if(!idAnggota)
+                return;
+
+
+            const anggota =
+            DATA.anggota.find(a =>
+                a.firestoreId === idAnggota
+            );
+
+            if(!anggota)
+                return;
+
+
+            if(
+                anggota.ikutRanking === false
+            ){
+                return;
+            }
+
+
+            if(!ranking[idAnggota]){
+
+                ranking[idAnggota] = {
+
+                    idAnggota :
+                    idAnggota,
+
+                    nama :
+                    anggota.nama,
+
+                    rw :
+                    String(anggota.rw).startsWith("RW ")
+                        ? anggota.rw
+                        : "RW " + anggota.rw,
+
+                    total :
+                    0
+
+                };
+
+            }
+
+
+            ranking[idAnggota].total +=
+            Number(item.total) || 0;
+
+        });
+
+
+        top3 =
+        Object.values(ranking)
+        .sort((a,b) =>
+            b.total - a.total
+        )
+        .slice(0,3);
+
+    }
 
 
     /* =================================================
        TIDAK ADA DATA
     ================================================= */
 
-    if(hasil.length === 0){
+    if(
+        !top3 ||
+        top3.length === 0
+    ){
 
         tbody.innerHTML = `
 
@@ -316,73 +407,75 @@ String(anggota.rw).startsWith("RW ")
 
         `;
 
-        return;
+    }
+    else{
+
+        /* =============================================
+           TAMPILKAN TOP 3
+        ============================================= */
+
+        top3.forEach((item,index) => {
+
+            const rank =
+            index + 1;
+
+
+            let icon =
+            rank;
+
+
+            if(rank === 1)
+                icon = "🥇";
+
+            if(rank === 2)
+                icon = "🥈";
+
+            if(rank === 3)
+                icon = "🥉";
+
+
+            tbody.innerHTML += `
+
+            <tr>
+
+                <td align="center">
+
+                    ${icon}
+
+                </td>
+
+
+                <td>
+
+                    ${item.nama}
+
+                </td>
+
+
+                <td>
+
+                    ${item.rw}
+
+                </td>
+
+
+                <td align="right">
+
+                    ${formatRupiah(item.total)}
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
 
     }
 
 
     /* =================================================
-       TAMPILKAN TOP 3
-    ================================================= */
-
-    hasil.forEach((item,index) => {
-
-        let rank = index + 1;
-
-
-        let icon = rank;
-
-
-        if(rank === 1)
-            icon = "🥇";
-
-        if(rank === 2)
-            icon = "🥈";
-
-        if(rank === 3)
-            icon = "🥉";
-
-
-        tbody.innerHTML += `
-
-        <tr>
-
-            <td align="center">
-
-                ${icon}
-
-            </td>
-
-
-            <td>
-
-                ${item.nama}
-
-            </td>
-
-
-            <td>
-
-                ${item.rw}
-
-            </td>
-
-
-            <td align="right">
-
-                ${formatRupiah(item.total)}
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
-
-
-    /* =================================================
-       PERIODE RANKING
+       TAMPILKAN PERIODE
     ================================================= */
 
     setText(
@@ -394,6 +487,50 @@ String(anggota.rw).startsWith("RW ")
         " " +
         tahun
 
+    );
+
+}
+function initFilterRankingSetoran(){
+
+    const cmbBulan =
+    el("cmbBulanRanking");
+
+    const txtTahun =
+    el("txtTahunRanking");
+
+
+    if(!cmbBulan || !txtTahun)
+        return;
+
+
+    /* =============================================
+       DEFAULT PERIODE
+    ============================================= */
+
+    cmbBulan.value =
+    String(PERIODE.bulan);
+
+    txtTahun.value =
+    PERIODE.tahun;
+
+
+    /* =============================================
+       GANTI BULAN
+    ============================================= */
+
+    cmbBulan.addEventListener(
+        "change",
+        updateRankingSetoran
+    );
+
+
+    /* =============================================
+       GANTI TAHUN
+    ============================================= */
+
+    txtTahun.addEventListener(
+        "change",
+        updateRankingSetoran
     );
 
 }
